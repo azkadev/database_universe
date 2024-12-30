@@ -79,9 +79,7 @@ jobs:
   #         clean: false
 
   publish:
-    name: Publish
-    # needs: build_inspector
-    needs: testlab
+    name: Publish 
     runs-on: ubuntu-latest
     permissions:
       id-token: write
