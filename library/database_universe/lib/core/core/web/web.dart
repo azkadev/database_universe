@@ -5,7 +5,6 @@ import 'dart:html';
 import 'dart:js_util';
 
 import 'package:database_universe/core/core/web/interop.dart';
-import 'package:database_universe/database_universe.dart';
 
 export 'bindings.dart';
 export 'ffi.dart';
@@ -14,8 +13,7 @@ export 'interop.dart';
 FutureOr<DatabaseUniverseCoreBindings> initializePlatformBindings([
   String? library,
 ]) async {
-  final url = library ??
-      'https://unpkg.com/database_universe@${DatabaseUniverse.version}/database_universe.wasm';
+  final url = library ?? 'database_universe.wasm';
   final w = window as JSWindow;
   final promise = w.WebAssembly.instantiateStreaming(
     w.fetch(url),
@@ -82,10 +80,7 @@ int platformFastHash(String str) {
     v2 = t2 & 65535;
   }
 
-  return (v3 & 15) * 281474976710656 +
-      v2 * 4294967296 +
-      v1 * 65536 +
-      (v0 ^ (v3 >> 4));
+  return (v3 & 15) * 281474976710656 + v2 * 4294967296 + v1 * 65536 + (v0 ^ (v3 >> 4));
 }
 
 @tryInline

@@ -64,7 +64,7 @@ abstract class _DatabaseUniverseConnect {
       if (path.endsWith('=')) {
         path = path.substring(0, path.length - 1);
       }
-      final url = ' https://inspect.database_universe.dev/${DatabaseUniverse.version}/#/$port$path ';
+      final url = ' https://inspect.database_universe.dev/#/$port$path ';
       String line(String text, String fill) {
         final fillCount = url.length - text.length;
         final left = List.filled(fillCount ~/ 2, fill);
