@@ -119,21 +119,21 @@ jobs:
           echo '${{ secrets.PUB_JSON }}' >> $HOME/.config/dart/pub-credentials.json
            
       - name: Pub Get database_universe
-        working-directory: packages/database_universe
+        working-directory: library/database_universe
         run: |
           dart pub get
           dart format .
 
       - name: Pub Get database_universe_flutter_libs
-        working-directory: packages/database_universe_flutter_libs
+        working-directory: library/database_universe_flutter_libs
         run: |
           flutter pub get
           dart format .
 
       - name: Archived  
         run: |
-          tar -czvf database_universe.tar.gz packages/database_universe/
-          tar -czvf database_universe_flutter_libs.tar.gz packages/database_universe_flutter_libs/
+          tar -czvf database_universe.tar.gz library/database_universe/
+          tar -czvf database_universe_flutter_libs.tar.gz library/database_universe_flutter_libs/
 
 
       - name: Upload Release
@@ -156,12 +156,12 @@ jobs:
 
       - name: Publish Get database_universe
         if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-        working-directory: packages/database_universe
+        working-directory: library/database_universe
         run: | 
           dart pub publish --force
 
       - name: Publish database_universe_flutter_libs
         if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-        working-directory: packages/database_universe_flutter_libs
+        working-directory: library/database_universe_flutter_libs
         run: | 
           flutter pub publish --force

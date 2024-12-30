@@ -296,14 +296,14 @@ class _CollectionAreaState extends State<CollectionArea> {
   }
 
   Future<void> _onDownload() async {
-    final query = ConnectQueryPayload(
-      instance: widget.instance,
-      collection: widget.collection,
-      filter: filter.toIsarFilter(),
-    );
-    final data = await widget.client.exportJson(query);
+    // final query = ConnectQueryPayload(
+    //   instance: widget.instance,
+    //   collection: widget.collection,
+    //   filter: filter.toIsarFilter(),
+    // );
+    // final data = await widget.client.exportJson(query);
     try {
-      final base64 = base64Encode(utf8.encode(jsonEncode(data)));
+      // final base64 = base64Encode(utf8.encode(jsonEncode(data)));
       // final anchor = AnchorElement(href: 'data:application/octet-stream;base64,$base64')
       //   ..target = 'blank'
       //   ..download = '${widget.collection}.json';
