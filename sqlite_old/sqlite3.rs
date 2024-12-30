@@ -1,4 +1,4 @@
-use crate::core::error::{IsarError, Result};
+use crate::core::error::{DatabaseUniverseError, Result};
 use ffi::sqlite3_busy_timeout;
 use libsqlite3_sys as ffi;
 use std::cell::Cell;
@@ -31,7 +31,7 @@ impl SQLite3 {
                 if let Some(encryption_key) = encryption_key {
                     sqlite
                         .key(encryption_key)
-                        .map_err(|_| IsarError::EncryptionError {})?;
+                        .map_err(|_| DatabaseUniverseError::EncryptionError {})?;
                 }
                 sqlite.initialize()?;
                 Ok(sqlite)
@@ -498,11 +498,11 @@ impl Drop for SQLiteStatement<'_> {
     }
 }
 
-pub fn sqlite_err(db: *mut ffi::sqlite3, code: i32) -> IsarError {
+pub fn sqlite_err(db: *mut ffi::sqlite3, code: i32) -> DatabaseUniverseError {
     unsafe {
         let c_slice = CStr::from_ptr(ffi::sqlite3_errmsg(db)).to_bytes();
         let msg = String::from_utf8_lossy(c_slice).into_owned();
-        IsarError::DbError {
+        DatabaseUniverseError::DbError {
             code: code,
             message: msg,
         }

@@ -2,8 +2,8 @@ use super::sql::insert_sql;
 use super::sqlite3::SQLiteStatement;
 use super::sqlite_collection::SQLiteCollection;
 use super::sqlite_txn::SQLiteTxn;
-use crate::core::error::{IsarError, Result};
-use crate::core::insert::IsarInsert;
+use crate::core::error::{DatabaseUniverseError, Result};
+use crate::core::insert::DatabaseUniverseInsert;
 use ouroboros::self_referencing;
 use std::cell::Cell;
 
@@ -83,7 +83,7 @@ impl<'a> SQLiteInsert<'a> {
     }
 }
 
-impl<'a> IsarInsert<'a> for SQLiteInsert<'a> {
+impl<'a> DatabaseUniverseInsert<'a> for SQLiteInsert<'a> {
     type Txn = SQLiteTxn;
 
     fn save(&mut self, id: i64) -> Result<()> {
@@ -104,7 +104,7 @@ impl<'a> IsarInsert<'a> for SQLiteInsert<'a> {
 
             Ok(())
         } else {
-            Err(IsarError::UnsupportedOperation {})
+            Err(DatabaseUniverseError::UnsupportedOperation {})
         }
     }
 

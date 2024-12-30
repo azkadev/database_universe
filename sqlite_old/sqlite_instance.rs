@@ -8,12 +8,12 @@ use super::sqlite_query_builder::SQLiteQueryBuilder;
 use super::sqlite_reader::SQLiteReader;
 use super::sqlite_txn::SQLiteTxn;
 use super::sqlite_verify::verify_sqlite;
-use crate::core::error::{IsarError, Result};
+use crate::core::error::{DatabaseUniverseError, Result};
 use crate::core::filter::{ConditionType, Filter, FilterCondition};
-use crate::core::instance::{Aggregation, CompactCondition, IsarInstance};
-use crate::core::query_builder::IsarQueryBuilder;
-use crate::core::schema::IsarSchema;
-use crate::core::value::IsarValue;
+use crate::core::instance::{Aggregation, CompactCondition, DatabaseUniverseInstance};
+use crate::core::query_builder::DatabaseUniverseQueryBuilder;
+use crate::core::schema::DatabaseUniverseSchema;
+use crate::core::value::DatabaseUniverseValue;
 use crate::core::watcher::{WatchHandle, WatcherCallback};
 use parking_lot::lock_api::RawMutex;
 use std::cell::Cell;
@@ -64,12 +64,12 @@ impl SQLiteInstance {
         if let Some(collection) = self.info.collections.get(collection_index as usize) {
             Ok(collection)
         } else {
-            Err(IsarError::IllegalArgument {})
+            Err(DatabaseUniverseError::IllegalArgument {})
         }
     }
 }
 
-impl IsarInstance for SQLiteInstance {
+impl DatabaseUniverseInstance for SQLiteInstance {
     type Instance = Self;
 
     type Txn = SQLiteTxn;
@@ -115,16 +115,16 @@ impl IsarInstance for SQLiteInstance {
         instance_id: u32,
         name: &str,
         dir: &str,
-        schemas: Vec<IsarSchema>,
+        schemas: Vec<DatabaseUniverseSchema>,
         max_size_mib: u32,
         encryption_key: Option<&str>,
         compact_condition: Option<CompactCondition>,
     ) -> Result<Self> {
         if compact_condition.is_some() {
-            return Err(IsarError::IllegalArgument {});
+            return Err(DatabaseUniverseError::IllegalArgument {});
         }
         if !cfg!(feature = "sqlcipher") && encryption_key.is_some() {
-            return Err(IsarError::UnsupportedOperation {});
+            return Err(DatabaseUniverseError::UnsupportedOperation {});
         }
 
         let (info, sqlite) = open_instance(
@@ -144,7 +144,7 @@ impl IsarInstance for SQLiteInstance {
 
     fn change_encryption_key(&self, encryption_key: Option<&str>) -> Result<()> {
         if !cfg!(feature = "sqlcipher") {
-            return Err(IsarError::UnsupportedOperation {});
+            return Err(DatabaseUniverseError::UnsupportedOperation {});
         }
 
         match encryption_key {
@@ -158,7 +158,7 @@ impl IsarInstance for SQLiteInstance {
             self.info.write_mutex.lock();
         }
         if self.txn_active.replace(true) {
-            Err(IsarError::TransactionActive {})
+            Err(DatabaseUniverseError::TransactionActive {})
         } else {
             SQLiteTxn::new(self.sqlite.clone(), write)
         }
@@ -213,13 +213,13 @@ impl IsarInstance for SQLiteInstance {
         txn: &Self::Txn,
         collection_index: u16,
         id: i64,
-        updates: &[(u16, Option<IsarValue>)],
+        updates: &[(u16, Option<DatabaseUniverseValue>)],
     ) -> Result<bool> {
         let mut qb = self.query(collection_index)?;
         qb.set_filter(Filter::Condition(FilterCondition::new(
             0,
             ConditionType::Equal,
-            vec![Some(IsarValue::Integer(id))],
+            vec![Some(DatabaseUniverseValue::Integer(id))],
             false,
         )));
         let q = qb.build();
@@ -232,7 +232,7 @@ impl IsarInstance for SQLiteInstance {
         qb.set_filter(Filter::Condition(FilterCondition::new(
             0,
             ConditionType::Equal,
-            vec![Some(IsarValue::Integer(id))],
+            vec![Some(DatabaseUniverseValue::Integer(id))],
             false,
         )));
         let q = qb.build();
@@ -243,7 +243,7 @@ impl IsarInstance for SQLiteInstance {
     fn count(&self, txn: &Self::Txn, collection_index: u16) -> Result<u32> {
         let q = self.query(collection_index)?.build();
         let result = self.query_aggregate(txn, &q, Aggregation::Count, None)?;
-        if let Some(IsarValue::Integer(count)) = result {
+        if let Some(DatabaseUniverseValue::Integer(count)) = result {
             Ok(count as u32)
         } else {
             Ok(0)
@@ -262,7 +262,7 @@ impl IsarInstance for SQLiteInstance {
         _collection_index: u16,
         _include_indexes: bool,
     ) -> Result<u64> {
-        Err(IsarError::UnsupportedOperation {})
+        Err(DatabaseUniverseError::UnsupportedOperation {})
     }
 
     fn query(&self, collection_index: u16) -> Result<Self::QueryBuilder<'_>> {
@@ -289,7 +289,7 @@ impl IsarInstance for SQLiteInstance {
         query: &Self::Query,
         aggregation: Aggregation,
         property_index: Option<u16>,
-    ) -> Result<Option<IsarValue>> {
+    ) -> Result<Option<DatabaseUniverseValue>> {
         query.aggregate(txn, &self.info.collections, aggregation, property_index)
     }
 
@@ -299,7 +299,7 @@ impl IsarInstance for SQLiteInstance {
         query: &Self::Query,
         offset: Option<u32>,
         limit: Option<u32>,
-        updates: &[(u16, Option<IsarValue>)],
+        updates: &[(u16, Option<DatabaseUniverseValue>)],
     ) -> Result<u32> {
         let collection = self.get_collection(query.collection_index)?;
         txn.monitor_changes(&collection.watchers);
@@ -348,7 +348,7 @@ impl IsarInstance for SQLiteInstance {
 
     fn copy(&self, path: &str) -> Result<()> {
         if Rc::strong_count(&self.sqlite) > 1 {
-            return Err(IsarError::UnsupportedOperation {});
+            return Err(DatabaseUniverseError::UnsupportedOperation {});
         }
 
         let sql = format!("VACUUM INTO '{}'", path);

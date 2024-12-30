@@ -5,18 +5,18 @@ use super::sqlite3::SQLiteStatement;
 use super::sqlite_collection::{SQLiteCollection, SQLiteProperty};
 use super::sqlite_reader::SQLiteReader;
 use super::sqlite_txn::SQLiteTxn;
-use crate::core::cursor::IsarQueryCursor;
+use crate::core::cursor::DatabaseUniverseQueryCursor;
 use crate::core::data_type::DataType;
 use crate::core::error::Result;
 use crate::core::filter::JsonCondition;
 use crate::core::instance::Aggregation;
-use crate::core::value::IsarValue;
+use crate::core::value::DatabaseUniverseValue;
 use crate::core::watcher::QueryMatches;
 use std::borrow::Cow;
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) enum QueryParam {
-    Value(IsarValue),
+    Value(DatabaseUniverseValue),
     JsonCondition(JsonCondition),
 }
 
@@ -77,7 +77,7 @@ impl SQLiteQuery {
         all_collections: &[SQLiteCollection],
         aggregation: Aggregation,
         property_index: Option<u16>,
-    ) -> Result<Option<IsarValue>> {
+    ) -> Result<Option<DatabaseUniverseValue>> {
         let collection = &all_collections[self.collection_index as usize];
         let property_name = collection.get_property_name(property_index.unwrap_or(0));
         let property_type = collection
@@ -109,16 +109,16 @@ impl SQLiteQuery {
 
         let has_next = stmt.step()?;
         let result = match aggregation {
-            Aggregation::Count => IsarValue::Integer(stmt.get_long(0)),
-            Aggregation::IsEmpty => IsarValue::Bool(!has_next),
+            Aggregation::Count => DatabaseUniverseValue::Integer(stmt.get_long(0)),
+            Aggregation::IsEmpty => DatabaseUniverseValue::Bool(!has_next),
             Aggregation::Min | Aggregation::Max | Aggregation::Sum => {
                 if aggregation == Aggregation::Sum || !stmt.is_null(0) {
                     match property_type {
                         DataType::Byte | DataType::Int | DataType::Long => {
-                            IsarValue::Integer(stmt.get_long(0))
+                            DatabaseUniverseValue::Integer(stmt.get_long(0))
                         }
-                        DataType::Float | DataType::Double => IsarValue::Real(stmt.get_double(0)),
-                        DataType::String => IsarValue::String(stmt.get_text(0).to_string()),
+                        DataType::Float | DataType::Double => DatabaseUniverseValue::Real(stmt.get_double(0)),
+                        DataType::String => DatabaseUniverseValue::String(stmt.get_text(0).to_string()),
                         _ => return Ok(None),
                     }
                 } else {
@@ -127,7 +127,7 @@ impl SQLiteQuery {
             }
             Aggregation::Average => {
                 if !stmt.is_null(0) {
-                    IsarValue::Real(stmt.get_double(0))
+                    DatabaseUniverseValue::Real(stmt.get_double(0))
                 } else {
                     return Ok(None);
                 }
@@ -142,7 +142,7 @@ impl SQLiteQuery {
         all_collections: &[SQLiteCollection],
         offset: Option<u32>,
         limit: Option<u32>,
-        updates: &[(u16, Option<IsarValue>)],
+        updates: &[(u16, Option<DatabaseUniverseValue>)],
     ) -> Result<u32> {
         let collection: &SQLiteCollection = &all_collections[self.collection_index as usize];
         let (update_sql, update_params) = update_properties_sql(collection, updates);
@@ -202,13 +202,13 @@ impl SQLiteQuery {
         for (i, params) in params.iter().enumerate() {
             let col = (i + offset) as u32;
             match params {
-                QueryParam::Value(IsarValue::Bool(value)) => {
+                QueryParam::Value(DatabaseUniverseValue::Bool(value)) => {
                     let value = if *value { 1 } else { 0 };
                     stmt.bind_int(col, value)?;
                 }
-                QueryParam::Value(IsarValue::Integer(value)) => stmt.bind_long(col, *value)?,
-                QueryParam::Value(IsarValue::Real(value)) => stmt.bind_double(col, *value)?,
-                QueryParam::Value(IsarValue::String(value)) => stmt.bind_text(col, value)?,
+                QueryParam::Value(DatabaseUniverseValue::Integer(value)) => stmt.bind_long(col, *value)?,
+                QueryParam::Value(DatabaseUniverseValue::Real(value)) => stmt.bind_double(col, *value)?,
+                QueryParam::Value(DatabaseUniverseValue::String(value)) => stmt.bind_text(col, value)?,
                 QueryParam::JsonCondition(cond) => {
                     stmt.bind_object(col, cond, FN_FILTER_JSON_COND_PTR_TYPE)?
                 }
@@ -232,7 +232,7 @@ pub struct SQLiteQueryCursor<'a> {
     all_collections: &'a [SQLiteCollection],
 }
 
-impl<'a> IsarQueryCursor for SQLiteQueryCursor<'a> {
+impl<'a> DatabaseUniverseQueryCursor for SQLiteQueryCursor<'a> {
     type Reader<'b> = SQLiteReader<'b> where Self: 'b;
 
     fn next(&mut self) -> Option<Self::Reader<'_>> {

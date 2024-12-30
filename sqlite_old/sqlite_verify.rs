@@ -1,6 +1,6 @@
 use super::sqlite_collection::{SQLiteCollection, SQLiteProperty};
 use super::{sql::sql_data_type, sqlite3::SQLite3};
-use crate::core::error::{IsarError, Result};
+use crate::core::error::{DatabaseUniverseError, Result};
 
 pub(crate) fn verify_sqlite(sqlite: &SQLite3, cols: &[SQLiteCollection]) -> Result<()> {
     let mut table_names = vec![];
@@ -16,7 +16,7 @@ pub(crate) fn verify_sqlite(sqlite: &SQLite3, cols: &[SQLiteCollection]) -> Resu
     actual_table_names.sort();
 
     if table_names != actual_table_names {
-        return Err(IsarError::DbCorrupted {});
+        return Err(DatabaseUniverseError::DbCorrupted {});
     }
 
     for table in table_names {
@@ -27,7 +27,7 @@ pub(crate) fn verify_sqlite(sqlite: &SQLite3, cols: &[SQLiteCollection]) -> Resu
         columns.retain(|(n, t)| n != SQLiteProperty::ID_NAME && t != "INTEGER");
 
         if columns_id_len != columns.len() + 1 || columns.len() != collection.properties.len() {
-            return Err(IsarError::DbCorrupted {});
+            return Err(DatabaseUniverseError::DbCorrupted {});
         }
 
         for (column, sql_type) in columns {
@@ -35,7 +35,7 @@ pub(crate) fn verify_sqlite(sqlite: &SQLite3, cols: &[SQLiteCollection]) -> Resu
             let target_col_index = if let Some(name) = target_col_name {
                 let index = cols.iter().position(|c| c.name == name).map(|i| i as u16);
                 if index.is_none() {
-                    return Err(IsarError::DbCorrupted {});
+                    return Err(DatabaseUniverseError::DbCorrupted {});
                 }
                 index
             } else {
@@ -46,19 +46,19 @@ pub(crate) fn verify_sqlite(sqlite: &SQLite3, cols: &[SQLiteCollection]) -> Resu
 
             if let Some(prop) = prop {
                 if prop.data_type != data_type {
-                    return Err(IsarError::DbCorrupted {});
+                    return Err(DatabaseUniverseError::DbCorrupted {});
                 }
                 if prop.collection_index != target_col_index {
-                    return Err(IsarError::DbCorrupted {});
+                    return Err(DatabaseUniverseError::DbCorrupted {});
                 }
             } else {
-                return Err(IsarError::DbCorrupted {});
+                return Err(DatabaseUniverseError::DbCorrupted {});
             }
         }
 
         let indexes = sqlite.get_table_indexes(&table)?;
         if indexes.len() != collection.indexes.len() {
-            return Err(IsarError::DbCorrupted {});
+            return Err(DatabaseUniverseError::DbCorrupted {});
         }
 
         for (index, unique, cols) in indexes {
@@ -68,7 +68,7 @@ pub(crate) fn verify_sqlite(sqlite: &SQLite3, cols: &[SQLiteCollection]) -> Resu
             });
 
             if index.is_none() {
-                return Err(IsarError::DbCorrupted {});
+                return Err(DatabaseUniverseError::DbCorrupted {});
             }
         }
     }

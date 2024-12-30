@@ -4,7 +4,7 @@ use super::sql::filter_sql;
 use super::sqlite_collection::SQLiteCollection;
 use super::sqlite_query::{QueryParam, SQLiteQuery};
 use crate::core::filter::Filter;
-use crate::core::query_builder::{IsarQueryBuilder, Sort};
+use crate::core::query_builder::{DatabaseUniverseQueryBuilder, Sort};
 use itertools::Itertools;
 
 pub struct SQLiteQueryBuilder<'a> {
@@ -80,7 +80,7 @@ impl<'a> SQLiteQueryBuilder<'a> {
     }
 }
 
-impl<'a> IsarQueryBuilder for SQLiteQueryBuilder<'a> {
+impl<'a> DatabaseUniverseQueryBuilder for SQLiteQueryBuilder<'a> {
     type Query = SQLiteQuery;
 
     fn set_filter(&mut self, filter: Filter) {
@@ -115,7 +115,7 @@ mod test {
     use super::*;
     use crate::core::data_type::DataType;
     use crate::core::filter::{ConditionType::*, Filter::*, FilterCondition};
-    use crate::core::value::IsarValue;
+    use crate::core::value::DatabaseUniverseValue;
     use crate::sqlite::sqlite_collection::SQLiteProperty;
 
     fn debug_col() -> SQLiteCollection {
@@ -222,7 +222,7 @@ mod test {
 
     #[test]
     fn test_filter_equal_value() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, Equal, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -232,7 +232,7 @@ mod test {
 
     #[test]
     fn test_filter_equal_value_case_insensitive() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, Equal, vec![Some(value.clone())], false);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -251,7 +251,7 @@ mod test {
 
     #[test]
     fn test_filter_greater_than_value() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, Greater, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -261,7 +261,7 @@ mod test {
 
     #[test]
     fn test_filter_greater_than_value_case_insensitive() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, Greater, vec![Some(value.clone())], false);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -280,7 +280,7 @@ mod test {
 
     #[test]
     fn test_filter_greater_or_equal_value() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, GreaterOrEqual, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -290,7 +290,7 @@ mod test {
 
     #[test]
     fn test_filter_greater_or_equal_value_case_insensitive() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, GreaterOrEqual, vec![Some(value.clone())], false);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -309,7 +309,7 @@ mod test {
 
     #[test]
     fn test_filter_less_than_value() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, Less, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -319,7 +319,7 @@ mod test {
 
     #[test]
     fn test_filter_less_than_value_case_insensitive() {
-        let value = IsarValue::String("abc".to_string());
+        let value = DatabaseUniverseValue::String("abc".to_string());
         let cond = FilterCondition::new(1, Less, vec![Some(value.clone())], false);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -341,7 +341,7 @@ mod test {
 
     #[test]
     fn test_filter_less_or_equal_value() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, LessOrEqual, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -351,7 +351,7 @@ mod test {
 
     #[test]
     fn test_filter_less_or_equal_value_case_insensitive() {
-        let value = IsarValue::String("abc".to_string());
+        let value = DatabaseUniverseValue::String("abc".to_string());
         let cond = FilterCondition::new(1, LessOrEqual, vec![Some(value.clone())], false);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -373,8 +373,8 @@ mod test {
 
     #[test]
     fn test_filter_between_value() {
-        let value1 = IsarValue::Integer(123);
-        let value2 = IsarValue::Integer(456);
+        let value1 = DatabaseUniverseValue::Integer(123);
+        let value2 = DatabaseUniverseValue::Integer(456);
         let cond = FilterCondition::new(
             1,
             Between,
@@ -392,7 +392,7 @@ mod test {
 
     #[test]
     fn test_filter_between_lower_null() {
-        let value = IsarValue::Integer(456);
+        let value = DatabaseUniverseValue::Integer(456);
         let cond = FilterCondition::new(1, Between, vec![None, Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -402,7 +402,7 @@ mod test {
 
     #[test]
     fn test_filter_between_upper_null() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, Between, vec![Some(value.clone()), None], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -421,20 +421,20 @@ mod test {
 
     #[test]
     fn test_filter_string_starts_with() {
-        let value = IsarValue::String("ab%c".to_string());
+        let value = DatabaseUniverseValue::String("ab%c".to_string());
         let cond = FilterCondition::new(1, StringStartsWith, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
         assert_eq!(sql.trim(), "WHERE prop1 LIKE ? ESCAPE '\\'");
         assert_eq!(
             params,
-            vec![QueryParam::Value(IsarValue::String("ab\\%c%".to_string()))]
+            vec![QueryParam::Value(DatabaseUniverseValue::String("ab\\%c%".to_string()))]
         );
     }
 
     #[test]
     fn test_filter_string_starts_with_non_string() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, StringStartsWith, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -444,20 +444,20 @@ mod test {
 
     #[test]
     fn test_filter_string_ends_with() {
-        let value = IsarValue::String("ab%c".to_string());
+        let value = DatabaseUniverseValue::String("ab%c".to_string());
         let cond = FilterCondition::new(1, StringEndsWith, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
         assert_eq!(sql.trim(), "WHERE prop1 LIKE ? ESCAPE '\\'");
         assert_eq!(
             params,
-            vec![QueryParam::Value(IsarValue::String("%ab\\%c".to_string()))]
+            vec![QueryParam::Value(DatabaseUniverseValue::String("%ab\\%c".to_string()))]
         );
     }
 
     #[test]
     fn test_filter_string_ends_with_non_string() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, StringEndsWith, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -467,20 +467,20 @@ mod test {
 
     #[test]
     fn test_filter_string_contains() {
-        let value = IsarValue::String("ab%c".to_string());
+        let value = DatabaseUniverseValue::String("ab%c".to_string());
         let cond = FilterCondition::new(1, StringContains, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
         assert_eq!(sql.trim(), "WHERE prop1 LIKE ? ESCAPE '\\'");
         assert_eq!(
             params,
-            vec![QueryParam::Value(IsarValue::String("%ab\\%c%".to_string()))]
+            vec![QueryParam::Value(DatabaseUniverseValue::String("%ab\\%c%".to_string()))]
         );
     }
 
     #[test]
     fn test_filter_string_contains_non_string() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, StringContains, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
@@ -490,20 +490,20 @@ mod test {
 
     #[test]
     fn test_filter_string_matches() {
-        let value = IsarValue::String("a?b%c*".to_string());
+        let value = DatabaseUniverseValue::String("a?b%c*".to_string());
         let cond = FilterCondition::new(1, StringMatches, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));
         assert_eq!(sql.trim(), "WHERE prop1 LIKE ? ESCAPE '\\'");
         assert_eq!(
             params,
-            vec![QueryParam::Value(IsarValue::String("a_b\\%c%".to_string()))]
+            vec![QueryParam::Value(DatabaseUniverseValue::String("a_b\\%c%".to_string()))]
         );
     }
 
     #[test]
     fn test_filter_string_matches_non_string() {
-        let value = IsarValue::Integer(123);
+        let value = DatabaseUniverseValue::Integer(123);
         let cond = FilterCondition::new(1, StringMatches, vec![Some(value.clone())], true);
 
         let (sql, params) = qb_filter(Condition(cond));

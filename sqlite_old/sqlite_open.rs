@@ -4,7 +4,7 @@ use super::sqlite_collection::{SQLiteCollection, SQLiteProperty};
 use super::sqlite_instance::SQLiteInstanceInfo;
 use super::sqlite_txn::SQLiteTxn;
 use crate::core::error::Result;
-use crate::core::schema::IsarSchema;
+use crate::core::schema::DatabaseUniverseSchema;
 use crate::SQLITE_MEMORY_DIR;
 use intmap::IntMap;
 use itertools::Itertools;
@@ -38,7 +38,7 @@ pub(crate) fn open_sqlite(
     instance_id: u32,
     name: &str,
     dir: &str,
-    schemas: Vec<IsarSchema>,
+    schemas: Vec<DatabaseUniverseSchema>,
     max_size_mib: u32,
     encryption_key: Option<&str>,
 ) -> Result<(SQLiteInstanceInfo, SQLite3)> {
@@ -80,7 +80,7 @@ pub(crate) fn open_sqlite(
     Ok((instance_info, sqlite))
 }
 
-fn get_collections(schemas: &[IsarSchema]) -> Vec<SQLiteCollection> {
+fn get_collections(schemas: &[DatabaseUniverseSchema]) -> Vec<SQLiteCollection> {
     let mut collections = Vec::new();
     for collection_schema in schemas {
         let properties = collection_schema
@@ -124,7 +124,7 @@ pub(crate) fn open_instance(
     instance_id: u32,
     name: &str,
     dir: &str,
-    schemas: Vec<IsarSchema>,
+    schemas: Vec<DatabaseUniverseSchema>,
     max_size_mib: u32,
     encryption_key: Option<&str>,
 ) -> Result<(Arc<SQLiteInstanceInfo>, SQLite3)> {

@@ -1,6 +1,6 @@
 use super::sqlite3::SQLiteStatement;
 use super::sqlite_collection::SQLiteCollection;
-use crate::core::{data_type::DataType, reader::IsarReader};
+use crate::core::{data_type::DataType, reader::DatabaseUniverseReader};
 use base64::{engine::general_purpose, Engine as _};
 use serde_json::{Map, Value};
 use std::borrow::Cow;
@@ -26,7 +26,7 @@ impl<'a> SQLiteReader<'a> {
     }
 }
 
-impl<'a> IsarReader for SQLiteReader<'a> {
+impl<'a> DatabaseUniverseReader for SQLiteReader<'a> {
     type ObjectReader<'b> = SQLiteObjectReader<'b> where 'a: 'b;
 
     type ListReader<'b> = SQLiteListReader<'b> where 'a: 'b;
@@ -151,7 +151,7 @@ pub struct SQLiteObjectReader<'a> {
     all_collections: &'a [SQLiteCollection],
 }
 
-impl<'a> IsarReader for SQLiteObjectReader<'a> {
+impl<'a> DatabaseUniverseReader for SQLiteObjectReader<'a> {
     type ObjectReader<'b> = SQLiteObjectReader<'b> where 'a: 'b;
 
     type ListReader<'b> = SQLiteListReader<'b> where 'a: 'b;
@@ -287,7 +287,7 @@ pub struct SQLiteListReader<'a> {
     all_collections: &'a [SQLiteCollection],
 }
 
-impl<'a> IsarReader for SQLiteListReader<'a> {
+impl<'a> DatabaseUniverseReader for SQLiteListReader<'a> {
     type ObjectReader<'b> = SQLiteObjectReader<'b> where 'a: 'b;
 
     type ListReader<'b> = SQLiteListReader<'b> where 'a: 'b;
