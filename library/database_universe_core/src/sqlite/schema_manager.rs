@@ -4,12 +4,12 @@ use super::sql::{
 };
 use super::sqlite3::SQLite3;
 use super::sqlite_txn::SQLiteTxn;
-use crate::core::error::{IsarError, Result};
-use crate::core::schema::{IndexSchema, IsarSchema, PropertySchema};
+use crate::core::error::{DatabaseUniverseError, Result};
+use crate::core::schema::{IndexSchema, DatabaseUniverseSchema, PropertySchema};
 use crate::sqlite::sqlite_collection::SQLiteProperty;
 use itertools::Itertools;
 
-pub(crate) fn perform_migration(txn: &SQLiteTxn, schemas: &[IsarSchema]) -> Result<()> {
+pub(crate) fn perform_migration(txn: &SQLiteTxn, schemas: &[DatabaseUniverseSchema]) -> Result<()> {
     txn.guard(|| {
         let sqlite = txn.get_sqlite(true)?;
         let table_names = sqlite.get_table_names()?;
@@ -40,7 +40,7 @@ pub(crate) fn perform_migration(txn: &SQLiteTxn, schemas: &[IsarSchema]) -> Resu
     })
 }
 
-fn read_col_schema(sqlite: &SQLite3, name: &str) -> Result<IsarSchema> {
+fn read_col_schema(sqlite: &SQLite3, name: &str) -> Result<DatabaseUniverseSchema> {
     let columns = sqlite.get_table_columns(name)?;
     let indexes = sqlite.get_table_indexes(name)?;
 
@@ -58,7 +58,7 @@ fn read_col_schema(sqlite: &SQLite3, name: &str) -> Result<IsarSchema> {
     if let Some(id_prop_index) = id_prop_index {
         properties.remove(id_prop_index);
     } else {
-        return Err(IsarError::SchemaError {
+        return Err(DatabaseUniverseError::SchemaError {
             message: format!("Table {} has no id column", name),
         });
     }
@@ -72,10 +72,10 @@ fn read_col_schema(sqlite: &SQLite3, name: &str) -> Result<IsarSchema> {
         })
         .collect();
 
-    Ok(IsarSchema::new(name, None, properties, indexes, false))
+    Ok(DatabaseUniverseSchema::new(name, None, properties, indexes, false))
 }
 
-fn update_table(sqlite: &SQLite3, collection: &IsarSchema) -> Result<()> {
+fn update_table(sqlite: &SQLite3, collection: &DatabaseUniverseSchema) -> Result<()> {
     let existing_schema = read_col_schema(sqlite, &collection.name)?;
     let (add_properties, drop_properties, add_indexes, drop_indexes) =
         collection.find_changes(&existing_schema);

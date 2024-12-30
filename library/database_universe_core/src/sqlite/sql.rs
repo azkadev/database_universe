@@ -4,15 +4,15 @@ use super::sqlite_query::QueryParam;
 use crate::core::data_type::DataType;
 use crate::core::error::Result;
 use crate::core::filter::{ConditionType, Filter, FilterCondition, JsonCondition};
-use crate::core::schema::{IndexSchema, IsarSchema, PropertySchema};
-use crate::core::value::IsarValue;
+use crate::core::schema::{IndexSchema, DatabaseUniverseSchema, PropertySchema};
+use crate::core::value::DatabaseUniverseValue;
 use itertools::Itertools;
 use serde_json::Value;
 use std::borrow::Cow;
 use std::cmp::min;
 use std::vec;
 
-pub(crate) fn create_table_sql(collection: &IsarSchema) -> String {
+pub(crate) fn create_table_sql(collection: &DatabaseUniverseSchema) -> String {
     format!(
         "CREATE TABLE {} ({} INTEGER PRIMARY KEY {}) ",
         collection.name,
@@ -31,7 +31,7 @@ pub(crate) fn create_table_sql(collection: &IsarSchema) -> String {
     )
 }
 
-pub(crate) fn add_column_sql(collection: &IsarSchema, property: &PropertySchema) -> String {
+pub(crate) fn add_column_sql(collection: &DatabaseUniverseSchema, property: &PropertySchema) -> String {
     format!(
         "ALTER TABLE {} ADD COLUMN {} {}",
         collection.name,
@@ -40,7 +40,7 @@ pub(crate) fn add_column_sql(collection: &IsarSchema, property: &PropertySchema)
     )
 }
 
-pub(crate) fn drop_column_sql(collection: &IsarSchema, property_name: &str) -> String {
+pub(crate) fn drop_column_sql(collection: &DatabaseUniverseSchema, property_name: &str) -> String {
     format!(
         "ALTER TABLE {} DROP COLUMN {}",
         collection.name, property_name
@@ -108,7 +108,7 @@ pub(crate) fn insert_sql(name: &str, properties: &[SQLiteProperty], count: u32) 
 
 pub(crate) fn update_properties_sql(
     collection: &SQLiteCollection,
-    updates: &[(u16, Option<IsarValue>)],
+    updates: &[(u16, Option<DatabaseUniverseValue>)],
 ) -> (String, Vec<QueryParam>) {
     let mut sql = String::new();
     let mut params = vec![];
@@ -324,8 +324,8 @@ fn condition_sql(
             }
         }
         ConditionType::StringStartsWith => {
-            if let Some(IsarValue::String(prefix)) = condition.values.get(0)? {
-                values.push(IsarValue::String(format!("{}%", escape_wildcard(prefix))));
+            if let Some(DatabaseUniverseValue::String(prefix)) = condition.values.get(0)? {
+                values.push(DatabaseUniverseValue::String(format!("{}%", escape_wildcard(prefix))));
                 match condition.case_sensitive {
                     true => format!("{} LIKE ? ESCAPE '\\'", property_name),
                     false => format!("LOWER({}) LIKE LOWER(?) ESCAPE '\\'", property_name),
@@ -335,8 +335,8 @@ fn condition_sql(
             }
         }
         ConditionType::StringEndsWith => {
-            if let Some(IsarValue::String(postfix)) = condition.values.get(0)? {
-                values.push(IsarValue::String(format!("%{}", escape_wildcard(postfix))));
+            if let Some(DatabaseUniverseValue::String(postfix)) = condition.values.get(0)? {
+                values.push(DatabaseUniverseValue::String(format!("%{}", escape_wildcard(postfix))));
                 match condition.case_sensitive {
                     true => format!("{} LIKE ? ESCAPE '\\'", property_name),
                     false => format!("LOWER({}) LIKE LOWER(?) ESCAPE '\\'", property_name),
@@ -346,8 +346,8 @@ fn condition_sql(
             }
         }
         ConditionType::StringContains => {
-            if let Some(IsarValue::String(needle)) = condition.values.get(0)? {
-                values.push(IsarValue::String(format!("%{}%", escape_wildcard(needle))));
+            if let Some(DatabaseUniverseValue::String(needle)) = condition.values.get(0)? {
+                values.push(DatabaseUniverseValue::String(format!("%{}%", escape_wildcard(needle))));
                 match condition.case_sensitive {
                     true => format!("{} LIKE ? ESCAPE '\\'", property_name),
                     false => format!("LOWER({}) LIKE LOWER(?) ESCAPE '\\'", property_name),
@@ -357,11 +357,11 @@ fn condition_sql(
             }
         }
         ConditionType::StringMatches => {
-            if let Some(IsarValue::String(wildcard)) = condition.values.get(0)? {
+            if let Some(DatabaseUniverseValue::String(wildcard)) = condition.values.get(0)? {
                 let wildcard = escape_wildcard(wildcard)
                     .replace("*", "%")
                     .replace("?", "_");
-                values.push(IsarValue::String(wildcard));
+                values.push(DatabaseUniverseValue::String(wildcard));
                 match condition.case_sensitive {
                     true => format!("{} LIKE ? ESCAPE '\\'", property_name),
                     false => format!("LOWER({}) LIKE LOWER(?) ESCAPE '\\'", property_name),
@@ -435,7 +435,7 @@ pub(crate) fn sql_data_type(sqlite_type: &str) -> (DataType, Option<&str>) {
     }
 }
 
-pub(crate) const FN_FILTER_JSON_NAME: &str = "isar_filter_json";
+pub(crate) const FN_FILTER_JSON_NAME: &str = "database_universe_filter_json";
 pub(crate) const FN_FILTER_JSON_COND_PTR_TYPE: &[u8] = b"json_condition_ptr\0";
 pub(crate) fn sql_fn_filter_json(ctx: &mut SQLiteFnContext) -> Result<()> {
     let json = ctx.get_str(0);

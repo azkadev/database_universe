@@ -1,6 +1,6 @@
 use super::sqlite_collection::SQLiteCollection;
 use super::sqlite_insert::SQLiteInsert;
-use crate::core::{data_type::DataType, writer::IsarWriter};
+use crate::core::{data_type::DataType, writer::DatabaseUniverseWriter};
 use base64::{engine::general_purpose, Engine};
 use serde_json::{Map, Number, Value};
 use std::iter::empty;
@@ -12,7 +12,7 @@ impl<'a> SQLiteInsert<'a> {
     }
 }
 
-impl<'a> IsarWriter<'a> for SQLiteInsert<'a> {
+impl<'a> DatabaseUniverseWriter<'a> for SQLiteInsert<'a> {
     type ObjectWriter = SQLiteObjectWriter<'a>;
 
     type ListWriter = SQLiteListWriter<'a>;
@@ -159,7 +159,7 @@ impl<'a> SQLiteObjectWriter<'a> {
     }
 }
 
-impl<'a> IsarWriter<'a> for SQLiteObjectWriter<'a> {
+impl<'a> DatabaseUniverseWriter<'a> for SQLiteObjectWriter<'a> {
     type ObjectWriter = SQLiteObjectWriter<'a>;
 
     type ListWriter = SQLiteListWriter<'a>;
@@ -309,7 +309,7 @@ impl<'a> SQLiteListWriter<'a> {
     }
 }
 
-impl<'a> IsarWriter<'a> for SQLiteListWriter<'a> {
+impl<'a> DatabaseUniverseWriter<'a> for SQLiteListWriter<'a> {
     type ObjectWriter = SQLiteObjectWriter<'a>;
 
     type ListWriter = SQLiteListWriter<'a>;

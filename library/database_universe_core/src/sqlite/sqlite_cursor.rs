@@ -3,7 +3,7 @@ use super::sqlite3::SQLiteStatement;
 use super::sqlite_collection::{SQLiteCollection, SQLiteProperty};
 use super::sqlite_reader::SQLiteReader;
 use super::sqlite_txn::SQLiteTxn;
-use crate::core::cursor::IsarCursor;
+use crate::core::cursor::DatabaseUniverseCursor;
 use crate::core::error::Result;
 use std::borrow::Cow;
 
@@ -35,7 +35,7 @@ impl<'a> SQLiteCursor<'a> {
     }
 }
 
-impl<'a> IsarCursor for SQLiteCursor<'a> {
+impl<'a> DatabaseUniverseCursor for SQLiteCursor<'a> {
     type Reader<'b> = SQLiteReader<'b> where Self: 'b;
 
     fn next(&mut self, id: i64) -> Option<Self::Reader<'_>> {

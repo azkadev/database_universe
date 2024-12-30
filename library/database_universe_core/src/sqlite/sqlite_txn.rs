@@ -1,6 +1,6 @@
 use super::sqlite3::SQLite3;
 use super::sqlite_query::SQLiteQuery;
-use crate::core::error::IsarError;
+use crate::core::error::DatabaseUniverseError;
 use crate::core::watcher::CollectionWatchers;
 use crate::core::{error::Result, watcher::ChangeSet};
 use std::cell::{Cell, RefCell};
@@ -28,10 +28,10 @@ impl SQLiteTxn {
 
     pub(crate) fn get_sqlite(&self, write: bool) -> Result<&SQLite3> {
         if !self.active.get() {
-            return Err(IsarError::TransactionClosed {});
+            return Err(DatabaseUniverseError::TransactionClosed {});
         }
         if write && !self.write {
-            return Err(IsarError::WriteTxnRequired {});
+            return Err(DatabaseUniverseError::WriteTxnRequired {});
         }
         Ok(&self.sqlite)
     }
@@ -45,7 +45,7 @@ impl SQLiteTxn {
         F: FnOnce() -> Result<T>,
     {
         if !self.active.get() {
-            return Err(IsarError::TransactionClosed {});
+            return Err(DatabaseUniverseError::TransactionClosed {});
         }
         let result = job();
         if !result.is_ok() {
@@ -73,7 +73,7 @@ impl SQLiteTxn {
 
     pub(crate) fn commit(self) -> Result<()> {
         if !self.active.get() {
-            return Err(IsarError::TransactionClosed {});
+            return Err(DatabaseUniverseError::TransactionClosed {});
         }
         self.sqlite.prepare("COMMIT")?.step()?;
         self.sqlite.clear_update_hook();
