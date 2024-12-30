@@ -2,15 +2,15 @@ use libsqlite3_sys::{sqlite3_file, sqlite3_vfs, sqlite3_vfs_register, SQLITE_IOE
 use std::os::raw::{c_char, c_int, c_void};
 use std::ptr::null_mut;
 
-extern "C" {
-    /*pub fn js_log(ptr: *const u8);
+// extern "C" {
+//     /*pub fn js_log(ptr: *const u8);
 
-    pub fn xSleep(_arg1: *mut sqlite3_vfs, microseconds: c_int) -> c_int;
+//     pub fn xSleep(_arg1: *mut sqlite3_vfs, microseconds: c_int) -> c_int;
 
-    pub fn xRandomness(_arg1: *mut sqlite3_vfs, nByte: c_int, zByte: *mut c_char) -> c_int;
+//     pub fn xRandomness(_arg1: *mut sqlite3_vfs, nByte: c_int, zByte: *mut c_char) -> c_int;
 
-    pub fn xCurrentTime(_arg1: *mut sqlite3_vfs, pTime: *mut f64) -> c_int;*/
-}
+//     pub fn xCurrentTime(_arg1: *mut sqlite3_vfs, pTime: *mut f64) -> c_int;*/
+// }
 
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn sqlite3_os_init() -> c_int {
