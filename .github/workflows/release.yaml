@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
 
+env: # Global variables
+  DATABASE_UNIVERSE_VERSION: "0.0.4"
+  
 jobs:
   build_binaries:
     name: Build Binaries
@@ -41,7 +44,7 @@ jobs:
       - name: Prepare Build
         uses: ./.github/actions/prepare-build
       - name: Set Isar Version
-        run: echo "DATABASE_UNIVERSE_VERSION=0.0.3" >> $GITHUB_ENV
+        run: echo "DATABASE_UNIVERSE_VERSION=$DATABASE_UNIVERSE_VERSION" >> $GITHUB_ENV
       - name: Build binary
         run: bash tool/${{ matrix.script }}
       - name: Upload Artifact
@@ -73,17 +76,17 @@ jobs:
       - name: Wait for tests to succeed
         uses: lewagon/wait-on-check-action@v1.3.1
         with:
-          ref: "${{ github.ref }}-0.0.3"
+          ref: "${{ github.ref }}-$DATABASE_UNIVERSE_VERSION"
           running-workflow-name: "Publish"
           repo-token: ${{ secrets.TOKEN_GITHUB }}
           wait-interval: 10
 
       - name: Set Isar Version
-        run: echo "DATABASE_UNIVERSE_VERSION=0.0.3" >> $GITHUB_ENV
+        run: echo "DATABASE_UNIVERSE_VERSION=$DATABASE_UNIVERSE_VERSION" >> $GITHUB_ENV
       - name: Download Binaries
         run: sh tool/download_binaries.sh
       - name: Adjust Version
-        run: find . -type f -exec sed -i "s/0.0.0-placeholder/0.0.3/g" {} +
+        run: find . -type f -exec sed -i "s/0.0.0-placeholder/$DATABASE_UNIVERSE_VERSION/g" {} +
       - name: pub.dev credentials
         run: |
           mkdir -p $HOME/.config/dart
