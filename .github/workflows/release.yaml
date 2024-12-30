@@ -11,7 +11,6 @@ on:
         description: "yes or no"
         required: false
         default: "yes"
-  push:
 
 env: # Global variables
   VERSION: "0.0.4"
