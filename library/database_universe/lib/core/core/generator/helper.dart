@@ -11,26 +11,22 @@ const TypeChecker _utcChecker = TypeChecker.fromRuntime(Utc);
 
 extension on ClassElement {
   List<PropertyInducingElement> get allAccessors {
-    final ignoreFields =
-        collectionAnnotation?.ignore ?? embeddedAnnotation!.ignore;
-    final allAccessors = [
+    final ignoreFields = collectionAnnotation?.ignore ?? embeddedAnnotation!.ignore;
+    final allAccessors = <PropertyInducingElement>[
       // ignore: deprecated_member_use
-      ...accessors.map((e) => e.variable),
+      ...accessors.map((e) {
+        return e.variable2;
+      }).whereType<PropertyInducingElement>(),
       if (collectionAnnotation?.inheritance ?? embeddedAnnotation!.inheritance)
         for (final supertype in allSupertypes) ...[
           if (!supertype.isDartCoreObject)
             // ignore: deprecated_member_use
-            ...supertype.accessors.map((e) => e.variable),
+            ...supertype.accessors.map((e) => e.variable2).whereType<PropertyInducingElement>(),
         ],
     ];
 
     final usableAccessors = allAccessors.where(
-      (e) =>
-          e.isPublic &&
-          !e.isStatic &&
-          !_ignoreChecker.hasAnnotationOf(e.nonSynthetic) &&
-          !ignoreFields.contains(e.name) &&
-          e.name != 'hashCode',
+      (e) => e.isPublic && !e.isStatic && !_ignoreChecker.hasAnnotationOf(e.nonSynthetic) && !ignoreFields.contains(e.name) && e.name != 'hashCode',
     );
 
     final uniqueAccessors = <String, PropertyInducingElement>{};
@@ -56,11 +52,7 @@ extension on PropertyInducingElement {
     return _indexChecker.annotationsOfExact(nonSynthetic).map((ann) {
       return Index(
         name: ann.getField('name')!.toStringValue(),
-        composite: ann
-            .getField('composite')!
-            .toListValue()!
-            .map((e) => e.toStringValue()!)
-            .toList(),
+        composite: ann.getField('composite')!.toListValue()!.map((e) => e.toStringValue()!).toList(),
         unique: ann.getField('unique')!.toBoolValue()!,
         hash: ann.getField('hash')!.toBoolValue()!,
       );
@@ -70,10 +62,7 @@ extension on PropertyInducingElement {
 
 extension on EnumElement {
   FieldElement? get enumValueProperty {
-    final annotatedProperties = fields
-        .where((e) => !e.isEnumConstant)
-        .where(_enumPropertyChecker.hasAnnotationOfExact)
-        .toList();
+    final annotatedProperties = fields.where((e) => !e.isEnumConstant).where(_enumPropertyChecker.hasAnnotationOfExact).toList();
     if (annotatedProperties.length > 1) {
       _err('Only one property can be annotated with @enumProperty', this);
     } else {
@@ -103,11 +92,7 @@ extension on Element {
     return Collection(
       inheritance: ann.getField('inheritance')!.toBoolValue()!,
       accessor: ann.getField('accessor')!.toStringValue(),
-      ignore: ann
-          .getField('ignore')!
-          .toSetValue()!
-          .map((e) => e.toStringValue()!)
-          .toSet(),
+      ignore: ann.getField('ignore')!.toSetValue()!.map((e) => e.toStringValue()!).toSet(),
     );
   }
 
@@ -132,11 +117,7 @@ extension on Element {
     }
     return Embedded(
       inheritance: ann.getField('inheritance')!.toBoolValue()!,
-      ignore: ann
-          .getField('ignore')!
-          .toSetValue()!
-          .map((e) => e.toStringValue()!)
-          .toSet(),
+      ignore: ann.getField('ignore')!.toSetValue()!.map((e) => e.toStringValue()!).toSet(),
     );
   }
 }

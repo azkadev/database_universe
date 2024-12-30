@@ -8,7 +8,8 @@ void main(List<String> arguments) async {
   await DatabaseUniverse.initialize(
     "/home/galaxeus/Documents/librarys/database_universe/libdatabase_universe_linux_x64.so",
   );
-  final Directory directory_database = Directory(path.join(Directory.current.path, "db"));
+  final Directory directory_database =
+      Directory(path.join(Directory.current.path, "db"));
   if (directory_database.existsSync() == false) {
     directory_database.createSync(recursive: true);
   }
