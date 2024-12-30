@@ -60,7 +60,7 @@ jobs:
           repo_token: ${{ secrets.TOKEN_GITHUB }}
           file: ${{ matrix.artifact_name }}
           asset_name: ${{ matrix.artifact_name }}
-          tag: ${{ github.ref }}
+          tag: "${{ github.ref }}-$DATABASE_UNIVERSE_VERSION"
 
   publish:
     name: Publish 
