@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/src/common.dart';
 import 'package:test/test.dart';
 
@@ -14,8 +14,7 @@ class UniqueModel {
   final String? value;
 
   @override
-  bool operator ==(other) =>
-      other is UniqueModel && id == other.id && value == other.value;
+  bool operator ==(other) => other is UniqueModel && id == other.id && value == other.value;
 }
 
 void main() {

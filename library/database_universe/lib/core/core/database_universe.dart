@@ -21,7 +21,7 @@ abstract class DatabaseUniverse {
   static const int defaultMaxSizeMiB = 128;
 
   /// The current DatabaseUniverse version.
-  static const String version = '0.0.0';
+  static const String version = '0.0.3';
 
   /// Use this value for the `directory` parameter to create an in-memory
   /// database.

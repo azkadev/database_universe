@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -54,9 +54,7 @@ class OptionalConstructorModel {
 
   @override
   bool operator ==(dynamic other) {
-    return other is OptionalConstructorModel &&
-        other.name == name &&
-        other.value2 == value2;
+    return other is OptionalConstructorModel && other.name == name && other.value2 == value2;
   }
 }
 
@@ -71,9 +69,7 @@ class PositionalNamedConstructorModel {
 
   @override
   bool operator ==(dynamic other) {
-    return other is PositionalNamedConstructorModel &&
-        other.name == name &&
-        other.value2 == value2;
+    return other is PositionalNamedConstructorModel && other.name == name && other.value2 == value2;
   }
 }
 

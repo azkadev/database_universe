@@ -1,6 +1,6 @@
 // ignore_for_file: hash_and_equals
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -19,12 +19,7 @@ class Model {
   final List<NModel>? nestedList;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model &&
-      other.id == id &&
-      other.embedded == embedded &&
-      other.nested == nested &&
-      listEquals(other.nestedList, nestedList);
+  bool operator ==(Object other) => other is Model && other.id == id && other.embedded == embedded && other.nested == nested && listEquals(other.nestedList, nestedList);
 
   Map<String, dynamic> toJson() {
     return {
@@ -65,12 +60,7 @@ class NModel {
   final List<String>? strList;
 
   @override
-  bool operator ==(Object other) =>
-      other is NModel &&
-      other.embedded == embedded &&
-      other.nested == nested &&
-      listEquals(other.nestedList, nestedList) &&
-      listEquals(other.strList, strList);
+  bool operator ==(Object other) => other is NModel && other.embedded == embedded && other.nested == nested && listEquals(other.nestedList, nestedList) && listEquals(other.strList, strList);
 
   Map<String, dynamic> toJson() {
     return {

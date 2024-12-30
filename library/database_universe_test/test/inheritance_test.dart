@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -46,14 +46,7 @@ class InheritingModel extends BaseModel {
   }
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is InheritingModel &&
-          runtimeType == other.runtimeType &&
-          name == other.name &&
-          nameHash == other.nameHash &&
-          nickname == other.nickname &&
-          age == other.age;
+  bool operator ==(Object other) => identical(this, other) || other is InheritingModel && runtimeType == other.runtimeType && name == other.name && nameHash == other.nameHash && nickname == other.nickname && age == other.age;
 }
 
 @Collection(inheritance: false)
@@ -78,13 +71,7 @@ class NonInheritingModel extends BaseModel {
   }
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is NonInheritingModel &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          age == other.age &&
-          nickname == other.nickname;
+  bool operator ==(Object other) => identical(this, other) || other is NonInheritingModel && runtimeType == other.runtimeType && id == other.id && age == other.age && nickname == other.nickname;
 }
 
 void main() {
@@ -145,12 +132,9 @@ void main() {
         age: 31,
       );
 
-      nonInheritingObj0 =
-          NonInheritingModel(id: 0, age: 22, nickname: 'non-obj0');
-      nonInheritingObj1 =
-          NonInheritingModel(id: 1, age: 56, nickname: 'non-obj1');
-      nonInheritingObj2 =
-          NonInheritingModel(id: 2, age: 65, nickname: 'non-obj2');
+      nonInheritingObj0 = NonInheritingModel(id: 0, age: 22, nickname: 'non-obj0');
+      nonInheritingObj1 = NonInheritingModel(id: 1, age: 56, nickname: 'non-obj1');
+      nonInheritingObj2 = NonInheritingModel(id: 2, age: 65, nickname: 'non-obj2');
 
       isar.write((isar) {
         isar.inheritingModels.putAll([
@@ -213,22 +197,12 @@ void main() {
 
     databaseUniverseTest('Query model with inheritance', () {
       expect(
-        isar.inheritingModels
-            .where()
-            .nameContains('1')
-            .or()
-            .nameContains('4')
-            .findAll(),
+        isar.inheritingModels.where().nameContains('1').or().nameContains('4').findAll(),
         [inheritingObj1, inheritingObj4],
       );
 
       expect(
-        isar.inheritingModels
-            .where()
-            .nicknameContains('3')
-            .or()
-            .nicknameContains('0')
-            .findAll(),
+        isar.inheritingModels.where().nicknameContains('3').or().nicknameContains('0').findAll(),
         [inheritingObj0, inheritingObj3],
       );
 

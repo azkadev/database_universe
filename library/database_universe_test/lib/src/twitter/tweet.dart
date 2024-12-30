@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/src/twitter/entities.dart';
 import 'package:database_universe_test/src/twitter/geo.dart';
 import 'package:database_universe_test/src/twitter/media.dart';
@@ -77,8 +77,7 @@ class Tweet {
 class CurrentUserRetweet {
   CurrentUserRetweet();
 
-  factory CurrentUserRetweet.fromJson(Map<String, dynamic> json) =>
-      _$CurrentUserRetweetFromJson(json);
+  factory CurrentUserRetweet.fromJson(Map<String, dynamic> json) => _$CurrentUserRetweetFromJson(json);
 
   String? idStr;
 }
@@ -88,8 +87,7 @@ class CurrentUserRetweet {
 class QuotedStatusPermalink {
   QuotedStatusPermalink();
 
-  factory QuotedStatusPermalink.fromJson(Map<String, dynamic> json) =>
-      _$QuotedStatusPermalinkFromJson(json);
+  factory QuotedStatusPermalink.fromJson(Map<String, dynamic> json) => _$QuotedStatusPermalinkFromJson(json);
 
   String? url;
 

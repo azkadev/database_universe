@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_redundant_argument_values
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -47,18 +47,7 @@ class Model {
   final DateTime dateProp;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model &&
-      other.id == id &&
-      other.boolProp == boolProp &&
-      other.byteProp == byteProp &&
-      other.shortProp == shortProp &&
-      other.longProp == longProp &&
-      other.floatProp == floatProp &&
-      other.doubleProp == doubleProp &&
-      other.stringProp == stringProp &&
-      other.nullableStringProp == nullableStringProp &&
-      other.dateProp == dateProp;
+  bool operator ==(Object other) => other is Model && other.id == id && other.boolProp == boolProp && other.byteProp == byteProp && other.shortProp == shortProp && other.longProp == longProp && other.floatProp == floatProp && other.doubleProp == doubleProp && other.stringProp == stringProp && other.nullableStringProp == nullableStringProp && other.dateProp == dateProp;
 }
 
 void main() {
@@ -80,8 +69,7 @@ void main() {
         doubleProp: 5,
         stringProp: 'hello',
         nullableStringProp: 'world',
-        dateProp:
-            DateTime.fromMillisecondsSinceEpoch(200, isUtc: true).toLocal(),
+        dateProp: DateTime.fromMillisecondsSinceEpoch(200, isUtc: true).toLocal(),
       );
       isar.write((isar) => isar.models.put(model));
     });
@@ -200,8 +188,7 @@ void main() {
         expect(
           isar.models.get(model.id),
           model.copyWith(
-            dateProp:
-                DateTime.fromMillisecondsSinceEpoch(300, isUtc: true).toLocal(),
+            dateProp: DateTime.fromMillisecondsSinceEpoch(300, isUtc: true).toLocal(),
           ),
         );
       });

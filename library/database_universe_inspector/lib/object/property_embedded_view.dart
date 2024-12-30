@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/object/isar_object.dart';
 import 'package:database_universe_inspector/object/object_view.dart';
 import 'package:database_universe_inspector/object/property_builder.dart';
@@ -14,14 +14,14 @@ class EmbeddedPropertyView extends StatelessWidget {
     super.key,
   });
 
-  final IsarPropertySchema property;
-  final Map<String, IsarSchema> schemas;
+  final DatabaseUniversePropertySchema property;
+  final Map<String, DatabaseUniverseSchema> schemas;
   final IsarObject object;
   final void Function(String path, dynamic value) onUpdate;
 
   @override
   Widget build(BuildContext context) {
-    if (property.type == IsarType.object) {
+    if (property.type == DatabaseUniverseType.object) {
       final child = object.getNested(property.name);
       return PropertyBuilder(
         property: property.name,

@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -25,15 +25,7 @@ class Model {
   final List<String?>? strings;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Model &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          listEquals(bools, other.bools) &&
-          listEquals(ints, other.ints) &&
-          listEquals(doubles, other.doubles) &&
-          listEquals(strings, other.strings);
+  bool operator ==(Object other) => identical(this, other) || other is Model && runtimeType == other.runtimeType && id == other.id && listEquals(bools, other.bools) && listEquals(ints, other.ints) && listEquals(doubles, other.doubles) && listEquals(strings, other.strings);
 
   @override
   String toString() {

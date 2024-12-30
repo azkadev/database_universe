@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -13,10 +13,7 @@ class FloatModel {
   List<float?>? list;
 
   @override
-  bool operator ==(Object other) =>
-      other is FloatModel &&
-      id == other.id &&
-      doubleListEquals(other.list, list);
+  bool operator ==(Object other) => other is FloatModel && id == other.id && doubleListEquals(other.list, list);
 }
 
 void main() {
@@ -63,10 +60,7 @@ void main() {
         [obj1],
       );
       expect(
-        col
-            .where()
-            .listElementGreaterThanOrEqualTo(3.4, epsilon: 0.2)
-            .findAll(),
+        col.where().listElementGreaterThanOrEqualTo(3.4, epsilon: 0.2).findAll(),
         [obj1],
       );
       expect(

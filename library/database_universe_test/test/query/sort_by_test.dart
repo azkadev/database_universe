@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -15,11 +15,7 @@ class Model {
   final bool active;
 
   @override
-  bool operator ==(other) =>
-      other is Model &&
-      other.name == name &&
-      other.id == id &&
-      other.active == active;
+  bool operator ==(other) => other is Model && other.name == name && other.id == id && other.active == active;
 }
 
 void main() {
@@ -45,8 +41,7 @@ void main() {
       modelC2 = Model(2, 'c', true);
 
       isar.write(
-        (isar) => isar.models
-            .putAll([modelA1, modelA2, modelB1, modelB2, modelC1, modelC2]),
+        (isar) => isar.models.putAll([modelA1, modelA2, modelB1, modelB2, modelC1, modelC2]),
       );
     });
 

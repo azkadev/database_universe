@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -14,8 +14,7 @@ class Model1 {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model1 && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Model1 && id == other.id && value == other.value;
 }
 
 @collection
@@ -28,8 +27,7 @@ class Model2 {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model2 && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Model2 && id == other.id && value == other.value;
 }
 
 void main() {
@@ -44,8 +42,7 @@ void main() {
     isar1.model1s.verify([obj1A, obj1B]);
     expect(isar1.close(), true);
 
-    final isar2 =
-        await openTempIsar([Model1Schema, Model2Schema], name: isarName);
+    final isar2 = await openTempIsar([Model1Schema, Model2Schema], name: isarName);
     isar2.model1s.verify([obj1A, obj1B]);
     isar2.model2s.verify([]);
     final obj2 = Model2(99, 'col2_a');
@@ -74,8 +71,7 @@ void main() {
     isar2.model1s.verify([obj1A, obj1B]);
     expect(isar2.close(), true);
 
-    final isar3 =
-        await openTempIsar([Model1Schema, Model2Schema], name: isarName);
+    final isar3 = await openTempIsar([Model1Schema, Model2Schema], name: isarName);
     isar3.model1s.verify([obj1A, obj1B]);
     isar3.model2s.verify([]);
   });

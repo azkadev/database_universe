@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -73,8 +73,7 @@ void main() {
       expect(isar.modelAs.getSize(includeIndexes: true), 0);
     });
 
-    databaseUniverseTest('Size should increase with more entries',
-        sqlite: false, web: false, () {
+    databaseUniverseTest('Size should increase with more entries', sqlite: false, web: false, () {
       isar.write((isar) => isar.modelAs.put(objA0));
       final sizeA0 = isar.modelAs.getSize();
       expect(sizeA0, greaterThan(0));

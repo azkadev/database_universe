@@ -1,16 +1,14 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:isar/isar.dart';
-import 'package:database_universe_test/src/init_native.dart'
-    if (dart.library.html) 'package:database_universe_test/src/init_web.dart';
+import 'package:database_universe/database_universe.dart';
+import 'package:database_universe_test/src/init_native.dart' if (dart.library.html) 'package:database_universe_test/src/init_web.dart';
 import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 // ignore: implementation_imports, depend_on_referenced_packages
 import 'package:test_api/src/backend/invoker.dart';
 
-export 'package:database_universe_test/src/init_native.dart'
-    if (dart.library.html) 'package:database_universe_test/src/init_web.dart';
+export 'package:database_universe_test/src/init_native.dart' if (dart.library.html) 'package:database_universe_test/src/init_web.dart';
 
 final testErrors = <String>[];
 int testCount = 0;

@@ -1,6 +1,6 @@
 // ignore_for_file: inference_failure_on_function_invocation
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 

@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -13,8 +13,7 @@ class FloatModel {
   float? field = 0;
 
   @override
-  bool operator ==(Object other) =>
-      other is FloatModel && id == other.id && doubleEquals(field, other.field);
+  bool operator ==(Object other) => other is FloatModel && id == other.id && doubleEquals(field, other.field);
 }
 
 void main() {
@@ -76,10 +75,7 @@ void main() {
         [objInf, obj1, obj2, obj3, objNInf, objNull],
       );
       expect(
-        col
-            .where()
-            .fieldGreaterThanOrEqualTo(double.negativeInfinity)
-            .findAll(),
+        col.where().fieldGreaterThanOrEqualTo(double.negativeInfinity).findAll(),
         [objInf, obj1, obj2, obj3, objNInf],
       );
       expect(

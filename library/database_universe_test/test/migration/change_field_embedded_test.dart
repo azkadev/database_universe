@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -14,8 +14,7 @@ class Model1 {
   Embedded1? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model1 && other.id == id && other.value == value;
+  bool operator ==(Object other) => other is Model1 && other.id == id && other.value == value;
 }
 
 @collection
@@ -28,8 +27,7 @@ class Model2 {
   Embedded2? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model2 && other.id == id && other.value == value;
+  bool operator ==(Object other) => other is Model2 && other.id == id && other.value == value;
 }
 
 @embedded

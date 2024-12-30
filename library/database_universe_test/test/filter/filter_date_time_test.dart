@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -13,10 +13,7 @@ class DateTimeModel {
   DateTime? field;
 
   @override
-  bool operator ==(Object other) =>
-      other is DateTimeModel &&
-      id == other.id &&
-      other.field?.toUtc() == field?.toUtc();
+  bool operator ==(Object other) => other is DateTimeModel && id == other.id && other.field?.toUtc() == field?.toUtc();
 }
 
 DateTime local(int year, [int month = 1, int day = 1]) {

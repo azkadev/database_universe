@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_positional_boolean_parameters
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -148,8 +148,7 @@ void main() {
       final isarName = isar1.name;
       isar1.close();
 
-      final isar2 =
-          await openTempIsar([DefaultListModelSchema], name: isarName);
+      final isar2 = await openTempIsar([DefaultListModelSchema], name: isarName);
       final obj = isar2.defaultListModels.get(0)!;
       expect(obj.boolValue, [true, false]);
       expect(obj.byteValue, [1, 3]);
@@ -171,8 +170,7 @@ void main() {
       final isarName = isar1.name;
       isar1.close();
 
-      final isar2 =
-          await openTempIsar([DefaultListModelSchema], name: isarName);
+      final isar2 = await openTempIsar([DefaultListModelSchema], name: isarName);
       final col = isar2.defaultListModels;
       expect(col.where().boolValueProperty().findFirst(), [true, false]);
       expect(col.where().byteValueProperty().findFirst(), [1, 3]);

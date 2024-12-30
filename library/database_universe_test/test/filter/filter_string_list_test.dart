@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -22,15 +22,7 @@ class StringModel {
   final List<String?>? nullableStringsNullable;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is StringModel &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          listEquals(strings, other.strings) &&
-          listEquals(nullableStrings, other.nullableStrings) &&
-          listEquals(stringsNullable, other.stringsNullable) &&
-          listEquals(nullableStringsNullable, other.nullableStringsNullable);
+  bool operator ==(Object other) => identical(this, other) || other is StringModel && runtimeType == other.runtimeType && id == other.id && listEquals(strings, other.strings) && listEquals(nullableStrings, other.nullableStrings) && listEquals(stringsNullable, other.stringsNullable) && listEquals(nullableStringsNullable, other.nullableStringsNullable);
 
   @override
   String toString() {
@@ -126,8 +118,7 @@ void main() {
       );
 
       isar.write(
-        (isar) =>
-            isar.stringModels.putAll([obj1, obj2, obj3, obj4, obj5, obj6]),
+        (isar) => isar.stringModels.putAll([obj1, obj2, obj3, obj4, obj5, obj6]),
       );
     });
 
@@ -161,96 +152,57 @@ void main() {
         [obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementEqualTo('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsElementEqualTo('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('nullable strings 1')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('nullable strings 1').findAll(),
         [obj1],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('nullable strings 2')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('nullable strings 2').findAll(),
         [obj2, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('nullable strings 3')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('nullable strings 3').findAll(),
         [obj1, obj2, obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('nullable strings 4')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('nullable strings 4').findAll(),
         [obj4, obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('nullable strings 5')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('nullable strings 5').findAll(),
         [obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('nullable strings 6')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('nullable strings 6').findAll(),
         [obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEqualTo('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEqualTo('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEqualTo('strings nullable 1')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEqualTo('strings nullable 1').findAll(),
         [obj1, obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEqualTo('strings nullable 4')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEqualTo('strings nullable 4').findAll(),
         [obj4, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEqualTo('strings nullable 5')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEqualTo('strings nullable 5').findAll(),
         [obj4, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEqualTo('strings nullable 6')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEqualTo('strings nullable 6').findAll(),
         [obj4],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEqualTo('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEqualTo('non existing').findAll(),
         isEmpty,
       );
 
@@ -282,10 +234,7 @@ void main() {
         [obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementEqualTo('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementEqualTo('non existing').findAll(),
         isEmpty,
       );
     });
@@ -296,55 +245,34 @@ void main() {
         [obj1, obj2, obj4, obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementStartsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsElementStartsWith('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementStartsWith('nullable')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementStartsWith('nullable').findAll(),
         [obj1, obj2, obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementStartsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementStartsWith('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementStartsWith('strings')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementStartsWith('strings').findAll(),
         [obj1, obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEqualTo('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEqualTo('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementStartsWith('nullable')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementStartsWith('nullable').findAll(),
         [obj1, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementStartsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementStartsWith('non existing').findAll(),
         isEmpty,
       );
     });
@@ -379,10 +307,7 @@ void main() {
         [obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementEndsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsElementEndsWith('non existing').findAll(),
         isEmpty,
       );
 
@@ -411,10 +336,7 @@ void main() {
         [obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementEndsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementEndsWith('non existing').findAll(),
         isEmpty,
       );
 
@@ -435,39 +357,24 @@ void main() {
         [obj4],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementEndsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementEndsWith('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementEndsWith('1')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementEndsWith('1').findAll(),
         [obj1],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementEndsWith('3')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementEndsWith('3').findAll(),
         [obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementEndsWith('5')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementEndsWith('5').findAll(),
         [obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementEndsWith('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementEndsWith('non existing').findAll(),
         isEmpty,
       );
     });
@@ -478,55 +385,34 @@ void main() {
         [obj1, obj2, obj4, obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementContains('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsElementContains('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementContains('ings')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementContains('ings').findAll(),
         [obj1, obj2, obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementContains('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementContains('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementContains('ings')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementContains('ings').findAll(),
         [obj1, obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementContains('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementContains('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementContains('ings')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementContains('ings').findAll(),
         [obj1, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementContains('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementContains('non existing').findAll(),
         isEmpty,
       );
     });
@@ -537,40 +423,25 @@ void main() {
         [obj1, obj2, obj4, obj5],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementMatches('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsElementMatches('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementMatches('??????????????????')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementMatches('??????????????????').findAll(),
         [obj1, obj2, obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementMatches('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementMatches('non existing').findAll(),
         isEmpty,
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementMatches('??????????????????')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementMatches('??????????????????').findAll(),
         [obj1, obj4, obj5, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementMatches('non existing')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementMatches('non existing').findAll(),
         isEmpty,
       );
 
@@ -584,10 +455,7 @@ void main() {
         [obj1, obj6],
       );
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementMatches('non existing')
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementMatches('non existing').findAll(),
         isEmpty,
       );
     });
@@ -599,10 +467,7 @@ void main() {
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementIsNull()
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementIsNull().findAll(),
         [obj1, obj4, obj6],
       );
     });
@@ -614,36 +479,24 @@ void main() {
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementIsNotNull()
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementIsNotNull().findAll(),
         [obj1, obj6],
       );
     });
 
     databaseUniverseTest('.elementGreaterThan()', () {
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementGreaterThan('strings 3')
-            .findAll(),
+        isar.stringModels.where().stringsElementGreaterThan('strings 3').findAll(),
         [obj2, obj4, obj5],
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementGreaterThan('nullable strings 3')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementGreaterThan('nullable strings 3').findAll(),
         [obj4, obj5, obj6],
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementGreaterThan('strings nullable 3')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementGreaterThan('strings nullable 3').findAll(),
         [obj4, obj6],
       );
 
@@ -665,18 +518,12 @@ void main() {
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsElementLessThan('nullable strings 3')
-            .findAll(),
+        isar.stringModels.where().nullableStringsElementLessThan('nullable strings 3').findAll(),
         [obj1, obj2, obj5, obj6],
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .stringsNullableElementLessThan('strings nullable 3')
-            .findAll(),
+        isar.stringModels.where().stringsNullableElementLessThan('strings nullable 3').findAll(),
         [obj1, obj5, obj6],
       );
 
@@ -693,10 +540,7 @@ void main() {
 
     databaseUniverseTest('.elementBetween()', () {
       expect(
-        isar.stringModels
-            .where()
-            .stringsElementBetween('strings 2', 'strings 4')
-            .findAll(),
+        isar.stringModels.where().stringsElementBetween('strings 2', 'strings 4').findAll(),
         [obj1, obj2, obj5],
       );
 
@@ -751,10 +595,7 @@ void main() {
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementIsEmpty()
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementIsEmpty().findAll(),
         [obj6],
       );
     });
@@ -776,10 +617,7 @@ void main() {
       );
 
       expect(
-        isar.stringModels
-            .where()
-            .nullableStringsNullableElementIsNotEmpty()
-            .findAll(),
+        isar.stringModels.where().nullableStringsNullableElementIsNotEmpty().findAll(),
         [obj1, obj6],
       );
     });

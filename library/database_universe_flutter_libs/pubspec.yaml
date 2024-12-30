@@ -1,31 +1,32 @@
-name: database_universe_flutter_libs
-description: DatabaseUniverse Core binaries for the DatabaseUniverse Database. Needs to be included for Flutter apps.
-version: 0.0.0
-repository: https://github.com/database_universe/database_universe
-homepage: https://database_universe.dev
-
+name: 'database_universe_flutter_libs'
+description: 'DatabaseUniverse Core binaries for the DatabaseUniverse Database. Needs to be included for Flutter apps.'
+version: '0.0.0'
+repository: 'https://github.com/database_universe/database_universe'
+homepage: 'https://database_universe.dev'
 environment:
-  sdk: ">=3.1.0 <4.0.0"
-  flutter: ">=3.10.0"
-
-dev_dependencies: 
-  general_lib: ^0.0.49
-
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.10.0'
+dev_dependencies:
+  general_lib: '^0.0.51'
 dependencies:
   flutter:
-    sdk: flutter 
+    sdk: 'flutter'
 flutter:
   plugin:
     platforms:
       android:
-        package: dev.database_universe.database_universe_flutter_libs
-        pluginClass: DatabaseUniverseFlutterLibsPlugin
+        package: 'dev.database_universe.database_universe_flutter_libs'
+        pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
       ios:
-        pluginClass: DatabaseUniverseFlutterLibsPlugin
+        pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
       macos:
-        pluginClass: DatabaseUniverseFlutterLibsPlugin
+        pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
       linux:
-        pluginClass: DatabaseUniverseFlutterLibsPlugin
+        pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
       windows:
-        pluginClass: DatabaseUniverseFlutterLibsPlugin
-      web:
+        pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
+      web: null
+dependency_overrides:
+  pointycastle: '3.8.0'
+  mime: '^2.0.0'
+funding: []

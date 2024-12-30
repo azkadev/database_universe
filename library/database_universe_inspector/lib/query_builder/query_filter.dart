@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/object/property_value.dart';
 import 'package:database_universe_inspector/query_builder/query_group.dart';
 import 'package:database_universe_inspector/util.dart';
@@ -12,7 +12,7 @@ class QueryFilter extends StatelessWidget {
     super.key,
   });
 
-  final IsarSchema schema;
+  final DatabaseUniverseSchema schema;
   final FilterCondition condition;
   final void Function(FilterCondition condition) onChanged;
 
@@ -36,8 +36,7 @@ class QueryFilter extends StatelessWidget {
                 isDense: true,
                 items: [
                   for (final property in schema.idAndProperties)
-                    if (property.type != IsarType.object &&
-                        property.type != IsarType.objectList)
+                    if (property.type != DatabaseUniverseType.object && property.type != DatabaseUniverseType.objectList)
                       DropdownMenuItem(
                         value: property.name,
                         child: Text(property.name),
@@ -149,40 +148,40 @@ enum FilterType {
   final int valueCount;
 }
 
-extension on IsarPropertySchema {
+extension on DatabaseUniversePropertySchema {
   List<FilterType> get supportedFilters {
     switch (type) {
-      case IsarType.bool:
-      case IsarType.boolList:
+      case DatabaseUniverseType.bool:
+      case DatabaseUniverseType.boolList:
         return [
           FilterType.equalTo,
           FilterType.isNull,
           FilterType.isNotNull,
-          if (type == IsarType.boolList) ...[
+          if (type == DatabaseUniverseType.boolList) ...[
             FilterType.elementIsNull,
             FilterType.elementIsNotNull,
           ],
         ];
-      case IsarType.byte:
-      case IsarType.byteList:
+      case DatabaseUniverseType.byte:
+      case DatabaseUniverseType.byteList:
         return [
           FilterType.equalTo,
           FilterType.greaterThan,
           FilterType.lessThan,
           FilterType.between,
         ];
-      case IsarType.int:
-      case IsarType.float:
-      case IsarType.long:
-      case IsarType.double:
-      case IsarType.dateTime:
-      case IsarType.duration:
-      case IsarType.intList:
-      case IsarType.floatList:
-      case IsarType.longList:
-      case IsarType.doubleList:
-      case IsarType.dateTimeList:
-      case IsarType.durationList:
+      case DatabaseUniverseType.int:
+      case DatabaseUniverseType.float:
+      case DatabaseUniverseType.long:
+      case DatabaseUniverseType.double:
+      case DatabaseUniverseType.dateTime:
+      case DatabaseUniverseType.duration:
+      case DatabaseUniverseType.intList:
+      case DatabaseUniverseType.floatList:
+      case DatabaseUniverseType.longList:
+      case DatabaseUniverseType.doubleList:
+      case DatabaseUniverseType.dateTimeList:
+      case DatabaseUniverseType.durationList:
         return [
           FilterType.equalTo,
           FilterType.greaterThan,
@@ -193,8 +192,8 @@ extension on IsarPropertySchema {
           FilterType.elementIsNull,
           FilterType.elementIsNotNull,
         ];
-      case IsarType.string:
-      case IsarType.stringList:
+      case DatabaseUniverseType.string:
+      case DatabaseUniverseType.stringList:
         return [
           FilterType.equalTo,
           FilterType.greaterThan,
@@ -206,14 +205,14 @@ extension on IsarPropertySchema {
           FilterType.matches,
           FilterType.isNull,
           FilterType.isNotNull,
-          if (type == IsarType.stringList) ...[
+          if (type == DatabaseUniverseType.stringList) ...[
             FilterType.elementIsNull,
             FilterType.elementIsNotNull,
           ],
         ];
-      case IsarType.object:
-      case IsarType.objectList:
-      case IsarType.json:
+      case DatabaseUniverseType.object:
+      case DatabaseUniverseType.objectList:
+      case DatabaseUniverseType.json:
         return [];
     }
   }

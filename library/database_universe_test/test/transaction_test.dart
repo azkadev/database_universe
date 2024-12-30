@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -15,8 +15,7 @@ class Model {
   final String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Model && id == other.id && value == other.value;
 }
 
 void main() {

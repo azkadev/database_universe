@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -68,52 +68,28 @@ void main() {
 
     databaseUniverseTest('Or followed by and', () {
       expect(
-        users
-            .where()
-            .ageEqualTo(20)
-            .or()
-            .ageEqualTo(30)
-            .and()
-            .nameEqualTo('Emma')
-            .findAll(),
+        users.where().ageEqualTo(20).or().ageEqualTo(30).and().nameEqualTo('Emma').findAll(),
         [david, emma],
       );
     });
 
     databaseUniverseTest('And followed by or', () {
       expect(
-        users
-            .where()
-            .ageEqualTo(30)
-            .and()
-            .nameEqualTo('Simon')
-            .or()
-            .ageEqualTo(20)
-            .findAll(),
+        users.where().ageEqualTo(30).and().nameEqualTo('Simon').or().ageEqualTo(20).findAll(),
         [david, simon],
       );
     });
 
     databaseUniverseTest('Or followed by group', () {
       expect(
-        users
-            .where()
-            .ageEqualTo(20)
-            .or()
-            .group((q) => q.ageEqualTo(30).and().nameEqualTo('Emma'))
-            .findAll(),
+        users.where().ageEqualTo(20).or().group((q) => q.ageEqualTo(30).and().nameEqualTo('Emma')).findAll(),
         [david, emma],
       );
     });
 
     databaseUniverseTest('And followed by group', () {
       expect(
-        users
-            .where()
-            .ageEqualTo(30)
-            .and()
-            .group((q) => q.nameEqualTo('Simon').or().ageEqualTo(20))
-            .findAll(),
+        users.where().ageEqualTo(30).and().group((q) => q.nameEqualTo('Simon').or().ageEqualTo(20)).findAll(),
         [simon],
       );
     });
@@ -123,10 +99,7 @@ void main() {
         users
             .where()
             .group(
-              (QueryBuilder<Model, Model, QFilterCondition> q) => q
-                  .nameEqualTo('Simon')
-                  .or()
-                  .group((q) => q.ageEqualTo(30).or().ageEqualTo(20)),
+              (QueryBuilder<Model, Model, QFilterCondition> q) => q.nameEqualTo('Simon').or().group((q) => q.ageEqualTo(30).or().ageEqualTo(20)),
             )
             .findAll(),
         [david, emma, simon],

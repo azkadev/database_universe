@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 
 part 'type_models.g.dart';
 
@@ -127,8 +127,7 @@ class EmbeddedModel {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is EmbeddedModel && other.value == value;
+  bool operator ==(Object other) => other is EmbeddedModel && other.value == value;
 }
 
 @collection

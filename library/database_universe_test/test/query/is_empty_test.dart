@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -42,21 +42,11 @@ void main() {
         true,
       );
       expect(
-        isar.models
-            .where()
-            .valueStartsWith('model 1')
-            .and()
-            .valueEqualTo('model 2')
-            .isEmpty(),
+        isar.models.where().valueStartsWith('model 1').and().valueEqualTo('model 2').isEmpty(),
         true,
       );
       expect(
-        isar.models
-            .where()
-            .valueEqualTo('model 1')
-            .or()
-            .valueEqualTo('model 2')
-            .isEmpty(),
+        isar.models.where().valueEqualTo('model 1').or().valueEqualTo('model 2').isEmpty(),
         false,
       );
 

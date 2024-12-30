@@ -3,7 +3,7 @@ library;
 
 import 'dart:io';
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
@@ -19,12 +19,7 @@ class Model {
   List<int> buffer = List.filled(16000, 42);
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Model &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          listEquals(buffer, other.buffer);
+  bool operator ==(Object other) => identical(this, other) || other is Model && runtimeType == other.runtimeType && id == other.id && listEquals(buffer, other.buffer);
 }
 
 void main() {

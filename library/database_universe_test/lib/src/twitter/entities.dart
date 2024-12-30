@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/src/twitter/media.dart';
 import 'package:database_universe_test/src/twitter/util.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -10,8 +10,7 @@ part 'entities.g.dart';
 class Entities {
   Entities();
 
-  factory Entities.fromJson(Map<String, dynamic> json) =>
-      _$EntitiesFromJson(json);
+  factory Entities.fromJson(Map<String, dynamic> json) => _$EntitiesFromJson(json);
 
   List<Hashtag>? hashtags;
 
@@ -31,8 +30,7 @@ class Entities {
 class Hashtag {
   Hashtag();
 
-  factory Hashtag.fromJson(Map<String, dynamic> json) =>
-      _$HashtagFromJson(json);
+  factory Hashtag.fromJson(Map<String, dynamic> json) => _$HashtagFromJson(json);
 
   List<int>? indices;
 
@@ -99,8 +97,7 @@ class Url {
 class UserMention {
   UserMention();
 
-  factory UserMention.fromJson(Map<String, dynamic> json) =>
-      _$UserMentionFromJson(json);
+  factory UserMention.fromJson(Map<String, dynamic> json) => _$UserMentionFromJson(json);
 
   String? idStr;
 

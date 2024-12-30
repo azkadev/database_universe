@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -22,13 +22,7 @@ class Model {
   final Map<String, dynamic> map;
 
   @override
-  bool operator ==(other) =>
-      other is Model &&
-      id == other.id &&
-      listEquals([value], [other.value]) &&
-      listEquals(list, other.list) &&
-      listEquals(map.keys.toList(), other.map.keys.toList()) &&
-      listEquals(map.values.toList(), other.map.values.toList());
+  bool operator ==(other) => other is Model && id == other.id && listEquals([value], [other.value]) && listEquals(list, other.list) && listEquals(map.keys.toList(), other.map.keys.toList()) && listEquals(map.values.toList(), other.map.values.toList());
 }
 
 void main() {

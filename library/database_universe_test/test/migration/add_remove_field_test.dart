@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -14,8 +14,7 @@ class Col1 {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Col1 && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Col1 && id == other.id && value == other.value;
 }
 
 @collection
@@ -30,11 +29,7 @@ class Col2 {
   List<String>? newValues;
 
   @override
-  bool operator ==(Object other) =>
-      other is Col2 &&
-      id == other.id &&
-      value == other.value &&
-      listEquals(newValues, other.newValues);
+  bool operator ==(Object other) => other is Col2 && id == other.id && value == other.value && listEquals(newValues, other.newValues);
 }
 
 void main() {

@@ -1,13 +1,11 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:test/test.dart';
 
 Matcher isIsarError([String? contains]) {
   return allOf(
     isA<IsarError>(),
     predicate(
-      (IsarError e) =>
-          contains == null ||
-          e.toString().toLowerCase().contains(contains.toLowerCase()),
+      (IsarError e) => contains == null || e.toString().toLowerCase().contains(contains.toLowerCase()),
     ),
   );
 }
@@ -35,10 +33,7 @@ bool doubleListEquals(List<double?>? l1, List<double?>? l2) {
 }
 
 bool doubleEquals(double? d1, double? d2) {
-  return d1 == d2 ||
-      (d1 != null &&
-          d2 != null &&
-          ((d1.isNaN && d2.isNaN) || (d1 - d2).abs() < 0.001));
+  return d1 == d2 || (d1 != null && d2 != null && ((d1.isNaN && d2.isNaN) || (d1 - d2).abs() < 0.001));
 }
 
 bool listEquals<T>(List<T>? a, List<T>? b) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/collections_list.dart';
 import 'package:database_universe_inspector/connect_client.dart';
 import 'package:database_universe_inspector/instance_selector.dart';
@@ -21,7 +21,7 @@ class Sidebar extends StatelessWidget {
   final String? selectedInstance;
   final void Function(String instance) onInstanceSelected;
 
-  final List<IsarSchema> schemas;
+  final List<DatabaseUniverseSchema> schemas;
   final Map<String, ConnectCollectionInfoPayload?> collectionInfo;
   final String? selectedCollection;
   final void Function(String collection) onCollectionSelected;
@@ -68,9 +68,7 @@ class Sidebar extends StatelessWidget {
                   IconButton(
                     padding: const EdgeInsets.all(20),
                     icon: Icon(
-                      theme.brightness == Brightness.light
-                          ? Icons.dark_mode_rounded
-                          : Icons.light_mode_rounded,
+                      theme.brightness == Brightness.light ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
                     ),
                     onPressed: DarkMode.of(context).toggle,
                   ),

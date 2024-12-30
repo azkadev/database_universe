@@ -2,13 +2,13 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:html';
+// import 'dart:html';
 import 'dart:math';
 
 import 'package:clickup_fading_scroll/clickup_fading_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/collection/button_prev_next.dart';
 import 'package:database_universe_inspector/collection/button_sort.dart';
 import 'package:database_universe_inspector/collection/objects_list_sliver.dart';
@@ -31,7 +31,7 @@ class CollectionArea extends StatefulWidget {
 
   final String instance;
   final String collection;
-  final Map<String, IsarSchema> schemas;
+  final Map<String, DatabaseUniverseSchema> schemas;
   final ConnectClient client;
 
   late final schema = schemas[collection]!;
@@ -304,14 +304,13 @@ class _CollectionAreaState extends State<CollectionArea> {
     final data = await widget.client.exportJson(query);
     try {
       final base64 = base64Encode(utf8.encode(jsonEncode(data)));
-      final anchor =
-          AnchorElement(href: 'data:application/octet-stream;base64,$base64')
-            ..target = 'blank'
-            ..download = '${widget.collection}.json';
+      // final anchor = AnchorElement(href: 'data:application/octet-stream;base64,$base64')
+      //   ..target = 'blank'
+      //   ..download = '${widget.collection}.json';
 
-      document.body!.append(anchor);
-      anchor.click();
-      anchor.remove();
+      // document.body!.append(anchor);
+      // anchor.click();
+      // anchor.remove();
     } catch (_) {}
   }
 }

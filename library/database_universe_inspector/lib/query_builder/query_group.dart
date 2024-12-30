@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/query_builder/query_filter.dart';
 
 sealed class FilterOperation {
@@ -15,8 +15,7 @@ class FilterGroup extends FilterOperation {
   @override
   Filter? toIsarFilter() {
     if (filters.isEmpty) return null;
-    final isarFilters =
-        filters.map((e) => e.toIsarFilter()).whereType<Filter>().toList();
+    final isarFilters = filters.map((e) => e.toIsarFilter()).whereType<Filter>().toList();
     return and ? AndGroup(isarFilters) : OrGroup(isarFilters);
   }
 }
@@ -36,28 +35,7 @@ class FilterCondition extends FilterOperation {
 
   @override
   Filter toIsarFilter() {
-    return switch (type) {
-      FilterType.equalTo => EqualCondition(property: property, value: value1),
-      FilterType.greaterThan =>
-        GreaterCondition(property: property, value: value1),
-      FilterType.lessThan => LessCondition(property: property, value: value1),
-      FilterType.between =>
-        BetweenCondition(property: property, lower: value1, upper: value2),
-      FilterType.startsWith =>
-        StartsWithCondition(property: property, value: value1! as String),
-      FilterType.endsWith =>
-        EndsWithCondition(property: property, value: value1! as String),
-      FilterType.contains =>
-        ContainsCondition(property: property, value: value1! as String),
-      FilterType.matches =>
-        MatchesCondition(property: property, wildcard: value1! as String),
-      FilterType.isNull => IsNullCondition(property: property),
-      FilterType.isNotNull => NotGroup(IsNullCondition(property: property)),
-      FilterType.elementIsNull =>
-        EqualCondition(property: property, value: null),
-      FilterType.elementIsNotNull =>
-        GreaterCondition(property: property, value: null)
-    };
+    return switch (type) { FilterType.equalTo => EqualCondition(property: property, value: value1), FilterType.greaterThan => GreaterCondition(property: property, value: value1), FilterType.lessThan => LessCondition(property: property, value: value1), FilterType.between => BetweenCondition(property: property, lower: value1, upper: value2), FilterType.startsWith => StartsWithCondition(property: property, value: value1! as String), FilterType.endsWith => EndsWithCondition(property: property, value: value1! as String), FilterType.contains => ContainsCondition(property: property, value: value1! as String), FilterType.matches => MatchesCondition(property: property, wildcard: value1! as String), FilterType.isNull => IsNullCondition(property: property), FilterType.isNotNull => NotGroup(IsNullCondition(property: property)), FilterType.elementIsNull => EqualCondition(property: property, value: null), FilterType.elementIsNotNull => GreaterCondition(property: property, value: null) };
   }
 }
 
@@ -71,7 +49,7 @@ class QueryGroup extends StatelessWidget {
     this.onDelete,
   });
 
-  final IsarSchema schema;
+  final DatabaseUniverseSchema schema;
   final FilterGroup group;
   final int level;
   final void Function(FilterGroup group) onChanged;
@@ -110,8 +88,7 @@ class QueryGroup extends StatelessWidget {
                           'Add a filter or nested group to limit the results.\n'
                           'Click the group type to change it.',
                           style: TextStyle(
-                            color: theme.colorScheme.onPrimaryContainer
-                                .withOpacity(0.5),
+                            color: theme.colorScheme.onPrimaryContainer.withOpacity(0.5),
                           ),
                         ),
                       ),
@@ -121,8 +98,7 @@ class QueryGroup extends StatelessWidget {
                           schema: schema,
                           group: filter,
                           level: level + 1,
-                          onChanged: (updated) =>
-                              _performUpdate(add: updated, remove: filter),
+                          onChanged: (updated) => _performUpdate(add: updated, remove: filter),
                           onDelete: () => _performUpdate(remove: filter),
                         )
                       else
@@ -131,8 +107,7 @@ class QueryGroup extends StatelessWidget {
                             QueryFilter(
                               schema: schema,
                               condition: filter as FilterCondition,
-                              onChanged: (updated) =>
-                                  _performUpdate(add: updated, remove: filter),
+                              onChanged: (updated) => _performUpdate(add: updated, remove: filter),
                             ),
                             const SizedBox(width: 5),
                             IconButton(
@@ -256,7 +231,7 @@ class GroupFilterButton extends StatelessWidget {
   });
 
   final int level;
-  final IsarSchema schema;
+  final DatabaseUniverseSchema schema;
   final void Function(FilterOperation filter) onAdd;
 
   @override

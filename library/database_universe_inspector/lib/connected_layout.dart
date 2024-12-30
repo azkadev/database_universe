@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/collection/collection_area.dart';
 import 'package:database_universe_inspector/connect_client.dart';
 import 'package:database_universe_inspector/sidebar.dart';
@@ -25,7 +25,7 @@ class _ConnectedLayoutState extends State<ConnectedLayout> {
 
   String? selectedInstance;
   String? selectedCollection;
-  final List<IsarSchema> schemas = [];
+  final List<DatabaseUniverseSchema> schemas = [];
 
   @override
   void initState() {
@@ -65,8 +65,7 @@ class _ConnectedLayoutState extends State<ConnectedLayout> {
         if (mounted && selectedInstance == instance) {
           setState(() {
             schemas.addAll(newSchemas);
-            selectedCollection =
-                schemas.where((e) => !e.embedded).firstOrNull?.name;
+            selectedCollection = schemas.where((e) => !e.embedded).firstOrNull?.name;
           });
         }
       });

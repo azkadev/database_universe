@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'media.g.dart';
@@ -70,8 +70,7 @@ class Size {
 class AdditionalMediaInfo {
   AdditionalMediaInfo();
 
-  factory AdditionalMediaInfo.fromJson(Map<String, dynamic> json) =>
-      _$AdditionalMediaInfoFromJson(json);
+  factory AdditionalMediaInfo.fromJson(Map<String, dynamic> json) => _$AdditionalMediaInfoFromJson(json);
 
   String? title;
 
@@ -87,8 +86,7 @@ class AdditionalMediaInfo {
 class VideoInfo {
   VideoInfo();
 
-  factory VideoInfo.fromJson(Map<String, dynamic> json) =>
-      _$VideoInfoFromJson(json);
+  factory VideoInfo.fromJson(Map<String, dynamic> json) => _$VideoInfoFromJson(json);
 
   List<int>? aspectRatio;
 
@@ -102,8 +100,7 @@ class VideoInfo {
 class Variant {
   Variant();
 
-  factory Variant.fromJson(Map<String, dynamic> json) =>
-      _$VariantFromJson(json);
+  factory Variant.fromJson(Map<String, dynamic> json) => _$VariantFromJson(json);
 
   int? bitrate;
 

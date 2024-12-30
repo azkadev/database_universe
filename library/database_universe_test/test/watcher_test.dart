@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -14,8 +14,7 @@ class Value {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Value && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Value && id == other.id && value == other.value;
 }
 
 void main() {
@@ -183,10 +182,8 @@ void main() {
 
     group('Query', () {
       databaseUniverseTest('.put()', web: false, () async {
-        final listenerLazy =
-            Listener(isar.values.where().valueEqualTo('Hello').watchLazy());
-        final listener =
-            Listener(isar.values.where().valueEqualTo('Hi').watch());
+        final listenerLazy = Listener(isar.values.where().valueEqualTo('Hello').watchLazy());
+        final listener = Listener(isar.values.where().valueEqualTo('Hi').watch());
 
         isar.write((isar) => isar.values.put(obj1));
         await listenerLazy.next;
@@ -205,10 +202,8 @@ void main() {
       });
 
       databaseUniverseTest('.putAll()', web: false, () async {
-        final listenerLazy =
-            Listener(isar.values.where().valueContains('H').watchLazy());
-        final listener =
-            Listener(isar.values.where().valueContains('H').watch());
+        final listenerLazy = Listener(isar.values.where().valueContains('H').watchLazy());
+        final listener = Listener(isar.values.where().valueContains('H').watch());
 
         isar.write((isar) => isar.values.putAll([obj1, obj2]));
         await listenerLazy.next;
@@ -227,10 +222,8 @@ void main() {
       databaseUniverseTest('.delete()', web: false, () async {
         isar.write((isar) => isar.values.putAll([obj1, obj2, obj3]));
 
-        final listenerLazy =
-            Listener(isar.values.where().valueEqualTo('Hello').watchLazy());
-        final listener =
-            Listener(isar.values.where().valueEqualTo('Hi').watch());
+        final listenerLazy = Listener(isar.values.where().valueEqualTo('Hello').watchLazy());
+        final listener = Listener(isar.values.where().valueEqualTo('Hi').watch());
 
         isar.write((isar) => isar.values.delete(1));
         await listenerLazy.next;
@@ -251,10 +244,8 @@ void main() {
       databaseUniverseTest('.deleteAll()', web: false, () async {
         isar.write((isar) => isar.values.putAll([obj1, obj2, obj3]));
 
-        final listenerLazy =
-            Listener(isar.values.where().valueContains('H').watchLazy());
-        final listener =
-            Listener(isar.values.where().valueContains('H').watch());
+        final listenerLazy = Listener(isar.values.where().valueContains('H').watchLazy());
+        final listener = Listener(isar.values.where().valueContains('H').watch());
 
         isar.write((isar) => isar.values.deleteAll([1, 2]));
         await listenerLazy.next;
@@ -272,16 +263,10 @@ void main() {
 
       databaseUniverseTest('fireImmediately', web: false, () async {
         final listenerLazy = Listener(
-          isar.values
-              .where()
-              .valueEqualTo('Hello')
-              .watchLazy(fireImmediately: true),
+          isar.values.where().valueEqualTo('Hello').watchLazy(fireImmediately: true),
         );
         final listener = Listener(
-          isar.values
-              .where()
-              .valueEqualTo('Hello')
-              .watch(fireImmediately: true),
+          isar.values.where().valueEqualTo('Hello').watch(fireImmediately: true),
         );
 
         await listenerLazy.next;

@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -13,8 +13,7 @@ class StringModel {
   String? field;
 
   @override
-  bool operator ==(Object other) =>
-      other is StringModel && field == other.field;
+  bool operator ==(Object other) => other is StringModel && field == other.field;
 
   @override
   String toString() {

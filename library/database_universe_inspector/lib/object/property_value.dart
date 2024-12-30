@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 
 class PropertyValue extends StatelessWidget {
   const PropertyValue(
@@ -12,7 +12,7 @@ class PropertyValue extends StatelessWidget {
   });
 
   final dynamic value;
-  final IsarType type;
+  final DatabaseUniverseType type;
   final Map<String, dynamic>? enumMap;
   final void Function(dynamic newValue)? onUpdate;
 
@@ -21,7 +21,7 @@ class PropertyValue extends StatelessWidget {
     if (enumMap != null) {
       return _EnumValue(
         value: value,
-        isByte: type == IsarType.byte || type == IsarType.byteList,
+        isByte: type == DatabaseUniverseType.byte || type == DatabaseUniverseType.byteList,
         enumMap: enumMap!,
         onUpdate: onUpdate,
       );
@@ -109,8 +109,7 @@ class _EnumValue extends StatelessWidget {
               );
 
               if (newValue != null) {
-                onUpdate
-                    ?.call(!identical(newValue, nullValue) ? newValue : null);
+                onUpdate?.call(!identical(newValue, nullValue) ? newValue : null);
               }
             },
       child: Text(
@@ -164,8 +163,7 @@ class _BoolValue extends StatelessWidget {
                 ],
               );
               if (newValue != null) {
-                onUpdate
-                    ?.call(!identical(newValue, nullValue) ? newValue : null);
+                onUpdate?.call(!identical(newValue, nullValue) ? newValue : null);
               }
             },
       child: Text(
@@ -234,8 +232,7 @@ class _DateValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date =
-        value != null ? DateTime.fromMicrosecondsSinceEpoch(value!) : null;
+    final date = value != null ? DateTime.fromMicrosecondsSinceEpoch(value!) : null;
     return GestureDetector(
       onTap: onUpdate == null
           ? null
@@ -276,9 +273,7 @@ class _StringValue extends StatefulWidget {
 
 class _StringValueState extends State<_StringValue> {
   late final controller = TextEditingController(
-    text: widget.value != null
-        ? '"${widget.value.toString().replaceAll('\n', '⤵')}"'
-        : '',
+    text: widget.value != null ? '"${widget.value.toString().replaceAll('\n', '⤵')}"' : '',
   );
 
   @override

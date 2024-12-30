@@ -1,6 +1,6 @@
 // ignore_for_file: hash_and_equals
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -21,13 +21,7 @@ class Model {
   EmbeddedModelB? embeddedB;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Model &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          embeddedA == other.embeddedA &&
-          embeddedB == other.embeddedB;
+  bool operator ==(Object other) => identical(this, other) || other is Model && runtimeType == other.runtimeType && id == other.id && embeddedA == other.embeddedA && embeddedB == other.embeddedB;
 
   @override
   String toString() {
@@ -47,12 +41,7 @@ class EmbeddedModelA {
   final EmbeddedModelB? embeddedB;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EmbeddedModelA &&
-          runtimeType == other.runtimeType &&
-          name == other.name &&
-          embeddedB == other.embeddedB;
+  bool operator ==(Object other) => identical(this, other) || other is EmbeddedModelA && runtimeType == other.runtimeType && name == other.name && embeddedB == other.embeddedB;
 
   @override
   String toString() {
@@ -67,11 +56,7 @@ class EmbeddedModelB {
   final String name;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EmbeddedModelB &&
-          runtimeType == other.runtimeType &&
-          name == other.name;
+  bool operator ==(Object other) => identical(this, other) || other is EmbeddedModelB && runtimeType == other.runtimeType && name == other.name;
 
   @override
   String toString() {
@@ -147,130 +132,76 @@ void main() {
 
     databaseUniverseTest('.embedded()', () {
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameStartsWith('embedded'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameStartsWith('embedded')).findAll(),
         [obj1, obj2, obj3, obj4, obj5, obj6],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded a1'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded a1')).findAll(),
         [obj1],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded a2'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded a2')).findAll(),
         [obj2],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded a3'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded a3')).findAll(),
         [obj3],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded a4'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded a4')).findAll(),
         [obj4],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded a5'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded a5')).findAll(),
         [obj5],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded a6'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded a6')).findAll(),
         [obj6],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('non existing'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('non existing')).findAll(),
         isEmpty,
       );
       expect(
-        isar.models
-            .where()
-            .embeddedA((q) => q.nameEqualTo('embedded b1'))
-            .findAll(),
+        isar.models.where().embeddedA((q) => q.nameEqualTo('embedded b1')).findAll(),
         isEmpty,
       );
 
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameStartsWith('embedded'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameStartsWith('embedded')).findAll(),
         [obj1, obj3, obj4, obj5],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded b1'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded b1')).findAll(),
         [obj1],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded b2'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded b2')).findAll(),
         isEmpty,
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded b3'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded b3')).findAll(),
         [obj3],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded b4'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded b4')).findAll(),
         [obj4],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded b5'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded b5')).findAll(),
         [obj5],
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded b6'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded b6')).findAll(),
         isEmpty,
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('non existing'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('non existing')).findAll(),
         isEmpty,
       );
       expect(
-        isar.models
-            .where()
-            .embeddedB((q) => q.nameEqualTo('embedded a1'))
-            .findAll(),
+        isar.models.where().embeddedB((q) => q.nameEqualTo('embedded a1')).findAll(),
         isEmpty,
       );
     });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/object/property_builder.dart';
 import 'package:database_universe_inspector/object/property_value.dart';
 import 'package:database_universe_inspector/util.dart';
@@ -14,7 +14,7 @@ class PropertyView extends StatelessWidget {
     super.key,
   });
 
-  final IsarPropertySchema property;
+  final DatabaseUniversePropertySchema property;
   final dynamic value;
   final bool isId;
   final bool isIndexed;

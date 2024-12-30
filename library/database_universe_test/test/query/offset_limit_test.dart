@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -13,8 +13,7 @@ class Model {
   final String value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Model && other.id == id && other.value == value;
+  bool operator ==(Object other) => other is Model && other.id == id && other.value == value;
 }
 
 void main() {

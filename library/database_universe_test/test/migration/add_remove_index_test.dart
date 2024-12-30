@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 
 part 'add_remove_index_test.g.dart';
 
@@ -12,8 +12,7 @@ class Col1 {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Col1 && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Col1 && id == other.id && value == other.value;
 }
 
 @collection
@@ -27,8 +26,7 @@ class Col2 {
   String? value;
 
   @override
-  bool operator ==(Object other) =>
-      other is Col2 && id == other.id && value == other.value;
+  bool operator ==(Object other) => other is Col2 && id == other.id && value == other.value;
 }
 
 void main() {

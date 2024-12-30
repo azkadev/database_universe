@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'geo.g.dart';
@@ -43,8 +43,7 @@ enum PlaceType {
 class Coordinates {
   Coordinates();
 
-  factory Coordinates.fromJson(Map<String, dynamic> json) =>
-      _$CoordinatesFromJson(json);
+  factory Coordinates.fromJson(Map<String, dynamic> json) => _$CoordinatesFromJson(json);
 
   List<double>? coordinates;
 

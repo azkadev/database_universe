@@ -3,12 +3,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:isar/isar.dart';
-import 'package:isar/src/isar_connect_api.dart';
+import 'package:database_universe/database_universe.dart';
+import 'package:database_universe/core/core/database_universe_connect_api.dart';
 import 'package:vm_service/vm_service.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-export 'package:isar/src/isar_connect_api.dart';
+export 'package:database_universe/core/core/database_universe_connect_api.dart';
 
 class ConnectClient {
   ConnectClient(this.vmService, this.isolateId);
@@ -26,8 +26,7 @@ class ConnectClient {
   final _queryChangedController = StreamController<void>.broadcast();
 
   Stream<void> get instancesChanged => _instancesChangedController.stream;
-  Stream<void> get collectionInfoChanged =>
-      _collectionInfoChangedController.stream;
+  Stream<void> get collectionInfoChanged => _collectionInfoChangedController.stream;
   Stream<void> get queryChanged => _queryChangedController.stream;
 
   static Future<ConnectClient> connect(String port, String secret) async {
@@ -88,7 +87,7 @@ class ConnectClient {
     return response.json?['result'] as Map<String, dynamic>?;
   }
 
-  Future<List<IsarSchema>> getSchemas(String instance) async {
+  Future<List<DatabaseUniverseSchema>> getSchemas(String instance) async {
     final json = await _call(
       ConnectAction.getSchemas,
       param: ConnectInstancePayload(instance),

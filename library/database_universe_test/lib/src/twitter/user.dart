@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/src/twitter/entities.dart';
 import 'package:database_universe_test/src/twitter/util.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -61,8 +61,7 @@ class User {
 class UserEntities {
   UserEntities();
 
-  factory UserEntities.fromJson(Map<String, dynamic> json) =>
-      _$UserEntitiesFromJson(json);
+  factory UserEntities.fromJson(Map<String, dynamic> json) => _$UserEntitiesFromJson(json);
 
   UserEntityUrl? url;
 
@@ -74,8 +73,7 @@ class UserEntities {
 class UserEntityUrl {
   UserEntityUrl();
 
-  factory UserEntityUrl.fromJson(Map<String, dynamic> json) =>
-      _$UserEntityUrlFromJson(json);
+  factory UserEntityUrl.fromJson(Map<String, dynamic> json) => _$UserEntityUrlFromJson(json);
 
   List<Url>? urls;
 }

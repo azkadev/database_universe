@@ -1,10 +1,9 @@
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 
-extension CollectionInfoX on IsarSchema {
-  List<IsarPropertySchema> get idAndProperties {
+extension CollectionInfoX on DatabaseUniverseSchema {
+  List<DatabaseUniversePropertySchema> get idAndProperties {
     final props = [
-      if (!this.embedded && !properties.any((e) => e.name == idName))
-        IsarPropertySchema(name: idName!, type: IsarType.long),
+      if (!this.embedded && !properties.any((e) => e.name == idName)) DatabaseUniversePropertySchema(name: idName!, type: DatabaseUniverseType.long),
       ...properties,
     ];
     props.sort((a, b) {
@@ -20,50 +19,50 @@ extension CollectionInfoX on IsarSchema {
   }
 }
 
-extension TypeName on IsarType {
+extension TypeName on DatabaseUniverseType {
   String get typeName {
     switch (this) {
-      case IsarType.bool:
+      case DatabaseUniverseType.bool:
         return 'bool';
-      case IsarType.byte:
+      case DatabaseUniverseType.byte:
         return 'byte';
-      case IsarType.int:
+      case DatabaseUniverseType.int:
         return 'short';
-      case IsarType.long:
+      case DatabaseUniverseType.long:
         return 'int';
-      case IsarType.float:
+      case DatabaseUniverseType.float:
         return 'float';
-      case IsarType.double:
+      case DatabaseUniverseType.double:
         return 'double';
-      case IsarType.dateTime:
+      case DatabaseUniverseType.dateTime:
         return 'DateTime';
-      case IsarType.duration:
+      case DatabaseUniverseType.duration:
         return 'Duration';
-      case IsarType.string:
+      case DatabaseUniverseType.string:
         return 'String';
-      case IsarType.object:
+      case DatabaseUniverseType.object:
         return 'Object';
-      case IsarType.json:
+      case DatabaseUniverseType.json:
         return 'Json';
-      case IsarType.boolList:
+      case DatabaseUniverseType.boolList:
         return 'List<bool>';
-      case IsarType.byteList:
+      case DatabaseUniverseType.byteList:
         return 'List<byte>';
-      case IsarType.intList:
+      case DatabaseUniverseType.intList:
         return 'List<short>';
-      case IsarType.longList:
+      case DatabaseUniverseType.longList:
         return 'List<int>';
-      case IsarType.floatList:
+      case DatabaseUniverseType.floatList:
         return 'List<float>';
-      case IsarType.doubleList:
+      case DatabaseUniverseType.doubleList:
         return 'List<double>';
-      case IsarType.dateTimeList:
+      case DatabaseUniverseType.dateTimeList:
         return 'List<DateTime>';
-      case IsarType.durationList:
+      case DatabaseUniverseType.durationList:
         return 'List<Duration>';
-      case IsarType.stringList:
+      case DatabaseUniverseType.stringList:
         return 'List<String>';
-      case IsarType.objectList:
+      case DatabaseUniverseType.objectList:
         return 'List<Object>';
     }
   }

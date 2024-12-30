@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_test/database_universe_test.dart';
 import 'package:test/test.dart';
 
@@ -21,10 +21,7 @@ class StringModel {
   List<String>? stringList;
 
   @override
-  bool operator ==(Object other) =>
-      other is StringModel &&
-      string == other.string &&
-      listEquals(stringList, other.stringList);
+  bool operator ==(Object other) => other is StringModel && string == other.string && listEquals(stringList, other.stringList);
 }
 
 String _randomStr(int length) {
@@ -74,8 +71,7 @@ void main() {
           StringModel(
             id: i,
             stringList: [
-              for (var j = 0; j < 100; j++)
-                '${_randomStr(10000)}test${i}_$j${_randomStr(10000)}',
+              for (var j = 0; j < 100; j++) '${_randomStr(10000)}test${i}_$j${_randomStr(10000)}',
             ],
           ),
       ];

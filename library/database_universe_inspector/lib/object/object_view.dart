@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/object/isar_object.dart';
 import 'package:database_universe_inspector/object/property_embedded_view.dart';
 import 'package:database_universe_inspector/object/property_view.dart';
@@ -15,7 +15,7 @@ class ObjectView extends StatelessWidget {
   });
 
   final String schemaName;
-  final Map<String, IsarSchema> schemas;
+  final Map<String, DatabaseUniverseSchema> schemas;
   final IsarObject object;
   final void Function(String path, dynamic value) onUpdate;
 

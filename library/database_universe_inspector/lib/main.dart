@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +18,21 @@ final _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
+        if (kIsWeb == false) {
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Scaffold(
+              body: Material(
+                child: ConnectionScreen(
+                  port: "38377",
+                  secret: "9D1uKBRy7IY",
+                ),
+              ),
+            ),
+          );
+        }
         return const Material(
           child: Center(
             child: Text(
@@ -63,9 +79,7 @@ class App extends StatelessWidget {
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF9FC9FF),
-          brightness: DarkMode.of(context).darkMode
-              ? Brightness.dark
-              : Brightness.light,
+          brightness: DarkMode.of(context).darkMode ? Brightness.dark : Brightness.light,
         ),
         useMaterial3: true,
       ),
