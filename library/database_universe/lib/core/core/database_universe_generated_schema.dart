@@ -73,4 +73,4 @@ typedef Deserialize<T> = T Function(DatabaseUniverseReader reader);
 
 /// @nodoc
 typedef DeserializeProp = dynamic Function(
-    DatabaseUniverseReader reader, int property);
+    DatabaseUniverseReader reader, int property,);

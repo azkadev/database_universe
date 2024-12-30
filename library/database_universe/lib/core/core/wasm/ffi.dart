@@ -4,9 +4,8 @@
 
 import 'dart:typed_data';
 
+import 'package:database_universe/core/core/wasm/wasm.dart';
 import 'package:database_universe/database_universe.dart';
-
-import 'wasm.dart';
 
 typedef Pointer<T> = int;
 

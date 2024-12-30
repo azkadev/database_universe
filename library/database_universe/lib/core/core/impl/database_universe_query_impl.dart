@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 part of database_universe;
 
 class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
@@ -33,12 +35,12 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       throw ArgumentError('Limit must be greater than 0.');
     }
 
-    return database_universe.getTxn((database_universePtr, txnPtr) {
+    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
       final cursorPtrPtr = DatabaseUniverseCore.ptrPtr
           .cast<Pointer<CDatabaseUniverseQueryCursor>>();
       DatabaseUniverseCore.b
           .database_universe_query_cursor(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtr,
             _ptr,
             cursorPtrPtr,
@@ -73,7 +75,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       throw ArgumentError('Limit must be greater than 0.');
     }
 
-    return database_universe.getWriteTxn((database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
       final updatePtr = DatabaseUniverseCore.b.database_universe_update_new();
       for (final propertyId in changes.keys) {
         final value = _database_universeValue(changes[propertyId]);
@@ -83,7 +85,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
 
       DatabaseUniverseCore.b
           .database_universe_query_update(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtr,
             _ptr,
             offset ?? 0,
@@ -103,10 +105,10 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       throw ArgumentError('Limit must be greater than 0.');
     }
 
-    return database_universe.getWriteTxn((database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
       DatabaseUniverseCore.b
           .database_universe_query_delete(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtr,
             _ptr,
             offset ?? 0,
@@ -140,7 +142,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       return _findAll(deserialize, offset: offset, limit: limit);
     } finally {
       DatabaseUniverseCore.b.database_universe_buffer_free(
-          bufferPtrPtr.ptrValue, bufferSizePtr.u32Value);
+          bufferPtrPtr.ptrValue, bufferSizePtr.u32Value,);
       free(bufferPtrPtr);
       free(bufferSizePtr);
     }
@@ -157,12 +159,12 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       Aggregation.average => AGGREGATION_AVERAGE,
     };
 
-    return database_universe.getTxn((database_universePtr, txnPtr) {
+    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
       final valuePtrPtr =
           DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseValue>>();
       DatabaseUniverseCore.b
           .database_universe_query_aggregate(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtr,
             _ptr,
             aggregation,
@@ -194,7 +196,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
         } else if ('' is R) {
           final length = DatabaseUniverseCore.b
               .database_universe_value_get_string(
-                  valuePtr, DatabaseUniverseCore.stringPtrPtr);
+                  valuePtr, DatabaseUniverseCore.stringPtrPtr,);
           if (DatabaseUniverseCore.stringPtr.isNull) {
             return null;
           } else {

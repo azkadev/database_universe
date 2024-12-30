@@ -121,24 +121,24 @@ extension QueryModifier<OBJ, S> on QueryBuilder<OBJ, OBJ, S> {
 extension QueryAsync<T> on DatabaseUniverseQuery<T> {
   /// {@macro query_find_first}
   Future<T?> findFirstAsync({int? offset}) => database_universe
-      .readAsync((database_universe) => findFirst(offset: offset));
+      .readAsync((databaseUniverse) => findFirst(offset: offset));
 
   /// {@macro query_find_all}
   Future<List<T>> findAllAsync({int? offset, int? limit}) => database_universe
-      .readAsync((database_universe) => findAll(offset: offset, limit: limit));
+      .readAsync((databaseUniverse) => findAll(offset: offset, limit: limit));
 
   /// {@macro aggregation_count}
   Future<int> countAsync() =>
-      database_universe.readAsync((database_universe) => count());
+      database_universe.readAsync((databaseUniverse) => count());
 
   /// {@macro aggregation_is_empty}
   Future<bool> isEmptyAsync() =>
-      database_universe.readAsync((database_universe) => isEmpty());
+      database_universe.readAsync((databaseUniverse) => isEmpty());
 
   /// @nodoc
   @protected
   Future<R?> aggregateAsync<R>(Aggregation op) =>
-      database_universe.readAsync((database_universe) => aggregate(op));
+      database_universe.readAsync((databaseUniverse) => aggregate(op));
 }
 
 /// Aggregation operations for number queries.
@@ -281,7 +281,7 @@ extension QueryExecute<OBJ, R> on QueryBuilder<OBJ, R, QOperations> {
       _withQuery((q) => q.watchLazy(fireImmediately: fireImmediately));
 
   Future<T> _withQueryAsync<T>(
-      Future<T> Function(DatabaseUniverseQuery<R> q) f) async {
+      Future<T> Function(DatabaseUniverseQuery<R> q) f,) async {
     final q = build();
     try {
       return await f(q);

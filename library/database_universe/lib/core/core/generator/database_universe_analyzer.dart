@@ -139,7 +139,7 @@ class _DatabaseUniverseAnalyzer {
         properties.length) {
       _err(
         'Two or more properties have the same name.',
-        constructor.enclosingElement,
+        constructor.enclosingElement3,
       );
     }
 
@@ -387,7 +387,7 @@ class _DatabaseUniverseAnalyzer {
     for (final index in element.indexAnnotations) {
       final indexProperties = [
         element.database_universeName,
-        ...index.composite
+        ...index.composite,
       ];
 
       if (indexProperties.toSet().length != indexProperties.length) {

@@ -122,12 +122,12 @@ extension CollectionAsync<ID, OBJ> on DatabaseUniverseCollection<ID, OBJ> {
   /// {@macro collection_get}
   Future<OBJ?> getAsync(ID id) {
     return database_universe.readAsync(
-        (database_universe) => database_universe.collection<ID, OBJ>().get(id));
+        (database_universe) => database_universe.collection<ID, OBJ>().get(id),);
   }
 
   /// {@macro collection_get_all}
   Future<List<OBJ?>> getAllAsync(List<ID> ids) {
     return database_universe.readAsync((database_universe) =>
-        database_universe.collection<ID, OBJ>().getAll(ids));
+        database_universe.collection<ID, OBJ>().getAll(ids),);
   }
 }

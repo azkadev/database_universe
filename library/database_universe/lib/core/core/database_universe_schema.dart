@@ -22,11 +22,11 @@ class DatabaseUniverseSchema {
       embedded: json['embedded'] as bool,
       properties: (json['properties'] as List<dynamic>)
           .map((e) => DatabaseUniversePropertySchema.fromJson(
-              e as Map<String, dynamic>))
+              e as Map<String, dynamic>,),)
           .toList(),
       indexes: (json['indexes'] as List<dynamic>)
           .map((e) =>
-              DatabaseUniverseIndexSchema.fromJson(e as Map<String, dynamic>))
+              DatabaseUniverseIndexSchema.fromJson(e as Map<String, dynamic>),)
           .toList(),
     );
   }

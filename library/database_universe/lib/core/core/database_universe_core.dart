@@ -123,7 +123,7 @@ abstract final class DatabaseUniverseCore {
 
   @tryInline
   static String? readString(
-      Pointer<CDatabaseUniverseReader> reader, int index) {
+      Pointer<CDatabaseUniverseReader> reader, int index,) {
     final length =
         b.database_universe_read_string(reader, index, stringPtrPtr, boolPtr);
     if (stringPtr.isNull) {
@@ -167,31 +167,31 @@ abstract final class DatabaseUniverseCore {
 
   @tryInline
   static void writeBool(
-      Pointer<CDatabaseUniverseWriter> writer, int index, bool value) {
+      Pointer<CDatabaseUniverseWriter> writer, int index, bool value,) {
     b.database_universe_write_bool(writer, index, value);
   }
 
   @tryInline
   static void writeByte(
-      Pointer<CDatabaseUniverseWriter> writer, int index, int value) {
+      Pointer<CDatabaseUniverseWriter> writer, int index, int value,) {
     b.database_universe_write_byte(writer, index, value);
   }
 
   @tryInline
   static void writeInt(
-      Pointer<CDatabaseUniverseWriter> writer, int index, int value) {
+      Pointer<CDatabaseUniverseWriter> writer, int index, int value,) {
     b.database_universe_write_int(writer, index, value);
   }
 
   @tryInline
   static void writeFloat(
-      Pointer<CDatabaseUniverseWriter> writer, int index, double value) {
+      Pointer<CDatabaseUniverseWriter> writer, int index, double value,) {
     b.database_universe_write_float(writer, index, value);
   }
 
   @tryInline
   static void writeLong(
-      Pointer<CDatabaseUniverseWriter> writer, int index, int value) {
+      Pointer<CDatabaseUniverseWriter> writer, int index, int value,) {
     b.database_universe_write_long(writer, index, value);
   }
 

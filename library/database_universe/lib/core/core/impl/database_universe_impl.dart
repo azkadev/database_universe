@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 part of database_universe;
 
 class _DatabaseUniverseImpl extends DatabaseUniverse {

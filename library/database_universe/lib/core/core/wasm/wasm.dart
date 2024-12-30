@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'interop.dart';
+import 'package:database_universe/core/core/wasm/interop.dart';
 
 export 'bindings.dart';
 export 'ffi.dart';

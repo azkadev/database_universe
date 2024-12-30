@@ -11,3 +11,6 @@ analyzer:
     use_string_in_part_of_directives: ignore
     always_put_required_named_parameters_first: ignore
     lines_longer_than_80_chars: ignore
+    non_constant_identifier_names: ignore
+    
+    

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 part of database_universe;
 
 class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollection<ID, OBJ> {
@@ -31,10 +33,10 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
   @override
   List<OBJ?> getAll(List<ID> ids) {
     final objects = List<OBJ?>.filled(ids.length, null, growable: true);
-    return database_universe.getTxn((database_universePtr, txnPtr) {
+    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
       final cursorPtrPtr = DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseCursor>>();
 
-      DatabaseUniverseCore.b.database_universe_cursor(database_universePtr, txnPtr, collectionIndex, cursorPtrPtr).checkNoError();
+      DatabaseUniverseCore.b.database_universe_cursor(databaseUniverseptr, txnPtr, collectionIndex, cursorPtrPtr).checkNoError();
 
       final cursorPtr = cursorPtrPtr.ptrValue;
       Pointer<CDatabaseUniverseReader> readerPtr = nullptr;
@@ -54,12 +56,12 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
   void putAll(List<OBJ> objects) {
     if (objects.isEmpty) return;
 
-    return database_universe.getWriteTxn(consume: true, (database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn(consume: true, (databaseUniverseptr, txnPtr) {
       final writerPtrPtr = DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseWriter>>();
 
       DatabaseUniverseCore.b
           .database_universe_insert(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtr,
             collectionIndex,
             objects.length,
@@ -95,13 +97,13 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
       DatabaseUniverseCore.b.database_universe_update_add_value(updatePtr, propertyId, value);
     }
 
-    return database_universe.getWriteTxn((database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
       var count = 0;
       final updatedPtr = DatabaseUniverseCore.boolPtr;
       for (final id in ids) {
         DatabaseUniverseCore.b
             .database_universe_update(
-              database_universePtr,
+              databaseUniverseptr,
               txnPtr,
               collectionIndex,
               _idToInt(id),
@@ -121,10 +123,10 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
 
   @override
   bool delete(ID id) {
-    return database_universe.getWriteTxn((database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
       DatabaseUniverseCore.b
           .database_universe_delete(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtr,
             collectionIndex,
             _idToInt(id),
@@ -140,12 +142,12 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
   int deleteAll(List<ID> ids) {
     if (ids.isEmpty) return 0;
 
-    return database_universe.getWriteTxn((database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
       var count = 0;
       for (final id in ids) {
         DatabaseUniverseCore.b
             .database_universe_delete(
-              database_universePtr,
+              databaseUniverseptr,
               txnPtr,
               collectionIndex,
               _idToInt(id),
@@ -169,28 +171,28 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
 
   @override
   int count() {
-    return database_universe.getTxn((database_universePtr, txnPtr) {
-      DatabaseUniverseCore.b.database_universe_count(database_universePtr, txnPtr, collectionIndex, DatabaseUniverseCore.countPtr);
+    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
+      DatabaseUniverseCore.b.database_universe_count(databaseUniverseptr, txnPtr, collectionIndex, DatabaseUniverseCore.countPtr);
       return DatabaseUniverseCore.countPtr.u32Value;
     });
   }
 
   @override
   int getSize({bool includeIndexes = false}) {
-    return database_universe.getTxn((database_universePtr, txnPtr) {
-      return DatabaseUniverseCore.b.database_universe_get_size(database_universePtr, txnPtr, collectionIndex, includeIndexes);
+    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
+      return DatabaseUniverseCore.b.database_universe_get_size(databaseUniverseptr, txnPtr, collectionIndex, includeIndexes);
     });
   }
 
   @override
   int importJsonString(String json) {
-    return database_universe.getWriteTxn(consume: true, (database_universePtr, txnPtr) {
+    return database_universe.getWriteTxn(consume: true, (databaseUniverseptr, txnPtr) {
       final txnPtrPtr = DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseTxn>>();
       txnPtrPtr.ptrValue = txnPtr;
       final nativeString = DatabaseUniverseCore._toNativeString(json);
       DatabaseUniverseCore.b
           .database_universe_import_json(
-            database_universePtr,
+            databaseUniverseptr,
             txnPtrPtr,
             collectionIndex,
             nativeString,
@@ -203,8 +205,8 @@ class _DatabaseUniverseCollectionImpl<ID, OBJ> extends DatabaseUniverseCollectio
 
   @override
   void clear() {
-    return database_universe.getWriteTxn((database_universePtr, txnPtr) {
-      DatabaseUniverseCore.b.database_universe_clear(database_universePtr, txnPtr, collectionIndex);
+    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
+      DatabaseUniverseCore.b.database_universe_clear(databaseUniverseptr, txnPtr, collectionIndex);
       return (null, txnPtr);
     });
   }
