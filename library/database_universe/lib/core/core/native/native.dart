@@ -54,12 +54,12 @@ extension on Abi {
       case Abi.androidArm:
       case Abi.androidArm64:
       case Abi.androidX64:
-        return 'libDatabaseUniverse.so';
+        return 'libdatabase_universe.so';
       case Abi.macosArm64:
       case Abi.macosX64:
-        return 'libDatabaseUniverse.dylib';
+        return 'libdatabase_universe.dylib';
       case Abi.linuxX64:
-        return 'libDatabaseUniverse.so';
+        return 'libdatabase_universe.so';
       case Abi.windowsArm64:
       case Abi.windowsX64:
         return 'database_universe.dll';

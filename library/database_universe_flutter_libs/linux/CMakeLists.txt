@@ -20,6 +20,6 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::GTK)
 
 # List of absolute paths to libraries that should be bundled with the plugin
 set(database_universe_flutter_libs_bundled_libraries
-  "${CMAKE_CURRENT_SOURCE_DIR}/libDatabaseUniverse.so"
+  "${CMAKE_CURRENT_SOURCE_DIR}/libdatabase_universe.so"
   PARENT_SCOPE
 )

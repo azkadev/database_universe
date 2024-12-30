@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.dependency 'FlutterMacOS'
   s.platform = :osx, '10.11'
   s.swift_version = '5.3'
-  s.vendored_libraries  = 'libDatabaseUniverse.dylib'
+  s.vendored_libraries  = 'libdatabase_universe.dylib'
 end
