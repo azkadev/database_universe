@@ -24,8 +24,8 @@ class ObjectView extends StatelessWidget {
     final schema = schemas[schemaName]!;
     return Column(
       children: [
-        for (final property in schema.idAndProperties)
-          if (property.target == null)
+        for (final property in schema.idAndProperties) ...[
+          if (property.target == null) ...[
             PropertyView(
               property: property,
               value: object.getValue(property.name),
@@ -36,8 +36,8 @@ class ObjectView extends StatelessWidget {
               onUpdate: (value) {
                 onUpdate(property.name, value);
               },
-            )
-          else
+            ),
+          ] else ...[
             EmbeddedPropertyView(
               property: property,
               schemas: schemas,
@@ -46,6 +46,8 @@ class ObjectView extends StatelessWidget {
                 onUpdate('${property.name}.$path', value);
               },
             ),
+          ],
+        ],
       ],
     );
   }
