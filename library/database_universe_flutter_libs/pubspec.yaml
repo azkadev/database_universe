@@ -1,6 +1,6 @@
 name: 'database_universe_flutter_libs'
 description: 'DatabaseUniverse Core binaries for the DatabaseUniverse Database. Needs to be included for Flutter apps.'
-version: '0.0.0'
+version: '0.0.0-placeholder'
 repository: 'https://github.com/database_universe/database_universe'
 homepage: 'https://database_universe.dev'
 environment:
