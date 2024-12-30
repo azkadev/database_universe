@@ -11,7 +11,7 @@ on:
         description: "yes or no"
         required: false
         default: "yes"
-  # push:
+  push:
 
 env: # Global variables
   VERSION: "0.0.4"
@@ -116,7 +116,7 @@ jobs:
       - name: pub.dev credentials
         run: |
           mkdir -p $HOME/.config/dart
-          echo '${{ secrets.PUB_JSON }}' >> $HOME/.config/dart/pub-credentials.json
+          echo '${{ secrets.PUBDEV_CREDENTIALS }}' >> $HOME/.config/dart/pub-credentials.json
            
       - name: Pub Get database_universe
         working-directory: library/database_universe
