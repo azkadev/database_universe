@@ -3,8 +3,6 @@ name: Isar release
 on:
   workflow_dispatch:
   push:
-    tags:
-      - "*"
 
 jobs:
   build_binaries:
@@ -53,30 +51,6 @@ jobs:
           file: ${{ matrix.artifact_name }}
           asset_name: ${{ matrix.artifact_name }}
           tag: ${{ github.ref }}
-
-  testlab:
-    needs: build_binaries
-    uses: ./.github/workflows/testlab.yaml
-    secrets: inherit
-
-  # build_inspector:
-  #   name: Build Inspector
-  #   needs: testlab
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: subosito/flutter-action@v2
-  #     - name: Build
-  #       run: flutter build web --base-href /${{ github.ref_name }}/ --no-tree-shake-icons
-  #       working-directory: packages/isar_inspector
-  #     - name: Deploy to GitHub Pages
-  #       uses: JamesIves/github-pages-deploy-action@v4
-  #       with:
-  #         folder: packages/isar_inspector/build/web
-  #         repository-name: isar/inspector
-  #         token: ${{ secrets.TOKEN }}
-  #         target-folder: ${{ github.ref_name }}
-  #         clean: false
 
   publish:
     name: Publish 
