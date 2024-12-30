@@ -13,7 +13,7 @@ on:
         default: "yes"
 
 env: # Global variables
-  VERSION: "0.0.4"
+  VERSION: "0.0.0-placeholder"
   
 jobs:
   build_binaries:
