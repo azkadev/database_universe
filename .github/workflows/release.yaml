@@ -5,7 +5,7 @@ on:
   push:
 
 env: # Global variables
-  DATABASE_UNIVERSE_VERSION: "0.0.4"
+  VERSION: "0.0.4"
   
 jobs:
   build_binaries:
@@ -44,7 +44,9 @@ jobs:
       - name: Prepare Build
         uses: ./.github/actions/prepare-build
       - name: Set Isar Version
-        run: echo "DATABASE_UNIVERSE_VERSION=$DATABASE_UNIVERSE_VERSION" >> $GITHUB_ENV
+        run: |
+          echo "DATABASE_UNIVERSE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "DATABASE_UNIVERSE_VERSION=$VERSION"
       - name: Build binary
         run: bash tool/${{ matrix.script }}
       - name: Upload Artifact
@@ -60,7 +62,7 @@ jobs:
           repo_token: ${{ secrets.TOKEN_GITHUB }}
           file: ${{ matrix.artifact_name }}
           asset_name: ${{ matrix.artifact_name }}
-          tag: "${{ github.ref }}-$DATABASE_UNIVERSE_VERSION"
+          tag: "${{ github.ref }}-$VERSION"
           overwrite: true
 
   publish:
@@ -83,11 +85,11 @@ jobs:
           wait-interval: 10
 
       - name: Set Isar Version
-        run: echo "DATABASE_UNIVERSE_VERSION=$DATABASE_UNIVERSE_VERSION" >> $GITHUB_ENV
+        run: echo "DATABASE_UNIVERSE_VERSION=$VERSION" >> $GITHUB_ENV
       - name: Download Binaries
         run: sh tool/download_binaries.sh
       - name: Adjust Version
-        run: find . -type f -exec sed -i "s/0.0.0-placeholder/$DATABASE_UNIVERSE_VERSION/g" {} +
+        run: find . -type f -exec sed -i "s/0.0.0-placeholder/$VERSION/g" {} +
       - name: pub.dev credentials
         run: |
           mkdir -p $HOME/.config/dart
