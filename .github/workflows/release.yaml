@@ -80,7 +80,8 @@ jobs:
 
   publish:
     name: Publish
-    needs: build_inspector
+    # needs: build_inspector
+    needs: testlab
     runs-on: ubuntu-latest
     permissions:
       id-token: write
