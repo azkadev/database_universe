@@ -20,6 +20,6 @@ void main(List<String> arguments) async {
     ],
     directory: directory_database.path,
     name: "database",
-  ); 
+  );
   stdin.listen((e) {});
-} 
+}
