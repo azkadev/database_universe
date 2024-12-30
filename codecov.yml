@@ -1,0 +1,2 @@
+ignore:
+  - "library/database_universe_core_ffi"

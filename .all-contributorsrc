@@ -1,0 +1,224 @@
+{
+  "files": [
+    "packages/isar/README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Jtplouffe",
+      "name": "JT",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32107801?v=4",
+      "profile": "https://github.com/Jtplouffe",
+      "contributions": [
+        "test",
+        "bug"
+      ]
+    },
+    {
+      "login": "leisim",
+      "name": "Simon Choi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13610195?v=4",
+      "profile": "https://www.linkedin.com/in/simon-leier/",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "test",
+        "example"
+      ]
+    },
+    {
+      "login": "h1376h",
+      "name": "Hamed H.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3498335?v=4",
+      "profile": "https://github.com/h1376h",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "Viper-Bit",
+      "name": "Peyman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24822764?v=4",
+      "profile": "https://github.com/Viper-Bit",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "blendthink",
+      "name": "blendthink",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32213113?v=4",
+      "profile": "https://github.com/blendthink",
+      "contributions": [
+        "maintenance"
+      ]
+    },
+    {
+      "login": "Moseco",
+      "name": "Moseco",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10720298?v=4",
+      "profile": "https://github.com/Moseco",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Frostedfox",
+      "name": "Frostedfox",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84601232?v=4",
+      "profile": "https://github.com/Frostedfox",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "nohli",
+      "name": "Joachim Nohl",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43643339?v=4",
+      "profile": "http://achim.io",
+      "contributions": [
+        "maintenance"
+      ]
+    },
+    {
+      "login": "VoidxHoshi",
+      "name": "LaLucid",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55886143?v=4",
+      "profile": "https://github.com/VoidxHoshi",
+      "contributions": [
+        "maintenance"
+      ]
+    },
+    {
+      "login": "vothvovo",
+      "name": "Johnson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20894472?v=4",
+      "profile": "https://github.com/vothvovo",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ika020202",
+      "name": "Ura",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42883378?v=4",
+      "profile": "https://zenn.dev/urasan",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "mnkeis",
+      "name": "mnkeis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/41247357?v=4",
+      "profile": "https://github.com/mnkeis",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "CarloDotLog",
+      "name": "Carlo Loguercio",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13763473?v=4",
+      "profile": "https://github.com/CarloDotLog",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "hafeezrana",
+      "name": "Hafeez Rana",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87476445?v=4",
+      "profile": "https://g.dev/hafeezrana",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "inkomomutane",
+      "name": "Nelson  Mutane",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57417802?v=4",
+      "profile": "https://github.com/inkomomutane",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "lodisy",
+      "name": "Michael",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8101584?v=4",
+      "profile": "https://github.com/lodisy",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ritksm",
+      "name": "Jack Rivers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111809?v=4",
+      "profile": "http://blog.jackrivers.me/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "buraktabn",
+      "name": "Burak",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49204989?v=4",
+      "profile": "http://buraktaban.ca",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "AlexisL61",
+      "name": "Alexis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30233189?v=4",
+      "profile": "https://github.com/AlexisL61",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "letyletylety",
+      "name": "Lety",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16468579?v=4",
+      "profile": "https://letyarch.blogspot.com/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "nobkd",
+      "name": "nobkd",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44443899?v=4",
+      "profile": "https://github.com/nobkd",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "oscarpalomar",
+      "name": "Oscar Palomar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13899772?v=4",
+      "profile": "https://github.com/oscarpalomar",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "contributorTemplate": "<a href=\"https://github.com/<%= contributor.login %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a>",
+  "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": true,
+  "projectName": "isar",
+  "projectOwner": "isar",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true,
+  "commitConvention": "angular",
+  "commitType": "docs"
+}
