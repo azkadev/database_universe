@@ -1,4 +1,4 @@
-name: Isar release
+name: Database Universe release
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
         description: "yes or no"
         required: false
         default: "yes"
-  push:
+  # push:
 
 env: # Global variables
   VERSION: "0.0.4"
@@ -154,7 +154,7 @@ jobs:
           tag: "${{ github.ref }}-${{env.VERSION}}"
           overwrite: true
 
-      - name: Publish Get database_universe
+      - name: Publish database_universe
         if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
         working-directory: library/database_universe
         run: | 
