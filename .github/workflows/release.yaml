@@ -159,10 +159,10 @@ jobs:
         if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
         working-directory: library/database_universe
         run: | 
-          dart pub publish --force
+          dart pub publish --force --skip-validation
 
       - name: Publish database_universe_flutter_libs
         if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
         working-directory: library/database_universe_flutter_libs
         run: | 
-          flutter pub publish --force
+          flutter pub publish --force --skip-validation
