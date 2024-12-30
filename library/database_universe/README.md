@@ -1,276 +1,84 @@
-<p align="center">
-  <a href="https://database_universe.dev">
-    <img src="https://raw.githubusercontent.com/database_universe/database_universe/main/.github/assets/database_universe.svg?sanitize=true" height="128">
-  </a>
-  <h1 align="center">DatabaseUniverse Database</h1>
-</p>
+# Database Universe
+ 
+**Database Universe** this open source project is free 
 
-<p align="center">
-  <a href="https://pub.dev/packages/database_universe">
-    <img src="https://img.shields.io/pub/v/database_universe?label=pub.dev&labelColor=333940&logo=dart">
-  </a>
-  <a href="https://github.com/database_universe/database_universe/actions/workflows/test.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/database_universe/database_universe/test.yaml?branch=main&label=tests&labelColor=333940&logo=github">
-  </a>
-  <a href="https://app.codecov.io/gh/database_universe/database_universe">
-    <img src="https://img.shields.io/codecov/c/github/database_universe/database_universe?logo=codecov&logoColor=fff&labelColor=333940&flag=database_universe">
-  </a>
-  <a href="https://t.me/database_universedb">
-    <img src="https://img.shields.io/static/v1?label=join&message=DatabaseUniverse%20%26%20Hive&labelColor=333940&logo=telegram&logoColor=white&color=229ED9">
-  </a>
-  <a href="https://twitter.com/simcdev">
-    <img src="https://img.shields.io/twitter/follow/simcdev?style=social">
-  </a>
-</p>
+## Demo
 
-<p align="center">
-  <a href="https://database_universe.dev">Quickstart</a> •
-  <a href="https://database_universe.dev/schema">Documentation</a> •
-  <a href="https://github.com/database_universe/database_universe/tree/main/examples/">Sample Apps</a> •
-  <a href="https://github.com/database_universe/database_universe/discussions">Support & Ideas</a> •
-  <a href="https://pub.dev/packages/database_universe">Pub.dev</a>
-</p>
+## 📚️ Docs
 
-> #### DatabaseUniverse [ee-zahr]:
->
-> 1. River in Bavaria, Germany.
-> 2. [Crazy fast](#benchmarks) NoSQL database that is a joy to use.
+1. [Documentation](/docs/)
+2. [Youtube](https://youtube.com/)
+3. [Telegram Support Group](https://t.me/)
+4. [Contact Developer](https://github.com/) (check social media or readme profile github)
 
-⚠️ DATABASE UNIVERSE V4 IS NOT READY FOR PRODUCTION USE ⚠️  
-If you want to use DatabaseUniverse in production, please use the stable version 3.
+## 🔖️ Features
 
-## Features
+1. [x] 📱️ **Cross Platform** support (Device, Web)
+2. [x] 📜️ **Standarization** Style Code
+3. [x] ⌨️ **Cli** (Terminal for help you use this library or create project)
+4. [x] 🔥️ **Api** (If you developer bot / userbot you can use this library without interact cli just add library and use 🚀️)
+5. [ ] 🧩️ **Customizable Extension** (if you want add extension so you can more speed up on development)
+6. [ ] ✨️ **Pretty Information** (user friendly for newbie)
+ 
+## ❔️ Fun Fact
 
-- 💙 **Made for Flutter**. Easy to use, no config, no boilerplate
-- 🚀 **Highly scalable** The sky is the limit (pun intended)
-- 🍭 **Feature rich**. Composite & multi-entry indexes, query modifiers, JSON support etc.
-- ⏱ **Asynchronous**. Parallel query operations & multi-isolate support by default
-- 🦄 **Open source**. Everything is open source and free forever!
+**This library 100%** use on every my create project (**App, Server, Bot, Userbot**)
+ 
+## 📈️ Proggres
+ 
+- **2024-05-11**
 
-DatabaseUniverse database can do much more (and we are just getting started)
+### 📥️ Install Library
 
-- 🕵️ **Full-text search**. Make searching fast and fun
-- 📱 **Multiplatform**. iOS, Android, Desktop
-- 🧪 **ACID semantics**. Rely on database consistency
-- 💃 **Static typing**. Compile-time checked and autocompleted queries
-- ✨ **Beautiful documentation**. Readable, easy to understand and ever-improving
+1. **Dart**
 
-Join the [Telegram group](https://t.me/database_universedb) for discussion and sneak peeks of new versions of the DB.
-
-If you want to say thank you, star us on GitHub and like us on pub.dev 🙌💙
-
-## Quickstart
-
-Holy smokes you're here! Let's get started on using the coolest Flutter database out there...
-
-### 1. Add to pubspec.yaml
-
-```yaml
-dependencies:
-  database_universe: 4.0.0
-  database_universe_flutter_libs: 4.0.0 # contains DatabaseUniverse Core
-
-dev_dependencies:
-  build_runner: any
+```bash
+dart pub add database_universe
 ```
 
-### 2. Annotate a Collection
+## 🚀️ Quick Start
 
+Example Quickstart script minimal for insight you or make you use this library because very simple 
+ 
 ```dart
-part 'email.g.dart';
+// ignore_for_file: non_constant_identifier_names
+import 'dart:io';
+import 'package:database_universe/database_universe.dart';
+import 'package:general_lib/general_lib.dart';
+import 'package:path/path.dart' as path;
 
-@collection
-class Email {
-  Email({
-    this.id,
-    this.title,
-    this.recipients,
-    this.status = Status.pending,
-  });
-
-  final int id;
-
-  @Index(type: IndexType.value)
-  final String? title;
-
-  final List<Recipient>? recipients;
-
-  final Status status;
+void main(List<String> args) async {
+  print("start");
+  /// add database
+  DatabaseUniverse databaseUniverse = DatabaseUniverse(
+    // change extension with your own
+    extension_name: "dbu",
+    // if set true if open database password wrong force open but database will empty
+    is_ignore_on_error: true,
+  );
+  // init database
+  databaseUniverse.init(crypto: Crypto(key: "od8wkk8nYbgv2na8ApaL0NMGq3rcpnF5"));
+  // set database directory
+  Directory directory_db = () {
+    if (Dart.isWeb) {
+      return Directory("");
+    }
+    return Directory(path.join(Directory.current.path, "db"));
+  }();
+  print("open");
+  // open disk database
+  DatabaseUniverseData<JsonScheme> databaseUniverseData = databaseUniverse.disk_open(file_name: "Slebew", directory: directory_db, valueData: JsonScheme({}));
+  // change value
+  print("update");
+  databaseUniverseData.value["first_name"] = "change name";
+  // check if key count is not int set to int 0
+  if (databaseUniverseData.value["count"] is int == false) {
+    databaseUniverseData.value["count"] = 0;
+  }
+  // increament
+  databaseUniverseData.value["count"] += 1;
+  // save to disk
+  databaseUniverse.disk_save(databaseUniverseData: databaseUniverseData, isWithClose: true);
+  print("saved");
 }
-
-@embedded
-class Recipient {
-  String? name;
-
-  String? address;
-}
-
-enum Status {
-  draft,
-  pending,
-  sent,
-}
-```
-
-### 3. Open a database instance
-
-```dart
-final dir = await getApplicationDocumentsDirectory();
-final database_universe = await DatabaseUniverse.open(
-  [EmailSchema],
-  directory: dir.path,
-);
-```
-
-### 4. Query the database
-
-```dart
-final emails = database_universe.emails.where()
-  .titleContains('awesome', caseSensitive: false)
-  .sortByStatusDesc()
-  .limit(10)
-  .findAll();
-```
-
-## DatabaseUniverse Database Inspector
-
-The DatabaseUniverse Inspector allows you to inspect the DatabaseUniverse instances & collections of your app in real-time. You can execute queries, edit properties, switch between instances and sort the data.
-
-<img src="https://raw.githubusercontent.com/database_universe/database_universe/main/.github/assets/inspector.gif">
-
-To launch the inspector, just run your DatabaseUniverse app in debug mode and open the Inspector link in the logs.
-
-## CRUD operations
-
-All basic crud operations are available via the `DatabaseUniverseCollection`.
-
-```dart
-final newEmail = Email()..title = 'Amazing new database';
-
-await database_universe.writeAsync(() {
-  database_universe.emails.put(newEmail); // insert & update
-});
-
-final existingEmail = database_universe.emails.get(newEmail.id!); // get
-
-await database_universe.writeAsync(() {
-  database_universe.emails.delete(existingEmail.id!); // delete
-});
-```
-
-## Database Queries
-
-DatabaseUniverse database has a powerful query language that allows you to make use of your indexes, filter distinct objects, use complex `and()`, `or()` and `.xor()` groups, query links and sort the results.
-
-```dart
-final importantEmails = database_universe.emails
-  .where()
-  .titleStartsWith('Important') // use index
-  .limit(10)
-  .findAll()
-
-final specificEmails = database_universe.emails
-  .filter()
-  .recipient((q) => q.nameEqualTo('David')) // query embedded objects
-  .or()
-  .titleMatches('*university*', caseSensitive: false) // title containing 'university' (case insensitive)
-  .findAll()
-```
-
-## Database Watchers
-
-With DatabaseUniverse database, you can watch collections, objects, or queries. A watcher is notified after a transaction commits successfully and the target changes.
-Watchers can be lazy and not reload the data or they can be non-lazy and fetch new results in the background.
-
-```dart
-Stream<void> collectionStream = database_universe.emails.watchLazy();
-
-Stream<List<Post>> queryStream = importantEmails.watch();
-
-queryStream.listen((newResult) {
-  // do UI updates
-})
-```
-
-## Benchmarks
-
-Benchmarks only give a rough idea of the performance of a database but as you can see, DatabaseUniverse NoSQL database is quite fast 😇
-
-| <img src="https://raw.githubusercontent.com/database_universe/database_universe/main/.github/assets/benchmarks/insert.png" width="100%" /> | <img src="https://raw.githubusercontent.com/database_universe/database_universe/main/.github/assets/benchmarks/query.png" width="100%" /> |
-| ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/database_universe/database_universe/main/.github/assets/benchmarks/update.png" width="100%" /> | <img src="https://raw.githubusercontent.com/database_universe/database_universe/main/.github/assets/benchmarks/size.png" width="100%" />  |
-
-If you are interested in more benchmarks or want to check how DatabaseUniverse performs on your device you can run the [benchmarks](https://github.com/database_universe/database_universe_benchmark) yourself.
-
-## Unit tests
-
-If you want to use DatabaseUniverse database in unit tests or Dart code, call `await DatabaseUniverse.initializeDatabaseUniverseCore(download: true)` before using DatabaseUniverse in your tests.
-
-DatabaseUniverse NoSQL database will automatically download the correct binary for your platform. You can also pass a `libraries` map to adjust the download location for each platform.
-
-Make sure to use `flutter test -j 1` to avoid tests running in parallel. This would break the automatic download.
-
-## Contributors ✨
-
-Big thanks go to these wonderful people:
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AlexisL61"><img src="https://avatars.githubusercontent.com/u/30233189?v=4" width="100px;" alt=""/><br /><sub><b>Alexis</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/buraktabn"><img src="https://avatars.githubusercontent.com/u/49204989?v=4" width="100px;" alt=""/><br /><sub><b>Burak</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/CarloDotLog"><img src="https://avatars.githubusercontent.com/u/13763473?v=4" width="100px;" alt=""/><br /><sub><b>Carlo Loguercio</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Frostedfox"><img src="https://avatars.githubusercontent.com/u/84601232?v=4" width="100px;" alt=""/><br /><sub><b>Frostedfox</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/hafeezrana"><img src="https://avatars.githubusercontent.com/u/87476445?v=4" width="100px;" alt=""/><br /><sub><b>Hafeez Rana</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/h1376h"><img src="https://avatars.githubusercontent.com/u/3498335?v=4" width="100px;" alt=""/><br /><sub><b>Hamed H.</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Jtplouffe"><img src="https://avatars.githubusercontent.com/u/32107801?v=4" width="100px;" alt=""/><br /><sub><b>JT</b></sub></a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ritksm"><img src="https://avatars.githubusercontent.com/u/111809?v=4" width="100px;" alt=""/><br /><sub><b>Jack Rivers</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nohli"><img src="https://avatars.githubusercontent.com/u/43643339?v=4" width="100px;" alt=""/><br /><sub><b>Joachim Nohl</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/vothvovo"><img src="https://avatars.githubusercontent.com/u/20894472?v=4" width="100px;" alt=""/><br /><sub><b>Johnson</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/VoidxHoshi"><img src="https://avatars.githubusercontent.com/u/55886143?v=4" width="100px;" alt=""/><br /><sub><b>LaLucid</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/letyletylety"><img src="https://avatars.githubusercontent.com/u/16468579?v=4" width="100px;" alt=""/><br /><sub><b>Lety</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lodisy"><img src="https://avatars.githubusercontent.com/u/8101584?v=4" width="100px;" alt=""/><br /><sub><b>Michael</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Moseco"><img src="https://avatars.githubusercontent.com/u/10720298?v=4" width="100px;" alt=""/><br /><sub><b>Moseco</b></sub></a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/inkomomutane"><img src="https://avatars.githubusercontent.com/u/57417802?v=4" width="100px;" alt=""/><br /><sub><b>Nelson  Mutane</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/oscarpalomar"><img src="https://avatars.githubusercontent.com/u/13899772?v=4" width="100px;" alt=""/><br /><sub><b>Oscar Palomar</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Viper-Bit"><img src="https://avatars.githubusercontent.com/u/24822764?v=4" width="100px;" alt=""/><br /><sub><b>Peyman</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/leisim"><img src="https://avatars.githubusercontent.com/u/13610195?v=4" width="100px;" alt=""/><br /><sub><b>Azkadev</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ika020202"><img src="https://avatars.githubusercontent.com/u/42883378?v=4" width="100px;" alt=""/><br /><sub><b>Ura</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/blendthink"><img src="https://avatars.githubusercontent.com/u/32213113?v=4" width="100px;" alt=""/><br /><sub><b>blendthink</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mnkeis"><img src="https://avatars.githubusercontent.com/u/41247357?v=4" width="100px;" alt=""/><br /><sub><b>mnkeis</b></sub></a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nobkd"><img src="https://avatars.githubusercontent.com/u/44443899?v=4" width="100px;" alt=""/><br /><sub><b>nobkd</b></sub></a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-### License
-
-```
-Copyright 2023 Azkadev
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+``` 
