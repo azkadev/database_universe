@@ -23,7 +23,7 @@ abstract class _DatabaseUniverseConnect {
   static void initialize(DatabaseUniverse databaseUniverse) {
     if (!_initialized) {
       _initialized = true;
-      _printConnection();
+      printConnection();
       _registerHandlers();
     }
 
@@ -37,9 +37,7 @@ abstract class _DatabaseUniverseConnect {
     for (final handler in _handlers.entries) {
       registerExtension(handler.key.method, (method, parameters) async {
         try {
-          final args = parameters.containsKey('args')
-              ? jsonDecode(parameters['args']!) as Map<String, dynamic>
-              : <String, dynamic>{};
+          final args = parameters.containsKey('args') ? jsonDecode(parameters['args']!) as Map<String, dynamic> : <String, dynamic>{};
           final result = <String, dynamic>{'result': await handler.value(args)};
           return ServiceExtensionResponse.result(jsonEncode(result));
         } catch (e) {
@@ -52,10 +50,10 @@ abstract class _DatabaseUniverseConnect {
     }
   }
 
-  static void _printConnection() {
+  static void printConnection() { 
     Service.getInfo().then((ServiceProtocolInfo info) {
       final serviceUri = info.serverUri;
-      if (serviceUri == null) {
+      if (serviceUri == null) { 
         return;
       }
       final port = serviceUri.port;
@@ -66,8 +64,7 @@ abstract class _DatabaseUniverseConnect {
       if (path.endsWith('=')) {
         path = path.substring(0, path.length - 1);
       }
-      final url =
-          ' https://inspect.database_universe.dev/${DatabaseUniverse.version}/#/$port$path ';
+      final url = ' https://inspect.database_universe.dev/${DatabaseUniverse.version}/#/$port$path ';
       String line(String text, String fill) {
         final fillCount = url.length - text.length;
         final left = List.filled(fillCount ~/ 2, fill);
@@ -78,8 +75,7 @@ abstract class _DatabaseUniverseConnect {
       print('╔${line('', '═')}╗');
       print('║${line('DATABASE UNIVERSE CONNECT STARTED', ' ')}║');
       print('╟${line('', '─')}╢');
-      print(
-          '║${line('Open the link to connect to the DatabaseUniverse', ' ')}║');
+      print('║${line('Open the link to connect to the DatabaseUniverse', ' ')}║');
       print('║${line('Inspector while this build is running.', ' ')}║');
       print('╟${line('', '─')}╢');
       print('║$url║');
@@ -110,8 +106,7 @@ abstract class _DatabaseUniverseConnect {
     final p = ConnectInstancePayload.fromJson(params);
     final databaseUniverse = _instances[p.instance]!;
 
-    void sendCollectionInfo(
-        DatabaseUniverseCollection<dynamic, dynamic> collection) {
+    void sendCollectionInfo(DatabaseUniverseCollection<dynamic, dynamic> collection) {
       final count = collection.count();
       final size = collection.getSize(includeIndexes: true);
       final collectionInfo = ConnectCollectionInfoPayload(
@@ -131,8 +126,7 @@ abstract class _DatabaseUniverseConnect {
         break;
       }
 
-      final collection =
-          databaseUniverse.collectionByIndex<dynamic, dynamic>(i);
+      final collection = databaseUniverse.collectionByIndex<dynamic, dynamic>(i);
       final sub = collection.watchLazy(fireImmediately: true).listen((_) {
         sendCollectionInfo(collection);
       });
@@ -183,12 +177,9 @@ abstract class _DatabaseUniverseConnect {
   static Future<dynamic> _importJson(Map<String, dynamic> params) {
     final p = ConnectObjectsPayload.fromJson(params);
     final databaseUniverse = _instances[p.instance]!;
-    final colIndex =
-        databaseUniverse.schemas.indexWhere((e) => e.name == p.collection);
+    final colIndex = databaseUniverse.schemas.indexWhere((e) => e.name == p.collection);
     return databaseUniverse.writeAsync((databaseUniverse) {
-      databaseUniverse
-          .collectionByIndex<dynamic, dynamic>(colIndex)
-          .importJson(p.objects);
+      databaseUniverse.collectionByIndex<dynamic, dynamic>(colIndex).importJson(p.objects);
     });
   }
 
@@ -197,13 +188,10 @@ abstract class _DatabaseUniverseConnect {
     final databaseUniverse = _instances[cEdit.instance]!;
     final keys = cEdit.path.split('.');
 
-    final colIndex =
-        databaseUniverse.schemas.indexWhere((e) => e.name == cEdit.collection);
+    final colIndex = databaseUniverse.schemas.indexWhere((e) => e.name == cEdit.collection);
     final colSchema = databaseUniverse.schemas[colIndex];
     final idIndex = colSchema.getPropertyIndex(colSchema.idName!);
-    final query = databaseUniverse
-        .collectionByIndex<dynamic, dynamic>(colIndex)
-        .buildQuery<dynamic>(
+    final query = databaseUniverse.collectionByIndex<dynamic, dynamic>(colIndex).buildQuery<dynamic>(
           filter: EqualCondition(
             property: idIndex == -1 ? 0 : idIndex,
             value: cEdit.id,
@@ -224,9 +212,7 @@ abstract class _DatabaseUniverseConnect {
       }
 
       await databaseUniverse.writeAsync(
-        (databaseUniverse) => databaseUniverse
-            .collectionByIndex<dynamic, dynamic>(colIndex)
-            .importJson(objects),
+        (databaseUniverse) => databaseUniverse.collectionByIndex<dynamic, dynamic>(colIndex).importJson(objects),
       );
     }
   }

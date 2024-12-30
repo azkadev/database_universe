@@ -44,13 +44,21 @@ jobs:
         run: echo "DATABASE_UNIVERSE_VERSION=0.0.3" >> $GITHUB_ENV
       - name: Build binary
         run: bash tool/${{ matrix.script }}
-      - name: Upload binary
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.artifact_name }}
           path: |
             ${{ matrix.artifact_name }}
-            
+
+      - name: Upload Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.TOKEN_GITHUB }}
+          file: ${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.artifact_name }}
+          tag: ${{ github.ref }}
+
   publish:
     name: Publish 
     runs-on: ubuntu-latest
@@ -67,7 +75,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
           running-workflow-name: "Publish"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.TOKEN_GITHUB }}
           wait-interval: 10
 
       - name: Set Isar Version
@@ -80,11 +88,7 @@ jobs:
         run: |
           mkdir -p $HOME/.config/dart
           echo '${{ secrets.PUB_JSON }}' >> $HOME/.config/dart/pub-credentials.json
-          
-      # - uses: JS-DevTools/npm-publish@v2
-      #   with:
-      #     token: ${{ secrets.NPM_TOKEN }}
-
+           
       - name: Publish database_universe
         run: |
           dart pub get

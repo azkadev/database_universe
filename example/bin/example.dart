@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:database_universe/core/core.dart';
@@ -19,9 +20,6 @@ void main(List<String> arguments) async {
     ],
     directory: directory_database.path,
     name: "database",
-  );
-
-  stdin.listen((e){
-    
-  });
-}
+  ); 
+  stdin.listen((e) {});
+} 
