@@ -61,6 +61,7 @@ jobs:
           file: ${{ matrix.artifact_name }}
           asset_name: ${{ matrix.artifact_name }}
           tag: "${{ github.ref }}-$DATABASE_UNIVERSE_VERSION"
+          overwrite: true
 
   publish:
     name: Publish 
