@@ -1,6 +1,7 @@
 name: Isar release
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - "*"
