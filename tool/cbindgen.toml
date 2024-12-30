@@ -2,7 +2,7 @@ language = "C"
 
 [parse]
 parse_deps = true
-include = ["isar-core", "isar"]
+include = ["database-universe-core", "database-universe"]
 
 [parse.expand]
-crates = ["isar"]
+crates = ["database-universe"]

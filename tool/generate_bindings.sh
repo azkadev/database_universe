@@ -2,14 +2,14 @@
 
 cargo install cbindgen
 
-cbindgen --config tool/cbindgen.toml --crate isar --output packages/isar/isar-dart.h
+cbindgen --config tool/cbindgen.toml --crate database_universe --output library/database_universe/database_universe-dart.h
 
-cd packages/isar
+cd library/database_universe
 
 dart pub get
 dart run ffigen --config ffigen.yaml
 dart run ffigen --config ffigen_web.yaml
-rm isar-dart.h
+rm database_universe-dart.h
 
 dart tool/fix_web_bindings.dart
 

@@ -1,9 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-    "packages/isar_core",
-    "packages/isar_core_ffi",
-    "packages/mdbx_sys"
+    "library/database_universe_core",
+    "library/database_universe_core_ffi",
+    "library/mdbx_sys"
 ]
 
 [profile.release]

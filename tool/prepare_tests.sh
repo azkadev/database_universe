@@ -1,4 +1,4 @@
-cd packages/isar_test
+cd library/database_universe_test
 
 flutter pub get
 dart tool/generate_long_double_test.dart
