@@ -1,0 +1,20 @@
+[package]
+name = "database_universe"
+version = "0.0.0"
+authors = ["Azkadev"]
+edition = "2021"
+
+[dependencies]
+database-universe-core = { path = "../database_universe_core", default-features = false }
+serde = "1.0"
+serde_json = "1.0"
+
+[lib]
+crate-type=["staticlib", "cdylib"]
+
+[features]
+default = ["sqlite", "native"]
+native = ["database-universe-core/native"]
+sqlite = ["database-universe-core/sqlite"]
+sqlcipher = ["sqlite", "database-universe-core/sqlcipher"]
+sqlcipher-vendored = ["sqlcipher", "database-universe-core/sqlcipher-vendored"]

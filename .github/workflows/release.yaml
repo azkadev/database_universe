@@ -1,0 +1,122 @@
+name: Isar release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build_binaries:
+    name: Build Binaries
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            artifact_name: libisar_android_arm64.so
+            script: build_android.sh
+          - os: macos-latest
+            artifact_name: libisar_android_armv7.so
+            script: build_android.sh armv7
+          - os: macos-latest
+            artifact_name: libisar_android_x64.so
+            script: build_android.sh x64
+          - os: macos-latest
+            artifact_name: isar_ios.xcframework.zip
+            script: build_ios.sh
+          - os: ubuntu-20.04
+            artifact_name: libisar_linux_x64.so
+            script: build_linux.sh x64
+          - os: macos-latest
+            artifact_name: libisar_macos.dylib
+            script: build_macos.sh
+          - os: windows-latest
+            artifact_name: isar_windows_x64.dll
+            script: build_windows.sh x64
+          - os: ubuntu-latest
+            artifact_name: isar.wasm
+            script: build_wasm.sh
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare Build
+        uses: ./.github/actions/prepare-build
+      - name: Set Isar Version
+        run: echo "ISAR_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Build binary
+        run: bash tool/${{ matrix.script }}
+      - name: Upload binary
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.artifact_name }}
+          tag: ${{ github.ref }}
+
+  testlab:
+    needs: build_binaries
+    uses: ./.github/workflows/testlab.yaml
+    secrets: inherit
+
+  build_inspector:
+    name: Build Inspector
+    needs: testlab
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+      - name: Build
+        run: flutter build web --base-href /${{ github.ref_name }}/ --no-tree-shake-icons
+        working-directory: packages/isar_inspector
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: packages/isar_inspector/build/web
+          repository-name: isar/inspector
+          token: ${{ secrets.TOKEN }}
+          target-folder: ${{ github.ref_name }}
+          clean: false
+
+  publish:
+    name: Publish
+    needs: build_inspector
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: "Publish"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+      - name: Set Isar Version
+        run: echo "ISAR_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Download Binaries
+        run: sh tool/download_binaries.sh
+      - name: Adjust Version
+        run: find . -type f -exec sed -i "s/0.0.0-placeholder/${{ github.ref_name }}/g" {} +
+      - name: pub.dev credentials
+        run: |
+          mkdir -p $HOME/.config/dart
+          echo '${{ secrets.PUB_JSON }}' >> $HOME/.config/dart/pub-credentials.json
+          
+      - uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+      - name: Publish isar
+        run: |
+          dart pub get
+          dart pub publish --force
+        working-directory: packages/isar
+      - name: Publish isar_flutter_libs
+        run: |
+          flutter pub get
+          flutter pub publish --force
+        working-directory: packages/isar_flutter_libs

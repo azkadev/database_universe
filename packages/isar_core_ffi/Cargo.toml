@@ -1,0 +1,20 @@
+[package]
+name = "isar"
+version = "0.0.0"
+authors = ["Simon Choi"]
+edition = "2021"
+
+[dependencies]
+isar-core = { path = "../isar_core", default-features = false }
+serde = "1.0"
+serde_json = "1.0"
+
+[lib]
+crate-type=["staticlib", "cdylib"]
+
+[features]
+default = ["sqlite", "native"]
+native = ["isar-core/native"]
+sqlite = ["isar-core/sqlite"]
+sqlcipher = ["sqlite", "isar-core/sqlcipher"]
+sqlcipher-vendored = ["sqlcipher", "isar-core/sqlcipher-vendored"]

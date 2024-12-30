@@ -1,0 +1,1 @@
+### Flutter binaries for the [DatabaseUniverse Database](https://github.com/database_universe/database_universe) please go there for documentation.

@@ -1,0 +1,34 @@
+group 'dev.isar.isar_flutter_libs'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.1'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    if (project.android.hasProperty("namespace")) {
+        namespace 'dev.isar.isar_flutter_libs'
+    }
+    
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 23
+    }
+}

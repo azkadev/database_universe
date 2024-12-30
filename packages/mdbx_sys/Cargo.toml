@@ -1,0 +1,13 @@
+[package]
+name = "mdbx-sys"
+version = "0.0.0"
+edition = "2021"
+
+[lib]
+name = "mdbx_sys"
+doctest = false
+
+[build-dependencies]
+cmake = "0.1"
+cc = "1.0"
+bindgen = { version = "0.66", default-features = false, features = ["runtime"] }

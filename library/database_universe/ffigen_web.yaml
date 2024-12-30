@@ -1,0 +1,32 @@
+name: DatabaseUniverseCoreBindings
+output: "lib/core/core/web/bindings.dart"
+ffi-native:
+headers:
+  entry-points:
+    - "database_universe-dart.h"
+  include-directives:
+    - "**database_universe-dart.h"
+compiler-opts:
+  - "-Wno-nullability-completeness"
+
+structs:
+  dependency-only: opaque
+  include:
+    - CDatabaseUniverseInstance
+    - CDatabaseUniverseTxn
+    - CDatabaseUniverseWriter
+    - CDatabaseUniverseReader
+    - CDatabaseUniverseQueryBuilder
+    - CDatabaseUniverseQuery
+    - CDatabaseUniverseCursor
+    - DatabaseUniverseValue
+  rename:
+    "^(?!C)(.*)": "C$1"
+
+unions:
+  dependency-only: opaque
+  include:
+    - "database_universe*"
+
+preamble: |
+  // ignore_for_file: camel_case_types, non_constant_identifier_names

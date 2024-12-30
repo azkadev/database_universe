@@ -1,0 +1,8 @@
+language = "C"
+
+[parse]
+parse_deps = true
+include = ["isar-core", "isar"]
+
+[parse.expand]
+crates = ["isar"]
