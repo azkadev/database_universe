@@ -18,6 +18,7 @@ env: # Global variables
 jobs:
   build_binaries:
     name: Build Binaries
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -82,6 +83,7 @@ jobs:
   publish:
     name: Publish 
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       id-token: write
     steps:
