@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -z "$ISAR_VERSION" ]; then
-    echo "ISAR_VERSION is not set";
+if [ -z "$DATABASE_UNIVERSE_VERSION" ]; then
+    echo "DATABASE_UNIVERSE_VERSION is not set";
     exit 2;
 fi
 
-github="https://github.com/database_universe/database_universe/releases/download/$ISAR_VERSION"
+github="https://github.com/database_universe/database_universe/releases/download/$DATABASE_UNIVERSE_VERSION"
 
 
 curl "${github}/libdatabase_universe_android_arm64.so" -o library/database_universe_flutter_libs/android/src/main/jniLibs/arm64-v8a/libdatabase_universe.so --create-dirs -L -f

@@ -41,16 +41,16 @@ jobs:
       - name: Prepare Build
         uses: ./.github/actions/prepare-build
       - name: Set Isar Version
-        run: echo "ISAR_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+        run: echo "DATABASE_UNIVERSE_VERSION=0.0.3" >> $GITHUB_ENV
       - name: Build binary
         run: bash tool/${{ matrix.script }}
-
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.artifact_name }}
           path: |
             ${{ matrix.artifact_name }}
+            
   publish:
     name: Publish 
     runs-on: ubuntu-latest
@@ -69,20 +69,22 @@ jobs:
           running-workflow-name: "Publish"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
+
       - name: Set Isar Version
-        run: echo "ISAR_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+        run: echo "DATABASE_UNIVERSE_VERSION=0.0.3" >> $GITHUB_ENV
       - name: Download Binaries
         run: sh tool/download_binaries.sh
       - name: Adjust Version
-        run: find . -type f -exec sed -i "s/0.0.0-placeholder/${{ github.ref_name }}/g" {} +
+        run: find . -type f -exec sed -i "s/0.0.0-placeholder/0.0.3/g" {} +
       - name: pub.dev credentials
         run: |
           mkdir -p $HOME/.config/dart
           echo '${{ secrets.PUB_JSON }}' >> $HOME/.config/dart/pub-credentials.json
           
-      - uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      # - uses: JS-DevTools/npm-publish@v2
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish database_universe
         run: |
           dart pub get
