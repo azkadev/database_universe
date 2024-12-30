@@ -29,12 +29,12 @@ jobs:
           - os: macos-latest
             artifact_name: libdatabase_universe_macos.dylib
             script: build_macos.sh
-          - os: windows-latest
-            artifact_name: database_universe_windows_x64.dll
-            script: build_windows.sh x64
-          - os: ubuntu-latest
-            artifact_name: database_universe.wasm
-            script: build_wasm.sh
+          # - os: windows-latest
+          #   artifact_name: database_universe_windows_x64.dll
+          #   script: build_windows.sh x64
+          # - os: ubuntu-latest
+          #   artifact_name: database_universe.wasm
+          #   script: build_wasm.sh
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
