@@ -1,4 +1,4 @@
-name: database_universe_project
+name: 'database_universe_project'
 description: 'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
 version: '0.0.0-placeholder'
 homepage: 'https://youtube.com/@azkadev'
@@ -9,8 +9,11 @@ funding:
   - 'https://github.com/sponsors/azkadev'
   - 'https://github.com/sponsors/generalfoss'
 environment:
-  sdk: ^3.6.0 
-
+  sdk: '>=3.6.0 <4.0.0'
 dev_dependencies:
-  lints: ^5.0.0
-  test: ^1.24.0
+  lints: '^5.0.0'
+  test: 'any'
+dependencies: {}
+dependency_overrides:
+  pointycastle: '3.8.0'
+  mime: '^2.0.0'
