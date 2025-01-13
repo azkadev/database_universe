@@ -31,8 +31,7 @@ dev_dependencies:
   build_test: '^2.2.3'
   ffigen: '^12.0.0'
   flutter_lints: '^5.0.0'
-  test: 'any'
-  very_good_analysis: '^5.1.0'
+  test: 'any' 
   lints: '^5.0.0'
 dependency_overrides:
   mime: '^2.0.0'
