@@ -1,8 +1,8 @@
 name: 'database_universe_flutter_libs'
 description: 'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
-version: '0.0.16'
+version: '0.0.17'
 homepage: 'https://youtube.com/@azkadev'
-repository: 'https://github.com/azkadev/database_universe.git'
+repository: 'https://github.com/azkadev/database_universe/tree/main/library/database_universe_flutter_libs'
 issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
 documentation: 'https://youtube.com/@azkadev'
 funding:
