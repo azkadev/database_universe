@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// Superclass of all DatabaseUniverse errors.
 sealed class DatabaseUniverseError extends Error {

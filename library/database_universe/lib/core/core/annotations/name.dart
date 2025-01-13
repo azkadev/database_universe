@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// Annotate DatabaseUniverse collections or properties to change their name.
 ///

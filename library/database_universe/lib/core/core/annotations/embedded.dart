@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// Annotation to nest objects of this type in collections.
 const embedded = Embedded();

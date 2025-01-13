@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 class _DatabaseUniverseImpl extends DatabaseUniverse {
   _DatabaseUniverseImpl._(
@@ -32,7 +32,8 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
 
   final int instanceId;
   final List<DatabaseUniverseGeneratedSchema> generatedSchemas;
-  final collections = <Type, _DatabaseUniverseCollectionImpl<dynamic, dynamic>>{};
+  final collections =
+      <Type, _DatabaseUniverseCollectionImpl<dynamic, dynamic>>{};
 
   Pointer<CDatabaseUniverseInstance>? _ptr;
   Pointer<CDatabaseUniverseTxn>? _txnPtr;
@@ -53,7 +54,8 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
 
     if (engine == DatabaseUniverseEngine.databaseUniverse) {
       if (encryptionKey != null) {
-        throw ArgumentError('DatabaseUniverse engine does not support encryption. Please '
+        throw ArgumentError(
+            'DatabaseUniverse engine does not support encryption. Please '
             'set the engine to DatabaseUniverseEngine.sqlite.');
       }
       maxSizeMiB ??= DatabaseUniverse.defaultMaxSizeMiB;
@@ -66,9 +68,11 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
 
     final allSchemas = <DatabaseUniverseGeneratedSchema>{
       ...schemas,
-      ...schemas.expand((e) => e.embeddedSchemas ?? <DatabaseUniverseGeneratedSchema>[]),
+      ...schemas.expand(
+          (e) => e.embeddedSchemas ?? <DatabaseUniverseGeneratedSchema>[]),
     };
-    final schemaJson = jsonEncode(allSchemas.map((e) => e.schema.toJson()).toList());
+    final schemaJson =
+        jsonEncode(allSchemas.map((e) => e.schema.toJson()).toList());
 
     final instanceId = DatabaseUniverse.fastHash(name);
     final instance = _DatabaseUniverseImpl._instances[instanceId];
@@ -79,9 +83,12 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
     final namePtr = DatabaseUniverseCore._toNativeString(name);
     final directoryPtr = DatabaseUniverseCore._toNativeString(directory);
     final schemaPtr = DatabaseUniverseCore._toNativeString(schemaJson);
-    final encryptionKeyPtr = encryptionKey != null ? DatabaseUniverseCore._toNativeString(encryptionKey) : nullptr;
+    final encryptionKeyPtr = encryptionKey != null
+        ? DatabaseUniverseCore._toNativeString(encryptionKey)
+        : nullptr;
 
-    final databaseUniverseptrptr = DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseInstance>>();
+    final databaseUniverseptrptr =
+        DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseInstance>>();
     DatabaseUniverseCore.b
         .database_universe_open_instance(
           databaseUniverseptrptr,
@@ -98,7 +105,8 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
         )
         .checkNoError();
 
-    return _DatabaseUniverseImpl._(instanceId, databaseUniverseptrptr.ptrValue, allSchemas.toList());
+    return _DatabaseUniverseImpl._(
+        instanceId, databaseUniverseptrptr.ptrValue, allSchemas.toList());
   }
 
   // ignore: sort_constructors_first
@@ -108,12 +116,15 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
     String? library,
   }) {
     DatabaseUniverseCore._initialize(library: library);
-    var ptr = DatabaseUniverseCore.b.database_universe_get_instance(instanceId, false);
+    var ptr = DatabaseUniverseCore.b
+        .database_universe_get_instance(instanceId, false);
     if (ptr.isNull) {
-      ptr = DatabaseUniverseCore.b.database_universe_get_instance(instanceId, true);
+      ptr = DatabaseUniverseCore.b
+          .database_universe_get_instance(instanceId, true);
     }
     if (ptr.isNull) {
-      throw DatabaseUniverseNotReadyError('Instance has not been opened yet. Make sure to '
+      throw DatabaseUniverseNotReadyError(
+          'Instance has not been opened yet. Make sure to '
           'call DatabaseUniverse.open() before using DatabaseUniverse.get().');
     }
 
@@ -177,7 +188,8 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
 
     final response = await receivePort.first;
     if (response is SendPort) {
-      final databaseUniverse = DatabaseUniverse.get(schemas: schemas, name: name);
+      final databaseUniverse =
+          DatabaseUniverse.get(schemas: schemas, name: name);
       response.send(null);
       await isolate;
       return databaseUniverse;
@@ -203,7 +215,8 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
   Pointer<CDatabaseUniverseInstance> getPtr() {
     final ptr = _ptr;
     if (ptr == null) {
-      throw DatabaseUniverseNotReadyError('DatabaseUniverse instance has already been closed.');
+      throw DatabaseUniverseNotReadyError(
+          'DatabaseUniverse instance has already been closed.');
     } else {
       return ptr;
     }
@@ -211,18 +224,21 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
 
   @override
   late final String name = () {
-    final length = DatabaseUniverseCore.b.database_universe_get_name(getPtr(), DatabaseUniverseCore.stringPtrPtr);
+    final length = DatabaseUniverseCore.b.database_universe_get_name(
+        getPtr(), DatabaseUniverseCore.stringPtrPtr);
     return utf8.decode(DatabaseUniverseCore.stringPtr.asU8List(length));
   }();
 
   @override
   late final String directory = () {
-    final length = DatabaseUniverseCore.b.database_universe_get_dir(getPtr(), DatabaseUniverseCore.stringPtrPtr);
+    final length = DatabaseUniverseCore.b
+        .database_universe_get_dir(getPtr(), DatabaseUniverseCore.stringPtrPtr);
     return utf8.decode(DatabaseUniverseCore.stringPtr.asU8List(length));
   }();
 
   @override
-  late final List<DatabaseUniverseSchema> schemas = generatedSchemas.map((e) => e.schema).toList();
+  late final List<DatabaseUniverseSchema> schemas =
+      generatedSchemas.map((e) => e.schema).toList();
 
   @override
   bool get isOpen => _ptr != null;
@@ -295,8 +311,11 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
     _checkNotInTxn();
 
     final ptr = getPtr();
-    final txnPtrPtr = DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseTxn>>();
-    DatabaseUniverseCore.b.database_universe_txn_begin(ptr, txnPtrPtr, false).checkNoError();
+    final txnPtrPtr =
+        DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseTxn>>();
+    DatabaseUniverseCore.b
+        .database_universe_txn_begin(ptr, txnPtrPtr, false)
+        .checkNoError();
     try {
       _txnPtr = txnPtrPtr.ptrValue;
       _txnWrite = false;
@@ -312,13 +331,18 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
     _checkNotInTxn();
 
     final ptr = getPtr();
-    final txnPtrPtr = DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseTxn>>();
-    DatabaseUniverseCore.b.database_universe_txn_begin(ptr, txnPtrPtr, true).checkNoError();
+    final txnPtrPtr =
+        DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseTxn>>();
+    DatabaseUniverseCore.b
+        .database_universe_txn_begin(ptr, txnPtrPtr, true)
+        .checkNoError();
     try {
       _txnPtr = txnPtrPtr.ptrValue;
       _txnWrite = true;
       final result = callback(this);
-      DatabaseUniverseCore.b.database_universe_txn_commit(ptr, _txnPtr!).checkNoError();
+      DatabaseUniverseCore.b
+          .database_universe_txn_commit(ptr, _txnPtr!)
+          .checkNoError();
       return result;
     } catch (_) {
       final txnPtr = _txnPtr;
@@ -401,7 +425,9 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
   @override
   void copyToFile(String path) {
     final string = DatabaseUniverseCore._toNativeString(path);
-    DatabaseUniverseCore.b.database_universe_copy(getPtr(), string).checkNoError();
+    DatabaseUniverseCore.b
+        .database_universe_copy(getPtr(), string)
+        .checkNoError();
   }
 
   @override
@@ -414,12 +440,14 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
   @override
   void changeEncryptionKey(String encryptionKey) {
     final string = DatabaseUniverseCore._toNativeString(encryptionKey);
-    DatabaseUniverseCore.b.database_universe_change_encryption_key(getPtr(), string);
+    DatabaseUniverseCore.b
+        .database_universe_change_encryption_key(getPtr(), string);
   }
 
   @override
   bool close({bool deleteFromDisk = false}) {
-    final closed = DatabaseUniverseCore.b.database_universe_close(getPtr(), deleteFromDisk);
+    final closed = DatabaseUniverseCore.b
+        .database_universe_close(getPtr(), deleteFromDisk);
     _ptr = null;
     _instances.remove(instanceId);
     return closed != 0;
@@ -428,7 +456,9 @@ class _DatabaseUniverseImpl extends DatabaseUniverse {
   @override
   void verify() {
     getTxn(
-      (databaseUniverseptr, txnPtr) => DatabaseUniverseCore.b.database_universe_verify(databaseUniverseptr, txnPtr).checkNoError(),
+      (databaseUniverseptr, txnPtr) => DatabaseUniverseCore.b
+          .database_universe_verify(databaseUniverseptr, txnPtr)
+          .checkNoError(),
     );
   }
 }
@@ -448,9 +478,11 @@ T _database_universeAsync<T, P>({
   );
   try {
     if (write) {
-      return databaseUniverse.write((databaseUniverse) => callback(databaseUniverse, param));
+      return databaseUniverse
+          .write((databaseUniverse) => callback(databaseUniverse, param));
     } else {
-      return databaseUniverse.read((databaseUniverse) => callback(databaseUniverse, param));
+      return databaseUniverse
+          .read((databaseUniverse) => callback(databaseUniverse, param));
     }
   } finally {
     databaseUniverse.close();

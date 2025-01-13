@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// Annotation to specify how an enum property should be serialized.
 const enumValue = EnumValue();

@@ -1,10 +1,10 @@
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 String _generateSchema(ObjectInfo object) {
   String generatePropertySchema(PropertyInfo p) {
     return '''
     DatabaseUniversePropertySchema(
-      name: '${p.database_universeName}',
+      name: '${p.databaseUniverseName}',
       type: DatabaseUniverseType.${p.type.name},
       ${p.targetDatabaseUniverseName != null ? "target: '${p.targetDatabaseUniverseName}'," : ''}
       ${p.enumMap != null ? 'enumMap: ${jsonEncode(p.enumMap)},' : ''}
@@ -31,8 +31,8 @@ String _generateSchema(ObjectInfo object) {
   return '''
     const ${object.dartName.capitalize()}Schema = DatabaseUniverseGeneratedSchema(
       schema: DatabaseUniverseSchema(
-        name: '${object.database_universeName}',
-        ${object.idProperty != null ? "idName: '${object.idProperty!.database_universeName}'," : ''}
+        name: '${object.databaseUniverseName}',
+        ${object.idProperty != null ? "idName: '${object.idProperty!.databaseUniverseName}'," : ''}
         embedded: ${object.isEmbedded},
         properties: [$properties],
         indexes: [$indexes],

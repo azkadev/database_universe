@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// Querying is how you find records that match certain conditions.
 ///
@@ -6,7 +6,7 @@ part of database_universe;
 /// you will leak resources.
 abstract class DatabaseUniverseQuery<T> {
   /// The corresponding DatabaseUniverse instance.
-  DatabaseUniverse get database_universe;
+  DatabaseUniverse get databaseUniverse;
 
   /// {@template query_find_first}
   /// Find the first object that matches this query or `null` if no object

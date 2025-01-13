@@ -1,4 +1,4 @@
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 const Set<String> _reservedSQLiteNames = {
   // taken from https://sqlite.org/lang_keywords.html

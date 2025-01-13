@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// @nodoc
 @protected
@@ -73,4 +73,6 @@ typedef Deserialize<T> = T Function(DatabaseUniverseReader reader);
 
 /// @nodoc
 typedef DeserializeProp = dynamic Function(
-    DatabaseUniverseReader reader, int property,);
+  DatabaseUniverseReader reader,
+  int property,
+);

@@ -1,4 +1,4 @@
-library database_universe_generator;
+library;
 
 import 'dart:async';
 import 'dart:convert';

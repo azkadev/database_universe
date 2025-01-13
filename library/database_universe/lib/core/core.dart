@@ -1,5 +1,5 @@
 /// Extremely fast, easy to use, and fully async NoSQL database for Flutter.
-library database_universe;
+library;
 
 import 'dart:async';
 import 'dart:collection';
@@ -8,7 +8,7 @@ import 'dart:developer';
 
 import 'package:database_universe/core/core/database_universe_connect_api.dart';
 import 'package:database_universe/core/core/native/native.dart'
-    if (dart.library.js) 'package:database_universe/core/core/web/web.dart' 
+    if (dart.library.js) 'package:database_universe/core/core/web/web.dart'
     if (dart.library.js_interop) 'package:database_universe/core/core/wasm/wasm.dart';
 import 'package:meta/meta.dart';
 import 'package:meta/meta_meta.dart';

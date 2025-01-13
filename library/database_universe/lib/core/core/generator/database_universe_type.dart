@@ -1,4 +1,4 @@
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 const TypeChecker _dateTimeChecker = TypeChecker.fromRuntime(DateTime);
 const TypeChecker _durationChecker = TypeChecker.fromRuntime(Duration);

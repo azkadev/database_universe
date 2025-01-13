@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
   _DatabaseUniverseQueryImpl({
@@ -27,7 +27,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
   }
 
   @override
-  _DatabaseUniverseImpl get database_universe =>
+  _DatabaseUniverseImpl get databaseUniverse =>
       _DatabaseUniverseImpl.instance(_instanceId);
 
   List<E> _findAll<E>(Deserialize<E> deserialize, {int? offset, int? limit}) {
@@ -35,7 +35,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       throw ArgumentError('Limit must be greater than 0.');
     }
 
-    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
+    return databaseUniverse.getTxn((databaseUniverseptr, txnPtr) {
       final cursorPtrPtr = DatabaseUniverseCore.ptrPtr
           .cast<Pointer<CDatabaseUniverseQueryCursor>>();
       DatabaseUniverseCore.b
@@ -75,7 +75,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       throw ArgumentError('Limit must be greater than 0.');
     }
 
-    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
+    return databaseUniverse.getWriteTxn((databaseUniverseptr, txnPtr) {
       final updatePtr = DatabaseUniverseCore.b.database_universe_update_new();
       for (final propertyId in changes.keys) {
         final value = _database_universeValue(changes[propertyId]);
@@ -105,7 +105,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       throw ArgumentError('Limit must be greater than 0.');
     }
 
-    return database_universe.getWriteTxn((databaseUniverseptr, txnPtr) {
+    return databaseUniverse.getWriteTxn((databaseUniverseptr, txnPtr) {
       DatabaseUniverseCore.b
           .database_universe_query_delete(
             databaseUniverseptr,
@@ -142,7 +142,9 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       return _findAll(deserialize, offset: offset, limit: limit);
     } finally {
       DatabaseUniverseCore.b.database_universe_buffer_free(
-          bufferPtrPtr.ptrValue, bufferSizePtr.u32Value,);
+        bufferPtrPtr.ptrValue,
+        bufferSizePtr.u32Value,
+      );
       free(bufferPtrPtr);
       free(bufferSizePtr);
     }
@@ -159,7 +161,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
       Aggregation.average => AGGREGATION_AVERAGE,
     };
 
-    return database_universe.getTxn((databaseUniverseptr, txnPtr) {
+    return databaseUniverse.getTxn((databaseUniverseptr, txnPtr) {
       final valuePtrPtr =
           DatabaseUniverseCore.ptrPtr.cast<Pointer<CDatabaseUniverseValue>>();
       DatabaseUniverseCore.b
@@ -194,9 +196,11 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
             isUtc: true,
           ).toLocal() as R;
         } else if ('' is R) {
-          final length = DatabaseUniverseCore.b
-              .database_universe_value_get_string(
-                  valuePtr, DatabaseUniverseCore.stringPtrPtr,);
+          final length =
+              DatabaseUniverseCore.b.database_universe_value_get_string(
+            valuePtr,
+            DatabaseUniverseCore.stringPtrPtr,
+          );
           if (DatabaseUniverseCore.stringPtr.isNull) {
             return null;
           } else {
@@ -234,7 +238,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
 
     DatabaseUniverseCore.b
         .database_universe_watch_query(
-          database_universe.getPtr(),
+          databaseUniverse.getPtr(),
           _ptr,
           port.sendPort.nativePort,
           handlePtrPtr,
@@ -244,7 +248,7 @@ class _DatabaseUniverseQueryImpl<T> extends DatabaseUniverseQuery<T> {
     final handlePtr = handlePtrPtr.ptrValue;
     final controller = StreamController<void>(
       onCancel: () {
-        database_universe.getPtr(); // Make sure DatabaseUniverse is not closed
+        databaseUniverse.getPtr(); // Make sure DatabaseUniverse is not closed
         DatabaseUniverseCore.b.database_universe_stop_watching(handlePtr);
         port.close();
       },

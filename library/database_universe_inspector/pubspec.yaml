@@ -18,8 +18,8 @@ dependencies:
     path: '../database_universe'
   vm_service: '^11.9.0'
   web_socket_channel: '^2.4.0'
-  general_lib_flutter: '^0.0.38'
-  general_lib: '^0.0.57'
+  general_lib_flutter: '^0.0.39'
+  general_lib: '^0.0.58'
   general_framework: '^0.0.13'
 dev_dependencies:
   very_good_analysis: '^5.0.0+1'

@@ -1,6 +1,6 @@
 // ignore_for_file: use_string_buffers
 
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 String _generateSortBy(ObjectInfo oi) {
   final prefix = 'QueryBuilder<${oi.dartName}, ${oi.dartName}, QAfterSortBy>';

@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 Pointer<CFilter> _buildFilter(Filter filter, List<Pointer<void>> pointers) {
   switch (filter) {
@@ -151,7 +151,8 @@ Pointer<CDatabaseUniverseValue> _database_universeValue(Object? value) {
     return DatabaseUniverseCore.b.database_universe_value_integer(value);
   } else if (value is String) {
     return DatabaseUniverseCore.b.database_universe_value_string(
-        DatabaseUniverseCore._toNativeString(value),);
+      DatabaseUniverseCore._toNativeString(value),
+    );
   } else if (value is bool) {
     return DatabaseUniverseCore.b.database_universe_value_bool(value);
   } else if (value is DateTime) {

@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// @nodoc
 @protected
@@ -120,25 +120,25 @@ extension QueryModifier<OBJ, S> on QueryBuilder<OBJ, OBJ, S> {
 /// Asynchronous operations for queries.
 extension QueryAsync<T> on DatabaseUniverseQuery<T> {
   /// {@macro query_find_first}
-  Future<T?> findFirstAsync({int? offset}) => database_universe
+  Future<T?> findFirstAsync({int? offset}) => databaseUniverse
       .readAsync((databaseUniverse) => findFirst(offset: offset));
 
   /// {@macro query_find_all}
-  Future<List<T>> findAllAsync({int? offset, int? limit}) => database_universe
+  Future<List<T>> findAllAsync({int? offset, int? limit}) => databaseUniverse
       .readAsync((databaseUniverse) => findAll(offset: offset, limit: limit));
 
   /// {@macro aggregation_count}
   Future<int> countAsync() =>
-      database_universe.readAsync((databaseUniverse) => count());
+      databaseUniverse.readAsync((databaseUniverse) => count());
 
   /// {@macro aggregation_is_empty}
   Future<bool> isEmptyAsync() =>
-      database_universe.readAsync((databaseUniverse) => isEmpty());
+      databaseUniverse.readAsync((databaseUniverse) => isEmpty());
 
   /// @nodoc
   @protected
   Future<R?> aggregateAsync<R>(Aggregation op) =>
-      database_universe.readAsync((databaseUniverse) => aggregate(op));
+      databaseUniverse.readAsync((databaseUniverse) => aggregate(op));
 }
 
 /// Aggregation operations for number queries.
@@ -281,7 +281,8 @@ extension QueryExecute<OBJ, R> on QueryBuilder<OBJ, R, QOperations> {
       _withQuery((q) => q.watchLazy(fireImmediately: fireImmediately));
 
   Future<T> _withQueryAsync<T>(
-      Future<T> Function(DatabaseUniverseQuery<R> q) f,) async {
+    Future<T> Function(DatabaseUniverseQuery<R> q) f,
+  ) async {
     final q = build();
     try {
       return await f(q);

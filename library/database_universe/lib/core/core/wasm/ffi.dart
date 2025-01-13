@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, invalid_runtime_check_with_js_interop_types
 
 // import 'dart:typed_data';
 
@@ -54,7 +54,6 @@ extension PointerX on int {
   Uint16List asU16List(int length) {
     throw UnimplementedError();
   }
-
 }
 
 const nullptr = 0;

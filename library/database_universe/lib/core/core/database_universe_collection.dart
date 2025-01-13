@@ -1,14 +1,14 @@
-part of database_universe;
+part of '../core.dart';
 
 /// Use `DatabaseUniverseCollection` instances to find, query, and create new objects of a
 /// given type in DatabaseUniverse.
 ///
-/// You can get an instance of `DatabaseUniverseCollection` by calling `database_universe.get<OBJ>()` or
-/// by using the generated `database_universe.yourCollections` getter.
+/// You can get an instance of `DatabaseUniverseCollection` by calling `databaseUniverse.get<OBJ>()` or
+/// by using the generated `databaseUniverse.yourCollections` getter.
 @pragma('vm:isolate-unsendable')
 abstract class DatabaseUniverseCollection<ID, OBJ> {
   /// The corresponding DatabaseUniverse instance.
-  DatabaseUniverse get database_universe;
+  DatabaseUniverse get databaseUniverse;
 
   /// The schema of this collection.
   DatabaseUniverseSchema get schema;
@@ -121,13 +121,15 @@ abstract class DatabaseUniverseCollection<ID, OBJ> {
 extension CollectionAsync<ID, OBJ> on DatabaseUniverseCollection<ID, OBJ> {
   /// {@macro collection_get}
   Future<OBJ?> getAsync(ID id) {
-    return database_universe.readAsync(
-        (database_universe) => database_universe.collection<ID, OBJ>().get(id),);
+    return databaseUniverse.readAsync(
+      (databaseUniverse) => databaseUniverse.collection<ID, OBJ>().get(id),
+    );
   }
 
   /// {@macro collection_get_all}
   Future<List<OBJ?>> getAllAsync(List<ID> ids) {
-    return database_universe.readAsync((database_universe) =>
-        database_universe.collection<ID, OBJ>().getAll(ids),);
+    return databaseUniverse.readAsync(
+      (databaseUniverse) => databaseUniverse.collection<ID, OBJ>().getAll(ids),
+    );
   }
 }

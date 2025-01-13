@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// DatabaseUniverse databases can contain unused space that will be reused for later
 /// operations. You can specify conditions to trigger manual compaction where

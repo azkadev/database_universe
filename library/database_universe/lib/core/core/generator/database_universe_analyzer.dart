@@ -1,6 +1,6 @@
 // ignore_for_file: use_string_buffers
 
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 class _DatabaseUniverseAnalyzer {
   ObjectInfo analyzeCollection(Element element) {
@@ -52,7 +52,7 @@ class _DatabaseUniverseAnalyzer {
 
     return ObjectInfo(
       dartName: modelClass.name,
-      database_universeName: modelClass.database_universeName,
+      databaseUniverseName: modelClass.databaseUniverseName,
       accessor: modelClass.collectionAccessor,
       properties: properties,
       indexes: indexes,
@@ -86,7 +86,7 @@ class _DatabaseUniverseAnalyzer {
 
     return ObjectInfo(
       dartName: modelClass.name,
-      database_universeName: modelClass.database_universeName,
+      databaseUniverseName: modelClass.databaseUniverseName,
       properties: properties,
     );
   }
@@ -135,7 +135,7 @@ class _DatabaseUniverseAnalyzer {
     List<PropertyInfo> properties,
     ConstructorElement constructor,
   ) {
-    if (properties.map((e) => e.database_universeName).toSet().length !=
+    if (properties.map((e) => e.databaseUniverseName).toSet().length !=
         properties.length) {
       _err(
         'Two or more properties have the same name.',
@@ -306,12 +306,12 @@ class _DatabaseUniverseAnalyzer {
     return PropertyInfo(
       index: propertyIndex,
       dartName: property.name,
-      database_universeName: property.database_universeName,
+      databaseUniverseName: property.databaseUniverseName,
       typeClassName: type == DatabaseUniverseType.json
           ? dartType.element!.name!
           : dartType.scalarType.element!.name!,
       targetDatabaseUniverseName: type.isObject
-          ? dartType.scalarType.element!.database_universeName
+          ? dartType.scalarType.element!.databaseUniverseName
           : null,
       type: type,
       isId: isId,
@@ -386,7 +386,7 @@ class _DatabaseUniverseAnalyzer {
   ) sync* {
     for (final index in element.indexAnnotations) {
       final indexProperties = [
-        element.database_universeName,
+        element.databaseUniverseName,
         ...index.composite,
       ];
 
@@ -399,7 +399,7 @@ class _DatabaseUniverseAnalyzer {
       for (var i = 0; i < indexProperties.length; i++) {
         final propertyName = indexProperties[i];
         final property = properties
-            .where((it) => it.database_universeName == propertyName)
+            .where((it) => it.databaseUniverseName == propertyName)
             .firstOrNull;
         if (property == null) {
           _err('Property does not exist: "$propertyName".', element);

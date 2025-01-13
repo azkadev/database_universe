@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// By default DatabaseUniverse returns [DateTime] values in the local timezone. If you want
 /// to receive UTC [DateTime] values instead, annotate the property or accessor

@@ -1,7 +1,7 @@
 // ignore_for_file: use_string_buffers
 // ignore_for_file: always_put_required_named_parameters_first
 
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 String _generateSerialize(ObjectInfo object) {
   var code = '''

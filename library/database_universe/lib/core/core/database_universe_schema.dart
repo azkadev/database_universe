@@ -1,4 +1,4 @@
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// The schema of a collection in DatabaseUniverse.
 ///
@@ -21,12 +21,17 @@ class DatabaseUniverseSchema {
       idName: json['idName'] as String?,
       embedded: json['embedded'] as bool,
       properties: (json['properties'] as List<dynamic>)
-          .map((e) => DatabaseUniversePropertySchema.fromJson(
-              e as Map<String, dynamic>,),)
+          .map(
+            (e) => DatabaseUniversePropertySchema.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
           .toList(),
       indexes: (json['indexes'] as List<dynamic>)
-          .map((e) =>
-              DatabaseUniverseIndexSchema.fromJson(e as Map<String, dynamic>),)
+          .map(
+            (e) =>
+                DatabaseUniverseIndexSchema.fromJson(e as Map<String, dynamic>),
+          )
           .toList(),
     );
   }

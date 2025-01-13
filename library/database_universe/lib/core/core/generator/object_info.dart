@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs
 
-part of database_universe_generator;
+part of "package:database_universe/core/core/generator/database_universe_generator.dart";
 
 class ObjectInfo {
   const ObjectInfo({
     required this.dartName,
-    required this.database_universeName,
+    required this.databaseUniverseName,
     required this.properties,
     this.indexes = const [],
     this.accessor,
@@ -13,7 +13,7 @@ class ObjectInfo {
   });
 
   final String dartName;
-  final String database_universeName;
+  final String databaseUniverseName;
   final String? accessor;
   final List<PropertyInfo> properties;
   final List<IndexInfo> indexes;
@@ -35,7 +35,7 @@ class PropertyInfo {
   PropertyInfo({
     required this.index,
     required this.dartName,
-    required this.database_universeName,
+    required this.databaseUniverseName,
     required this.typeClassName,
     required this.targetDatabaseUniverseName,
     required this.type,
@@ -55,7 +55,7 @@ class PropertyInfo {
   final int index;
 
   final String dartName;
-  final String database_universeName;
+  final String databaseUniverseName;
   final String typeClassName;
   final String? targetDatabaseUniverseName;
 

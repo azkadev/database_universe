@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_asserts_with_message
 
-part of database_universe;
+part of "package:database_universe/core/core.dart";
 
 /// The DatabaseUniverse storage engine.
 enum DatabaseUniverseEngine {

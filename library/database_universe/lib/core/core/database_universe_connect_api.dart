@@ -94,7 +94,9 @@ class ConnectQueryPayload {
     return ConnectQueryPayload(
       instance: json['instance'] as String,
       collection: json['collection'] as String,
-      filter: json['filter'] != null ? _filterFromJson(json['filter'] as Map<String, dynamic>) : null,
+      filter: json['filter'] != null
+          ? _filterFromJson(json['filter'] as Map<String, dynamic>)
+          : null,
       offset: json['offset'] as int?,
       limit: json['limit'] as int?,
       sortProperty: json['sortProperty'] as int?,
@@ -154,11 +156,15 @@ class ConnectQueryPayload {
         return IsNullCondition(property: property!);
       case 'and':
         return AndGroup(
-          (json['filters'] as List).map((e) => _filterFromJson(e as Map<String, dynamic>)).toList(),
+          (json['filters'] as List)
+              .map((e) => _filterFromJson(e as Map<String, dynamic>))
+              .toList(),
         );
       case 'or':
         return OrGroup(
-          (json['filters'] as List).map((e) => _filterFromJson(e as Map<String, dynamic>)).toList(),
+          (json['filters'] as List)
+              .map((e) => _filterFromJson(e as Map<String, dynamic>))
+              .toList(),
         );
       case 'not':
         return NotGroup(
@@ -214,8 +220,10 @@ class ConnectQueryPayload {
   }
 
   DatabaseUniverseQuery<dynamic> toQuery(DatabaseUniverse databaseUniverse) {
-    final colIndex = databaseUniverse.schemas.indexWhere((e) => e.name == this.collection);
-    final collection = databaseUniverse.collectionByIndex<dynamic, dynamic>(colIndex);
+    final colIndex =
+        databaseUniverse.schemas.indexWhere((e) => e.name == this.collection);
+    final collection =
+        databaseUniverse.collectionByIndex<dynamic, dynamic>(colIndex);
     return collection.buildQuery(
       filter: filter,
       sortBy: [
