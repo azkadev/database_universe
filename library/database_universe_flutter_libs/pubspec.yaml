@@ -1,6 +1,6 @@
 name: 'database_universe_flutter_libs'
 description: 'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
-version: '0.0.17'
+version: '0.0.18'
 homepage: 'https://youtube.com/@azkadev'
 repository: 'https://github.com/azkadev/database_universe/tree/main/library/database_universe_flutter_libs'
 issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
@@ -12,7 +12,7 @@ environment:
   sdk: '>=3.6.0 <4.0.0'
   flutter: '>=3.10.0'
 dev_dependencies:
-  general_lib: '^0.0.58'
+  general_lib: '^0.0.59'
   lints: '^5.0.0'
   test: 'any'
 dependencies:

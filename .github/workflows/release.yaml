@@ -6,7 +6,7 @@ on:
       database_universe_version:
         description: "Database Universe Example: 0.0.1"
         required: false
-        default: "0.0.17"
+        default: "0.0.18"
       is_publish_to_pub_dev:
         description: "yes or no"
         required: false

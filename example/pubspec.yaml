@@ -8,10 +8,10 @@ dependencies:
   flutter:
     sdk: 'flutter'
   path: '^1.9.0'
-  database_universe: '^0.0.17'
-  database_universe_flutter_libs: '^0.0.17'
-  general_lib: '^0.0.58'
-  general_lib_flutter: '^0.0.39'
+  database_universe: '^0.0.18'
+  database_universe_flutter_libs: '^0.0.18'
+  general_lib: '^0.0.59'
+  general_lib_flutter: '^0.0.40'
 dev_dependencies:
   lints: '^5.0.0'
   test: 'any'
