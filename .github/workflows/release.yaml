@@ -161,6 +161,7 @@ jobs:
         working-directory: library/database_universe_flutter_libs
         run: |
           dart format .
+          sleep 2
           flutter pub publish --force --skip-validation
 
       - name: Publish database_universe
@@ -168,4 +169,5 @@ jobs:
         working-directory: library/database_universe
         run: | 
           dart format .
+          sleep 2
           dart pub publish --force --skip-validation
