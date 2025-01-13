@@ -20,9 +20,7 @@ class ErrorScreen extends StatelessWidget {
           const Text('Please make sure your Isar instance is running.'),
           const SizedBox(height: 40),
           ElevatedButton(
-            onPressed: (){
-              
-            },
+            onPressed: () {},
             child: const Text('Retry Connection'),
           ),
         ],

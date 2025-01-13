@@ -26,7 +26,8 @@ class ConnectClient {
   final _queryChangedController = StreamController<void>.broadcast();
 
   Stream<void> get instancesChanged => _instancesChangedController.stream;
-  Stream<void> get collectionInfoChanged => _collectionInfoChangedController.stream;
+  Stream<void> get collectionInfoChanged =>
+      _collectionInfoChangedController.stream;
   Stream<void> get queryChanged => _queryChangedController.stream;
 
   static Future<ConnectClient> connect(String port, String secret) async {

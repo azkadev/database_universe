@@ -21,7 +21,8 @@ class PropertyValue extends StatelessWidget {
     if (enumMap != null) {
       return _EnumValue(
         value: value,
-        isByte: type == DatabaseUniverseType.byte || type == DatabaseUniverseType.byteList,
+        isByte: type == DatabaseUniverseType.byte ||
+            type == DatabaseUniverseType.byteList,
         enumMap: enumMap!,
         onUpdate: onUpdate,
       );
@@ -109,7 +110,8 @@ class _EnumValue extends StatelessWidget {
               );
 
               if (newValue != null) {
-                onUpdate?.call(!identical(newValue, nullValue) ? newValue : null);
+                onUpdate
+                    ?.call(!identical(newValue, nullValue) ? newValue : null);
               }
             },
       child: Text(
@@ -163,7 +165,8 @@ class _BoolValue extends StatelessWidget {
                 ],
               );
               if (newValue != null) {
-                onUpdate?.call(!identical(newValue, nullValue) ? newValue : null);
+                onUpdate
+                    ?.call(!identical(newValue, nullValue) ? newValue : null);
               }
             },
       child: Text(
@@ -232,7 +235,8 @@ class _DateValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = value != null ? DateTime.fromMicrosecondsSinceEpoch(value!) : null;
+    final date =
+        value != null ? DateTime.fromMicrosecondsSinceEpoch(value!) : null;
     return GestureDetector(
       onTap: onUpdate == null
           ? null
@@ -273,7 +277,9 @@ class _StringValue extends StatefulWidget {
 
 class _StringValueState extends State<_StringValue> {
   late final controller = TextEditingController(
-    text: widget.value != null ? '"${widget.value.toString().replaceAll('\n', '⤵')}"' : '',
+    text: widget.value != null
+        ? '"${widget.value.toString().replaceAll('\n', '⤵')}"'
+        : '',
   );
 
   @override

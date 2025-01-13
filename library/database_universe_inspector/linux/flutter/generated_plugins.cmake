@@ -3,7 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  media_kit_video
+  database_universe_flutter_libs
+  media_kit_video_fork
   url_launcher_linux
 )
 

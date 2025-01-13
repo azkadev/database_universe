@@ -36,7 +36,8 @@ class QueryFilter extends StatelessWidget {
                 isDense: true,
                 items: [
                   for (final property in schema.idAndProperties)
-                    if (property.type != DatabaseUniverseType.object && property.type != DatabaseUniverseType.objectList)
+                    if (property.type != DatabaseUniverseType.object &&
+                        property.type != DatabaseUniverseType.objectList)
                       DropdownMenuItem(
                         value: property.name,
                         child: Text(property.name),

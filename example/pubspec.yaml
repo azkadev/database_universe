@@ -8,8 +8,8 @@ dependencies:
   flutter:
     sdk: 'flutter'
   path: '^1.9.0'
-  database_universe: '^0.0.15'
-  database_universe_flutter_libs: '^0.0.15'
+  database_universe: '^0.0.16'
+  database_universe_flutter_libs: '^0.0.16'
   general_lib: '^0.0.58'
   general_lib_flutter: '^0.0.39'
 dev_dependencies:

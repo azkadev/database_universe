@@ -68,7 +68,9 @@ class Sidebar extends StatelessWidget {
                   IconButton(
                     padding: const EdgeInsets.all(20),
                     icon: Icon(
-                      theme.brightness == Brightness.light ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+                      theme.brightness == Brightness.light
+                          ? Icons.dark_mode_rounded
+                          : Icons.light_mode_rounded,
                     ),
                     onPressed: DarkMode.of(context).toggle,
                   ),

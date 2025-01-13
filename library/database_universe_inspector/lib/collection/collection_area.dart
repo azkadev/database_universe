@@ -5,7 +5,7 @@ import 'dart:convert';
 // import 'dart:html';
 import 'dart:math';
 
-import 'package:clickup_fading_scroll/clickup_fading_scroll.dart';
+// import 'package:clickup_fading_scroll/clickup_fading_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:database_universe/database_universe.dart';
@@ -95,37 +95,32 @@ class _CollectionAreaState extends State<CollectionArea> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: FadingScroll(
+          child: CustomScrollView(
             controller: controller,
-            builder: (context, controller) {
-              return CustomScrollView(
-                controller: controller,
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: QueryGroup(
-                      key: Key('${widget.schema.name}-filter'),
-                      schema: widget.schema,
-                      group: filter,
-                      level: 0,
-                      onChanged: (group) {
-                        setState(() {
-                          filter = group;
-                        });
-                        _runQuery();
-                      },
-                    ),
-                  ),
-                  ObjectsListSliver(
-                    instance: widget.instance,
-                    collection: widget.collection,
-                    schemas: widget.schemas,
-                    objects: objects,
-                    onUpdate: _onUpdate,
-                    onDelete: _onDelete,
-                  ),
-                ],
-              );
-            },
+            slivers: [
+              SliverToBoxAdapter(
+                child: QueryGroup(
+                  key: Key('${widget.schema.name}-filter'),
+                  schema: widget.schema,
+                  group: filter,
+                  level: 0,
+                  onChanged: (group) {
+                    setState(() {
+                      filter = group;
+                    });
+                    _runQuery();
+                  },
+                ),
+              ),
+              ObjectsListSliver(
+                instance: widget.instance,
+                collection: widget.collection,
+                schemas: widget.schemas,
+                objects: objects,
+                onUpdate: _onUpdate,
+                onDelete: _onDelete,
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 20),

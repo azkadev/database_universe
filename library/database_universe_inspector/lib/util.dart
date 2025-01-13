@@ -3,7 +3,9 @@ import 'package:database_universe/database_universe.dart';
 extension CollectionInfoX on DatabaseUniverseSchema {
   List<DatabaseUniversePropertySchema> get idAndProperties {
     final props = [
-      if (!this.embedded && !properties.any((e) => e.name == idName)) DatabaseUniversePropertySchema(name: idName!, type: DatabaseUniverseType.long),
+      if (!this.embedded && !properties.any((e) => e.name == idName))
+        DatabaseUniversePropertySchema(
+            name: idName!, type: DatabaseUniverseType.long),
       ...properties,
     ];
     props.sort((a, b) {

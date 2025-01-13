@@ -4,9 +4,10 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   camera_windows
+  database_universe_flutter_libs
   flutter_tts
   local_auth_windows
-  media_kit_video
+  media_kit_video_fork
   permission_handler_windows
   screen_brightness_windows
   url_launcher_windows
