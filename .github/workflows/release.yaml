@@ -6,14 +6,14 @@ on:
       database_universe_version:
         description: "Database Universe Example: 0.0.1"
         required: false
-        default: "1.0.0"
+        default: "1.0.1"
       is_publish_to_pub_dev:
         description: "yes or no"
         required: false
         default: "yes"
 
 env: # Global variables
-  VERSION: "0.0.0-placeholder"
+  VERSION: "1.0.1"
   
 jobs:
   build_binaries:
