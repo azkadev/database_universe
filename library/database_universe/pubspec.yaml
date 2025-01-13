@@ -2,7 +2,7 @@ name: 'database_universe'
 description: 'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
 version: '1.0.0'
 homepage: 'https://youtube.com/@azkadev'
-repository: 'https://github.com/azkadev/database_universe/tree/main/library/database_universe'
+repository: 'https://github.com/azkadev/database_universe'
 issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
 documentation: 'https://youtube.com/@azkadev'
 funding:
