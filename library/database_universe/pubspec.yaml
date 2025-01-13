@@ -8,12 +8,6 @@ documentation: 'https://youtube.com/@azkadev'
 funding:
   - 'https://github.com/sponsors/azkadev'
   - 'https://github.com/sponsors/generalfoss'
-topics:
-  - 'database'
-  - 'database-universe'
-  - 'sqlite'
-  - 'encryption'
-  - 'storage'
 platforms:
   android: null
   ios: null
@@ -21,6 +15,12 @@ platforms:
   web: null
   windows: null
   macos: null
+topics:
+  - 'database'
+  - 'database-universe'
+  - 'sqlite'
+  - 'encryption'
+  - 'storage'
 environment:
   sdk: '>=3.6.0 <4.0.0'
 dependencies:
