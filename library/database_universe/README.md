@@ -1,15 +1,15 @@
-# Server Universe
+# Database Universe
 <p align="center">
-  <img src="https://raw.githubusercontent.com/azkadev/server_universe/refs/heads/main/package/server_universe/assets/server_universe.png" width="350px">
+  <img src="https://raw.githubusercontent.com/azkadev/database_universe/refs/heads/main/package/database_universe/assets/database_universe.png" width="350px">
 </p>
-<h2 align="center">Ultra Fast, Enjoyable & Cross Platform Server Universe</h2>
+<h2 align="center">Ultra Fast, Enjoyable & Cross Platform Database Universe</h2>
 
 [![](https://raw.githubusercontent.com/globalcorporation/.github/main/.github/logo/powered.png)](https://www.youtube.com/@Global_Corporation)
 
-[![Pub Version](https://img.shields.io/pub/v/server_universe?label=pub.dev&labelColor=333940&logo=dart)](https://pub.dev/packages/server_universe)
+[![Pub Version](https://img.shields.io/pub/v/database_universe?label=pub.dev&labelColor=333940&logo=dart)](https://pub.dev/packages/database_universe)
 
 
-**Server Universe** is library for speed up and help you to make server rest api / forwarding / proxy very simple with highly customizable feature in cross platform (Server Side / Client Side) and Severless functions like (Supabase Functions, Vercel, Netlify, Cloud Flare)
+**Database Universe**  Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business
 
 ## Features
 
@@ -26,10 +26,6 @@ This Library only update if there ae feature that i want, if you want library wi
 - This library is **very fast** and can be created on a business scale
 
 ## Example Project Use This Library
-
-# Database Universe
- 
-**Database Universe**  Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business
 
 ## Demo
 
