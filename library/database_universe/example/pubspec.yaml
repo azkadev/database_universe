@@ -1,0 +1,29 @@
+name: 'example'
+description: 'A new Flutter project.'
+publish_to: 'none'
+version: '1.0.0+1'
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: 'flutter'
+  cupertino_icons: '^1.0.8'
+  database_universe: '^1.0.3'
+  general_lib: '^0.0.62'
+  general_lib_flutter: '^0.0.41'
+  path: '^1.9.0'
+  general_framework: '^0.0.18'
+  general: '^0.0.46'
+  media_kit_libs_video_fork: '^0.0.2'
+
+dev_dependencies:
+  flutter_test:
+    sdk: 'flutter'
+  flutter_lints: '^5.0.0'
+  build_runner: 'any'
+flutter:
+  uses-material-design: true
+dependency_overrides:
+  pointycastle: '3.8.0'
+  mime: '^2.0.0'
+funding: []
