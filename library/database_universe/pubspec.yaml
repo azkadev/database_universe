@@ -21,6 +21,11 @@ topics:
   - 'sqlite'
   - 'encryption'
   - 'storage'
+
+screenshots:
+  - description: "Database Universe Logo"
+    path: assets/database_universe.png
+
 environment:
   sdk: '>=3.6.0 <4.0.0'
 dependencies:
