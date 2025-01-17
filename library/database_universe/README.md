@@ -32,9 +32,9 @@ This Library only update if there ae feature that i want, if you want library wi
 ## 📚️ Docs
 
 1. [Documentation](/docs/)
-2. [Youtube](https://youtube.com/)
-3. [Telegram Support Group](https://t.me/)
-4. [Contact Developer](https://github.com/) (check social media or readme profile github)
+2. [Youtube](https://youtube.com/@azkadev)
+3. [Telegram Support Group](https://t.me/DEVELOPER_GLOBAL_PUBLIC)
+4. [Contact Developer](https://github.com/azkadev) (check social media or readme profile github)
 
 ## 🔖️ Features
 
