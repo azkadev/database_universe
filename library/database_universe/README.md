@@ -1,3 +1,32 @@
+# Server Universe
+<p align="center">
+  <img src="https://raw.githubusercontent.com/azkadev/server_universe/refs/heads/main/package/server_universe/assets/server_universe.png" width="350px">
+</p>
+<h2 align="center">Ultra Fast, Enjoyable & Cross Platform Server Universe</h2>
+
+[![](https://raw.githubusercontent.com/globalcorporation/.github/main/.github/logo/powered.png)](https://www.youtube.com/@Global_Corporation)
+
+[![Pub Version](https://img.shields.io/pub/v/server_universe?label=pub.dev&labelColor=333940&logo=dart)](https://pub.dev/packages/server_universe)
+
+
+**Server Universe** is library for speed up and help you to make server rest api / forwarding / proxy very simple with highly customizable feature in cross platform (Server Side / Client Side) and Severless functions like (Supabase Functions, Vercel, Netlify, Cloud Flare)
+
+## Features
+
+- 🚀 **Work On Cross Platform**: Mobile, Desktop, Browser, Server Side
+- ⚡ **Good Performance and efficient**
+- ❤️ **Simple, Easey Powerfull, Can Extend To Scala Bussiness**
+
+### Information
+
+This Library only update if there ae feature that i want, if you want library with full documentation so it usually **makes things easier DEVELOP PROGRAM** you just need to buy / donate at [Azkadev](https://github.com/sponsors/azkadev)
+
+## <img src="https://raw.githubusercontent.com/azkadev/telegram_client/main/.github/assets/bluetick.png" width="30px" height="30px" align="center" > Fact
+
+- This library is **very fast** and can be created on a business scale
+
+## Example Project Use This Library
+
 # Database Universe
  
 **Database Universe**  Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business
@@ -27,6 +56,11 @@
 ## 📈️ Proggres
  
 - **2024-05-11**
+
+## Guide on how to use this library
+
+Before using this library, make sure you know basic coding
+And your laptop has the programming language installed [dart](https://dart.dev)
 
 ### 📥️ Install Library
 
