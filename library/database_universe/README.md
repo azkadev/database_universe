@@ -71,45 +71,82 @@ dart pub add database_universe
 Example Quickstart script minimal for insight you or make you use this library because very simple 
  
 ```dart
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: unnecessary_brace_in_string_interps
 import 'dart:io';
 import 'package:database_universe/database_universe.dart';
-import 'package:general_lib/general_lib.dart';
-import 'package:path/path.dart' as path;
+import 'package:example/schema/database_scheme/chatbot_data_local_database.dart';
+import 'package:general_lib/log/log.dart';
 
-void main(List<String> args) async {
-  print("start");
-  /// add database
-  DatabaseUniverse databaseUniverse = DatabaseUniverse(
-    // change extension with your own
-    extension_name: "dbu",
-    // if set true if open database password wrong force open but database will empty
-    is_ignore_on_error: true,
+void main() async {
+  final GeneralLibraryLog generalLibraryLog = GeneralLibraryLog(logOptions: GeneralLibraryLogOptions(textTitle: "", textContext: ""));
+  await DatabaseUniverse.initialize();
+  final DatabaseUniverse databaseUniverse = DatabaseUniverse.open(
+    schemas: [
+      ChatbotDataLocalDatabaseSchema,
+    ],
+    directory: "temp",
   );
-  // init database
-  databaseUniverse.init(crypto: Crypto(key: "od8wkk8nYbgv2na8ApaL0NMGq3rcpnF5"));
-  // set database directory
-  Directory directory_db = () {
-    if (Dart.isWeb) {
-      return Directory("");
-    }
-    return Directory(path.join(Directory.current.path, "db"));
-  }();
-  print("open");
-  // open disk database
-  DatabaseUniverseData<JsonScheme> databaseUniverseData = databaseUniverse.disk_open(file_name: "Slebew", directory: directory_db, valueData: JsonScheme({}));
-  // change value
-  print("update");
-  databaseUniverseData.value["first_name"] = "change name";
-  // check if key count is not int set to int 0
-  if (databaseUniverseData.value["count"] is int == false) {
-    databaseUniverseData.value["count"] = 0;
+  final String prompt = "hello";
+  final String respond = "Hello Babe";
+  generalLibraryLog.printToTerminal(
+    logMessage: GeneralLibraryLogMessage(
+      value: "Get Data: ${prompt}",
+      isForcePrint: false,
+      stackTrace: StackTrace.current,
+      isFullDetail: false,
+      logMessageType: GeneralLibraryLogMessageType.info,
+      logOptions: null,
+    ),
+  );
+
+  final ChatbotDataLocalDatabase? chatbotDataLocalDatabaseOld = databaseUniverse.chatbotDataLocalDatabases.where().promptMatches(prompt, caseSensitive: false).findFirst();
+  if (chatbotDataLocalDatabaseOld == null) {
+    generalLibraryLog.printToTerminal(
+      logMessage: GeneralLibraryLogMessage(
+        value: "Data Prompt Not Found: ${prompt} ",
+        isForcePrint: false,
+        stackTrace: StackTrace.current,
+        isFullDetail: false,
+        logMessageType: GeneralLibraryLogMessageType.info,
+        logOptions: null,
+      ),
+    );
+    final ChatbotDataLocalDatabase chatbotDataLocalDatabaseNew = ChatbotDataLocalDatabase();
+    chatbotDataLocalDatabaseNew.id = databaseUniverse.chatbotDataLocalDatabases.autoIncrement();
+    chatbotDataLocalDatabaseNew.prompt = prompt;
+    chatbotDataLocalDatabaseNew.respond = respond;
+    databaseUniverse.write((databaseUniverse) {
+      databaseUniverse.chatbotDataLocalDatabases.put(chatbotDataLocalDatabaseNew);
+      return;
+    });
+  } else {
+    generalLibraryLog.printToTerminal(
+      logMessage: GeneralLibraryLogMessage(
+        value: "Data Prompt Found: ${prompt} ",
+        isForcePrint: false,
+        stackTrace: StackTrace.current,
+        isFullDetail: false,
+        logMessageType: GeneralLibraryLogMessageType.info,
+        logOptions: null,
+      ),
+    );
+    generalLibraryLog.printToTerminal(
+      logMessage: GeneralLibraryLogMessage(
+        value: """
+Data Detail
+
+Prompt: ${chatbotDataLocalDatabaseOld.prompt}
+Respond: ${chatbotDataLocalDatabaseOld.respond}
+""".trim(),
+        isForcePrint: false,
+        stackTrace: StackTrace.current,
+        isFullDetail: false,
+        logMessageType: GeneralLibraryLogMessageType.info,
+        logOptions: null,
+      ),
+    );
   }
-  // increament
-  databaseUniverseData.value["count"] += 1;
-  // save to disk
-  databaseUniverse.disk_save(databaseUniverseData: databaseUniverseData, isWithClose: true);
-  print("saved");
+  exit(0);
 }
 ``` 
 <!-- START GLOBAL CORPORATION -->
