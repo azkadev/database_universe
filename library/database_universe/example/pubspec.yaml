@@ -15,7 +15,6 @@ dependencies:
   general_framework: '^0.0.18'
   general: '^0.0.46'
   media_kit_libs_video_fork: '^0.0.2'
-
 dev_dependencies:
   flutter_test:
     sdk: 'flutter'
