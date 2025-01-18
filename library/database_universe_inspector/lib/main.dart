@@ -66,7 +66,9 @@ final _router = GoRouter(
   ],
 );
 
+///
 class App extends StatelessWidget {
+  ///
   const App({super.key});
 
   @override
@@ -89,23 +91,29 @@ class App extends StatelessWidget {
   }
 }
 
+///
 class DarkMode extends InheritedNotifier<DarkModeNotifier> {
+  ///
   const DarkMode({
     required super.child,
     super.key,
     super.notifier,
   });
 
+  ///
   static DarkModeNotifier of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<DarkMode>()!.notifier!;
   }
 }
 
+///
 class DarkModeNotifier extends ChangeNotifier {
   var _darkMode = true;
 
+  ///
   bool get darkMode => _darkMode;
 
+  ///
   void toggle() {
     _darkMode = !_darkMode;
     notifyListeners();

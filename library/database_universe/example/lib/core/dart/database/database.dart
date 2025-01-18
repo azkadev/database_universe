@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:database_universe/database_universe.dart';
 import 'package:example/schema/database_scheme/chatbot_data_local_database.dart';
- import 'package:general_framework/core/database/database_core.dart';
+import 'package:general_framework/core/database/database_core.dart';
 import 'package:general_lib/general_lib.dart';
 import 'package:http/src/client.dart';
 import "package:path/path.dart" as path;

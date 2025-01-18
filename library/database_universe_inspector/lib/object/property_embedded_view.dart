@@ -5,7 +5,9 @@ import 'package:database_universe_inspector/object/object_view.dart';
 import 'package:database_universe_inspector/object/property_builder.dart';
 import 'package:database_universe_inspector/object/property_value.dart';
 
+///
 class EmbeddedPropertyView extends StatelessWidget {
+  ///
   const EmbeddedPropertyView({
     required this.property,
     required this.schemas,
@@ -14,9 +16,16 @@ class EmbeddedPropertyView extends StatelessWidget {
     super.key,
   });
 
+  ///
   final DatabaseUniversePropertySchema property;
+
+  ///
   final Map<String, DatabaseUniverseSchema> schemas;
+
+  ///
   final IsarObject object;
+
+  ///
   final void Function(String path, dynamic value) onUpdate;
 
   @override

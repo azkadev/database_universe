@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+///
 class InstanceSelector extends StatefulWidget {
+  ///
   const InstanceSelector({
     required this.instances,
     required this.selectedInstance,
@@ -9,8 +11,13 @@ class InstanceSelector extends StatefulWidget {
     super.key,
   });
 
+  ///
   final List<String> instances;
+
+  ///
   final String? selectedInstance;
+
+  ///
   final void Function(String instance) onSelected;
 
   @override
@@ -99,14 +106,19 @@ class _InstanceSelectorState extends State<InstanceSelector>
   }
 }
 
+///
 class InstanceButton extends StatelessWidget {
+  ///
   const InstanceButton({
     required this.instance,
     required this.onTap,
     super.key,
   });
 
+  ///
   final String instance;
+
+  ///
   final VoidCallback onTap;
 
   @override
@@ -139,7 +151,9 @@ class InstanceButton extends StatelessWidget {
   }
 }
 
+///
 class SelectedInstanceButton extends StatelessWidget {
+  ///
   const SelectedInstanceButton({
     required this.instance,
     required this.onTap,
@@ -148,9 +162,16 @@ class SelectedInstanceButton extends StatelessWidget {
     super.key,
   });
 
+  ///
   final String instance;
+
+  ///
   final VoidCallback onTap;
+
+  ///
   final bool hasMultiple;
+
+  ///
   final Color? color;
 
   @override

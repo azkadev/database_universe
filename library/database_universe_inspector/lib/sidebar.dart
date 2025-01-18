@@ -5,7 +5,9 @@ import 'package:database_universe_inspector/connect_client.dart';
 import 'package:database_universe_inspector/instance_selector.dart';
 import 'package:database_universe_inspector/main.dart';
 
+///
 class Sidebar extends StatelessWidget {
+  ///
   const Sidebar({
     required this.instances,
     required this.selectedInstance,
@@ -17,13 +19,26 @@ class Sidebar extends StatelessWidget {
     super.key,
   });
 
+  ///
   final List<String> instances;
+
+  ///
   final String? selectedInstance;
+
+  ///
   final void Function(String instance) onInstanceSelected;
 
+  ///
+
   final List<DatabaseUniverseSchema> schemas;
+
+  ///
   final Map<String, ConnectCollectionInfoPayload?> collectionInfo;
+
+  ///
   final String? selectedCollection;
+
+  ///
   final void Function(String collection) onCollectionSelected;
 
   @override

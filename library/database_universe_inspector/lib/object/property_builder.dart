@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+///
 class PropertyBuilder extends StatefulWidget {
+  ///
   const PropertyBuilder({
     required this.property,
     required this.type,
@@ -12,11 +14,22 @@ class PropertyBuilder extends StatefulWidget {
     this.children = const [],
   });
 
+  ///
   final String property;
+
+  ///
   final bool bold;
+
+  ///
   final bool underline;
+
+  ///
   final Widget? value;
+
+  ///
   final String type;
+
+  ///
   final List<Widget> children;
 
   @override
@@ -79,8 +92,8 @@ class _PropertyBuilderState extends State<PropertyBuilder> {
                   Text(
                     widget.type,
                     style: TextStyle(
-                      color:
-                          theme.colorScheme.onPrimaryContainer.withOpacity(0.5),
+                      color: theme.colorScheme.onPrimaryContainer
+                          .withValues(alpha: 0.5),
                     ),
                   ),
               ],

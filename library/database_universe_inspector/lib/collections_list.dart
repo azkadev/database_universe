@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/connect_client.dart';
 
+///
 class CollectionsList extends StatelessWidget {
+  ///
   const CollectionsList({
     required this.collections,
     required this.collectionInfo,
@@ -13,9 +15,17 @@ class CollectionsList extends StatelessWidget {
     super.key,
   });
 
+  ///
+
   final List<DatabaseUniverseSchema> collections;
+
+  ///
   final Map<String, ConnectCollectionInfoPayload?> collectionInfo;
+
+  ///
   final String? selectedCollection;
+
+  ///
   final void Function(String collection) onSelected;
 
   @override

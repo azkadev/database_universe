@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:database_universe/database_universe.dart';
 
+///
 class PropertyValue extends StatelessWidget {
+  ///
   const PropertyValue(
     this.value, {
     required this.enumMap,
@@ -11,9 +13,16 @@ class PropertyValue extends StatelessWidget {
     this.onUpdate,
   });
 
+  ///
   final dynamic value;
+
+  ///
   final DatabaseUniverseType type;
+
+  ///
   final Map<String, dynamic>? enumMap;
+
+  ///
   final void Function(dynamic newValue)? onUpdate;
 
   @override
@@ -42,7 +51,9 @@ class PropertyValue extends StatelessWidget {
   }
 }
 
+///
 class NullValue extends StatelessWidget {
+  ///
   const NullValue({super.key});
 
   @override

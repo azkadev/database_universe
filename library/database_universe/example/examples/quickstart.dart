@@ -7,7 +7,8 @@ import 'package:example/schema/database_scheme/chatbot_data_local_database.dart'
 import 'package:general_lib/log/log.dart';
 
 void main() async {
-  final GeneralLibraryLog generalLibraryLog = GeneralLibraryLog(logOptions: GeneralLibraryLogOptions(textTitle: "", textContext: ""));
+  final GeneralLibraryLog generalLibraryLog = GeneralLibraryLog(
+      logOptions: GeneralLibraryLogOptions(textTitle: "", textContext: ""));
   await DatabaseUniverse.initialize();
   final DatabaseUniverse databaseUniverse = DatabaseUniverse.open(
     schemas: [
@@ -28,7 +29,11 @@ void main() async {
     ),
   );
 
-  final ChatbotDataLocalDatabase? chatbotDataLocalDatabaseOld = databaseUniverse.chatbotDataLocalDatabases.where().promptMatches(prompt, caseSensitive: false).findFirst();
+  final ChatbotDataLocalDatabase? chatbotDataLocalDatabaseOld = databaseUniverse
+      .chatbotDataLocalDatabases
+      .where()
+      .promptMatches(prompt, caseSensitive: false)
+      .findFirst();
   if (chatbotDataLocalDatabaseOld == null) {
     generalLibraryLog.printToTerminal(
       logMessage: GeneralLibraryLogMessage(
@@ -40,12 +45,15 @@ void main() async {
         logOptions: null,
       ),
     );
-    final ChatbotDataLocalDatabase chatbotDataLocalDatabaseNew = ChatbotDataLocalDatabase();
-    chatbotDataLocalDatabaseNew.id = databaseUniverse.chatbotDataLocalDatabases.autoIncrement();
+    final ChatbotDataLocalDatabase chatbotDataLocalDatabaseNew =
+        ChatbotDataLocalDatabase();
+    chatbotDataLocalDatabaseNew.id =
+        databaseUniverse.chatbotDataLocalDatabases.autoIncrement();
     chatbotDataLocalDatabaseNew.prompt = prompt;
     chatbotDataLocalDatabaseNew.respond = respond;
     databaseUniverse.write((databaseUniverse) {
-      databaseUniverse.chatbotDataLocalDatabases.put(chatbotDataLocalDatabaseNew);
+      databaseUniverse.chatbotDataLocalDatabases
+          .put(chatbotDataLocalDatabaseNew);
       return;
     });
   } else {
@@ -66,7 +74,8 @@ Data Detail
 
 Prompt: ${chatbotDataLocalDatabaseOld.prompt}
 Respond: ${chatbotDataLocalDatabaseOld.respond}
-""".trim(),
+"""
+            .trim(),
         isForcePrint: false,
         stackTrace: StackTrace.current,
         isFullDetail: false,

@@ -1,10 +1,15 @@
+///
 class IsarObject {
+  ///
   const IsarObject(this.data);
 
+  ///
   final Map<String, dynamic> data;
 
+  ///
   dynamic getValue(String propertyName) => data[propertyName];
 
+  ///
   IsarObject? getNested(String propertyName, {String? linkCollection}) {
     final data = this.data[propertyName] as Map<String, dynamic>?;
     if (data != null) {
@@ -13,6 +18,8 @@ class IsarObject {
       return null;
     }
   }
+
+  ///
 
   List<IsarObject?>? getNestedList(
     String propertyName, {

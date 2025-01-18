@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
 class SortButtons extends StatelessWidget {
+  ///
   const SortButtons({
     required this.properties,
     required this.selectedProperty,
@@ -9,9 +11,16 @@ class SortButtons extends StatelessWidget {
     super.key,
   });
 
+  ///
   final List<String> properties;
+
+  ///
   final String selectedProperty;
+
+  ///
   final bool asc;
+
+  ///
   final void Function(String property, bool asc) onChanged;
 
   @override

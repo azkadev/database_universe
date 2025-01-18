@@ -6,14 +6,19 @@ import 'package:database_universe_inspector/collection/collection_area.dart';
 import 'package:database_universe_inspector/connect_client.dart';
 import 'package:database_universe_inspector/sidebar.dart';
 
+///
 class ConnectedLayout extends StatefulWidget {
+  ///
   const ConnectedLayout({
     required this.client,
     required this.instances,
     super.key,
   });
 
+  ///
   final ConnectClient client;
+
+  ///
   final List<String> instances;
 
   @override

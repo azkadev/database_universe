@@ -4,14 +4,18 @@ import "package:path/path.dart" as path;
 
 void main(List<String> args) async {
   final Directory directoryCurrent = Directory.current;
-  final Directory directorySchemes = Directory(path.join(directoryCurrent.path, "lib", "schema"));
+  final Directory directorySchemes =
+      Directory(path.join(directoryCurrent.path, "lib", "schema"));
   directorySchemes.generalLibUtilsDangerRecreate();
   {
-    final Directory directoryDatabaseScheme = Directory(path.join(directorySchemes.path, "database_scheme")).generalLibUtilsDangerRecreate();
+    final Directory directoryDatabaseScheme =
+        Directory(path.join(directorySchemes.path, "database_scheme"))
+            .generalLibUtilsDangerRecreate();
     for (final element in schemes) {
       final generateSchema = jsonToDatabaseUniverse(
         element,
-        className: "${element["@type"]}${GeneralLibSchemeType.local.toSpesialType()}",
+        className:
+            "${element["@type"]}${GeneralLibSchemeType.local.toSpesialType()}",
       );
       await generateSchema.saveToFile(directoryDatabaseScheme);
     }

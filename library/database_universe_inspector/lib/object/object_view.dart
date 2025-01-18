@@ -5,7 +5,9 @@ import 'package:database_universe_inspector/object/property_embedded_view.dart';
 import 'package:database_universe_inspector/object/property_view.dart';
 import 'package:database_universe_inspector/util.dart';
 
+///
 class ObjectView extends StatelessWidget {
+  ///
   const ObjectView({
     required this.schemaName,
     required this.schemas,
@@ -14,9 +16,17 @@ class ObjectView extends StatelessWidget {
     super.key,
   });
 
+  ///
+
   final String schemaName;
+
+  ///
   final Map<String, DatabaseUniverseSchema> schemas;
+
+  ///
   final IsarObject object;
+
+  ///
   final void Function(String path, dynamic value) onUpdate;
 
   @override

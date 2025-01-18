@@ -18,9 +18,12 @@ import 'package:database_universe_inspector/query_builder/query_filter.dart';
 import 'package:database_universe_inspector/query_builder/query_group.dart';
 import 'package:database_universe_inspector/util.dart';
 
+///
 const objectsPerPage = 20;
 
+///
 class CollectionArea extends StatefulWidget {
+  ///
   CollectionArea({
     required this.instance,
     required this.collection,
@@ -29,11 +32,20 @@ class CollectionArea extends StatefulWidget {
     super.key,
   });
 
+  ///
+
   final String instance;
+
+  ///
   final String collection;
+
+  ///
   final Map<String, DatabaseUniverseSchema> schemas;
+
+  ///
   final ConnectClient client;
 
+  ///
   late final schema = schemas[collection]!;
 
   @override

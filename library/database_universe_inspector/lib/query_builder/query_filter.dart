@@ -4,7 +4,9 @@ import 'package:database_universe_inspector/object/property_value.dart';
 import 'package:database_universe_inspector/query_builder/query_group.dart';
 import 'package:database_universe_inspector/util.dart';
 
+///
 class QueryFilter extends StatelessWidget {
+  ///
   const QueryFilter({
     required this.schema,
     required this.condition,
@@ -12,8 +14,13 @@ class QueryFilter extends StatelessWidget {
     super.key,
   });
 
+  ///
   final DatabaseUniverseSchema schema;
+
+  ///
   final FilterCondition condition;
+
+  ///
   final void Function(FilterCondition condition) onChanged;
 
   @override
@@ -24,7 +31,8 @@ class QueryFilter extends StatelessWidget {
     return Container(
       height: 60,
       decoration: BoxDecoration(
-        border: Border.all(color: theme.colorScheme.outline.withOpacity(0.5)),
+        border:
+            Border.all(color: theme.colorScheme.outline.withValues(alpha: 0.5)),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
@@ -126,26 +134,54 @@ class QueryFilter extends StatelessWidget {
     );
   }
 
+  ///
   dynamic get value1 {}
 }
 
+///
 enum FilterType {
+  ///
   equalTo('is equal to'),
+
+  ///
   greaterThan('is greater than'),
+
+  ///
   lessThan('is less than'),
+
+  ///
   between('is between', valueCount: 2),
+
+  ///
   startsWith('starts with'),
+
+  ///
   endsWith('ends with'),
+
+  ///
   contains('contains'),
+
+  ///
   matches('matches'),
+
+  ///
   isNull('is null', valueCount: 0),
+
+  ///
   isNotNull('is not null', valueCount: 0),
+
+  ///
   elementIsNull('element is null', valueCount: 0),
+
+  ///
   elementIsNotNull('element is not null', valueCount: 0);
 
   const FilterType(this.displayName, {this.valueCount = 1});
 
+  ///
   final String displayName;
+
+  ///
   final int valueCount;
 }
 

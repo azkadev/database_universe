@@ -10,26 +10,41 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 export 'package:database_universe/core/core/database_universe_connect_api.dart';
 
+///
 class ConnectClient {
+  ///
   ConnectClient(this.vmService, this.isolateId);
 
+  ///
   static const Duration kNormalTimeout = Duration(seconds: 4);
+
+  ///
   static const Duration kLongTimeout = Duration(seconds: 10);
 
+  ///
   final VmService vmService;
+
+  ///
   final String isolateId;
 
+  ///
   final collectionInfo = <String, ConnectCollectionInfoPayload>{};
 
   final _instancesChangedController = StreamController<void>.broadcast();
   final _collectionInfoChangedController = StreamController<void>.broadcast();
   final _queryChangedController = StreamController<void>.broadcast();
 
+  ///
   Stream<void> get instancesChanged => _instancesChangedController.stream;
+
+  ///
   Stream<void> get collectionInfoChanged =>
       _collectionInfoChangedController.stream;
+
+  ///
   Stream<void> get queryChanged => _queryChangedController.stream;
 
+  ///
   static Future<ConnectClient> connect(String port, String secret) async {
     final wsUrl = Uri.parse('ws://127.0.0.1:$port/$secret=/ws');
     final channel = WebSocketChannel.connect(wsUrl);
@@ -88,6 +103,8 @@ class ConnectClient {
     return response.json?['result'] as Map<String, dynamic>?;
   }
 
+  ///
+
   Future<List<DatabaseUniverseSchema>> getSchemas(String instance) async {
     final json = await _call(
       ConnectAction.getSchemas,
@@ -96,11 +113,13 @@ class ConnectClient {
     return ConnectSchemasPayload.fromJson(json!).schemas;
   }
 
+  ///
   Future<List<String>> listInstances() async {
     final json = await _call(ConnectAction.listInstances);
     return ConnectInstanceNamesPayload.fromJson(json!).instances;
   }
 
+  ///
   Future<void> watchInstance(String instance) async {
     collectionInfo.clear();
     await _call(
@@ -109,6 +128,7 @@ class ConnectClient {
     );
   }
 
+  ///
   Future<ConnectObjectsPayload> executeQuery(ConnectQueryPayload query) async {
     final json = await _call(
       ConnectAction.executeQuery,
@@ -118,6 +138,7 @@ class ConnectClient {
     return ConnectObjectsPayload.fromJson(json!);
   }
 
+  ///
   Future<void> deleteQuery(ConnectQueryPayload query) async {
     await _call(
       ConnectAction.deleteQuery,
@@ -126,9 +147,12 @@ class ConnectClient {
     );
   }
 
+  ///
   Future<void> importJson(ConnectObjectsPayload objects) async {
     await _call(ConnectAction.importJson, param: objects);
   }
+
+  ///
 
   Future<ConnectObjectsPayload> exportJson(ConnectQueryPayload query) async {
     final json = await _call(
@@ -139,6 +163,8 @@ class ConnectClient {
     return ConnectObjectsPayload.fromJson(json!);
   }
 
+  ///
+
   Future<void> editProperty(ConnectEditPayload edit) async {
     await _call(
       ConnectAction.editProperty,
@@ -146,6 +172,8 @@ class ConnectClient {
       timeout: kLongTimeout,
     );
   }
+
+  ///
 
   Future<void> disconnect() async {
     await vmService.dispose();

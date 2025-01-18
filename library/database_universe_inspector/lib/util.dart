@@ -1,6 +1,8 @@
 import 'package:database_universe/database_universe.dart';
 
+///
 extension CollectionInfoX on DatabaseUniverseSchema {
+  ///
   List<DatabaseUniversePropertySchema> get idAndProperties {
     final props = [
       if (!this.embedded && !properties.any((e) => e.name == idName))
@@ -21,7 +23,9 @@ extension CollectionInfoX on DatabaseUniverseSchema {
   }
 }
 
+///
 extension TypeName on DatabaseUniverseType {
+  ///
   String get typeName {
     switch (this) {
       case DatabaseUniverseType.bool:

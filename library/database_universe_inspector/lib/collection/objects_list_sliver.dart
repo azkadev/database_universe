@@ -6,7 +6,9 @@ import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/object/isar_object.dart';
 import 'package:database_universe_inspector/object/object_view.dart';
 
+///
 class ObjectsListSliver extends StatelessWidget {
+  ///
   const ObjectsListSliver({
     required this.instance,
     required this.collection,
@@ -17,11 +19,22 @@ class ObjectsListSliver extends StatelessWidget {
     super.key,
   });
 
+  ///
   final String instance;
+
+  ///
   final String collection;
+
+  ///
   final Map<String, DatabaseUniverseSchema> schemas;
+
+  ///
   final List<IsarObject> objects;
+
+  ///
   final void Function(dynamic id, String path, dynamic value) onUpdate;
+
+  ///
   final void Function(dynamic id) onDelete;
 
   @override

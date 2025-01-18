@@ -4,7 +4,8 @@ import 'package:general_lib/general_lib.dart';
 import 'default_scheme.dart';
 
 final List<Map<String, dynamic>> example_database_schemes = () {
-  final GeneralLibSchemeType generalLibSchemeType = GeneralLibSchemeType.database;
+  final GeneralLibSchemeType generalLibSchemeType =
+      GeneralLibSchemeType.database;
   final Set<GeneralLibSchemeType> generalLibSchemeTypes = {
     generalLibSchemeType,
     GeneralLibSchemeType.local,
@@ -14,11 +15,11 @@ final List<Map<String, dynamic>> example_database_schemes = () {
     for (final GeneralLibSchemeType element in generalLibSchemeTypes) ...[
       ExampleDefaultScheme.account(
         generalLibSchemeType: element,
-      ), 
+      ),
       ExampleDefaultScheme.session(
         generalLibSchemeType: element,
-      ),  
-    ], 
+      ),
+    ],
   ];
   return database_schemes_procces;
 }();

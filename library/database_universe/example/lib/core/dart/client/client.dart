@@ -15,7 +15,6 @@ class ExampleClient extends GeneralFrameworkClient<ExampleClientDatabase> {
     super.eventInvoke,
     super.eventUpdate,
     super.httpClient,
-    
   }) : super(
           apiUrl: "",
           networkClientConnectionType: NetworkClientConnectionType.http,

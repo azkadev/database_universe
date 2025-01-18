@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:database_universe_inspector/collection/collection_area.dart';
 
+///
 class PrevNextButtons extends StatelessWidget {
+  ///
   const PrevNextButtons({
     required this.page,
     required this.count,
@@ -9,8 +11,13 @@ class PrevNextButtons extends StatelessWidget {
     super.key,
   });
 
+  ///
   final int page;
+
+  ///
   final int count;
+
+  ///
   final void Function(int newPage) onChanged;
 
   @override
@@ -49,7 +56,7 @@ class PrevNextButtons extends StatelessWidget {
               Text(
                 ' - ',
                 style: TextStyle(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
               Text(
@@ -62,7 +69,7 @@ class PrevNextButtons extends StatelessWidget {
         Text(
           ' of ',
           style: TextStyle(
-            color: theme.colorScheme.onSurface.withOpacity(0.7),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         Tooltip(

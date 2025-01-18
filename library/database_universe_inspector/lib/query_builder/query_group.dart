@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:database_universe/database_universe.dart';
 import 'package:database_universe_inspector/query_builder/query_filter.dart';
 
+///
 sealed class FilterOperation {
+  ///
   Filter? toIsarFilter();
 }
 
+///
 class FilterGroup extends FilterOperation {
+  ///
   FilterGroup(this.and, this.filters);
 
+  ///
   final bool and;
+
+  ///
   final List<FilterOperation> filters;
 
   @override
@@ -21,7 +28,9 @@ class FilterGroup extends FilterOperation {
   }
 }
 
+///
 class FilterCondition extends FilterOperation {
+  ///
   FilterCondition({
     required this.property,
     required this.type,
@@ -29,9 +38,16 @@ class FilterCondition extends FilterOperation {
     this.value2,
   });
 
+  ///
   final int property;
+
+  ///
   final FilterType type;
+
+  ///
   final Object? value1;
+
+  ///
   final Object? value2;
 
   @override
@@ -61,7 +77,9 @@ class FilterCondition extends FilterOperation {
   }
 }
 
+///
 class QueryGroup extends StatelessWidget {
+  ///
   const QueryGroup({
     required this.schema,
     required this.group,
@@ -71,10 +89,19 @@ class QueryGroup extends StatelessWidget {
     this.onDelete,
   });
 
+  ///
   final DatabaseUniverseSchema schema;
+
+  ///
   final FilterGroup group;
+
+  ///
   final int level;
+
+  ///
   final void Function(FilterGroup group) onChanged;
+
+  ///
   final VoidCallback? onDelete;
 
   @override
@@ -111,7 +138,7 @@ class QueryGroup extends StatelessWidget {
                           'Click the group type to change it.',
                           style: TextStyle(
                             color: theme.colorScheme.onPrimaryContainer
-                                .withOpacity(0.5),
+                                .withValues(alpha: 0.5),
                           ),
                         ),
                       ),
@@ -247,7 +274,9 @@ class _Guideline extends StatelessWidget {
   }
 }
 
+///
 class GroupFilterButton extends StatelessWidget {
+  ///
   const GroupFilterButton({
     required this.level,
     required this.schema,
@@ -255,8 +284,13 @@ class GroupFilterButton extends StatelessWidget {
     super.key,
   });
 
+  ///
   final int level;
+
+  ///
   final DatabaseUniverseSchema schema;
+
+  ///
   final void Function(FilterOperation filter) onAdd;
 
   @override

@@ -5,14 +5,19 @@ import 'package:database_universe_inspector/connect_client.dart';
 import 'package:database_universe_inspector/connected_layout.dart';
 import 'package:database_universe_inspector/error_screen.dart';
 
+///
 class ConnectionScreen extends StatefulWidget {
+  ///
   const ConnectionScreen({
     required this.port,
     required this.secret,
     super.key,
   });
 
+  ///
   final String port;
+
+  ///
   final String secret;
 
   @override
@@ -109,7 +114,9 @@ class _InstancesLoaderState extends State<_InstancesLoader> {
   }
 }
 
+///
 class Loading extends StatelessWidget {
+  ///
   const Loading({super.key});
 
   @override

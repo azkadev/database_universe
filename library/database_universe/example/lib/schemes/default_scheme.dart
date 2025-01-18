@@ -1,10 +1,9 @@
 // ignore_for_file: public_member_api_docs
 
-import 'package:general_lib/general_lib.dart'; 
+import 'package:general_lib/general_lib.dart';
 
 ///
-class ExampleDefaultScheme { 
-  
+class ExampleDefaultScheme {
   static Map<String, dynamic> account({
     required GeneralLibSchemeType generalLibSchemeType,
   }) {
@@ -53,9 +52,7 @@ class ExampleDefaultScheme {
     }
 
     return defaultData;
-  } 
-
-
+  }
 
   static Map<String, dynamic> session({
     required GeneralLibSchemeType generalLibSchemeType,
@@ -103,6 +100,4 @@ class ExampleDefaultScheme {
     }
     return json_data;
   }
- 
-
 }

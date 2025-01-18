@@ -4,7 +4,9 @@ import 'package:database_universe_inspector/object/property_builder.dart';
 import 'package:database_universe_inspector/object/property_value.dart';
 import 'package:database_universe_inspector/util.dart';
 
+///
 class PropertyView extends StatelessWidget {
+  ///
   const PropertyView({
     required this.property,
     required this.value,
@@ -14,10 +16,20 @@ class PropertyView extends StatelessWidget {
     super.key,
   });
 
+  ///
+
   final DatabaseUniversePropertySchema property;
+
+  ///
   final dynamic value;
+
+  ///
   final bool isId;
+
+  ///
   final bool isIndexed;
+
+  ///
   final void Function(dynamic value) onUpdate;
 
   @override

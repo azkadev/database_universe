@@ -7,6 +7,6 @@ final List<Map<String, dynamic>> example_respond_schemes = () {
   final GeneralLibSchemeType generalLibSchemeType = GeneralLibSchemeType.scheme;
   return [
     ExampleDefaultScheme.account(generalLibSchemeType: generalLibSchemeType),
-    ExampleDefaultScheme.session(generalLibSchemeType: generalLibSchemeType), 
+    ExampleDefaultScheme.session(generalLibSchemeType: generalLibSchemeType),
   ];
 }();
