@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, depend_on_referenced_packages
 
 import 'dart:async';
 import 'dart:io';
@@ -7,10 +7,12 @@ import 'package:database_universe/database_universe.dart';
 import 'package:example/schema/database_scheme/chatbot_data_local_database.dart';
 import 'package:general_framework/core/database/database_core.dart';
 import 'package:general_lib/general_lib.dart';
-import 'package:http/src/client.dart';
+import 'package:http/http.dart';
 import "package:path/path.dart" as path;
 
+///
 class ExampleClientDatabase extends GeneralFrameworkDatabase {
+  ///
   final Completer<bool> completerEnsureInitialized = Completer<bool>();
   bool _isLoadingEnsureInitialized = false;
 

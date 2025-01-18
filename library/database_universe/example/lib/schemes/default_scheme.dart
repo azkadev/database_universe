@@ -57,7 +57,7 @@ class ExampleDefaultScheme {
   static Map<String, dynamic> session({
     required GeneralLibSchemeType generalLibSchemeType,
   }) {
-    final Map<String, dynamic> json_data = {
+    final Map<String, dynamic> jsonData = {
       "@type": "session${generalLibSchemeType.toSpesialType()}",
       "account_user_id": 0,
       "title": "",
@@ -94,10 +94,10 @@ class ExampleDefaultScheme {
 
       // });
     } else if (generalLibSchemeType == GeneralLibSchemeType.local) {
-      json_data.general_lib_extension_updateForce(data: <String, dynamic>{
+      jsonData.general_lib_extension_updateForce(data: <String, dynamic>{
         "is_default": false,
       });
     }
-    return json_data;
+    return jsonData;
   }
 }

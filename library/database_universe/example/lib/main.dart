@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:example/core/flutter/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:general/flutter/general_flutter_core.dart';
@@ -36,7 +38,9 @@ class MainApp extends StatelessWidget {
   }
 }
 
+///
 class MainInitializedApp extends ExampleClientFlutterAppStatefulWidget {
+ ///
   const MainInitializedApp({
     super.key,
     required super.generalFrameworkClientFlutter,
