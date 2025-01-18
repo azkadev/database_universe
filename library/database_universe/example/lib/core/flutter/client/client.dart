@@ -32,7 +32,8 @@ class ExampleClientFlutter
 
   ///
   static GeneralLibFlutterApp generalLibFlutterApp = GeneralLibFlutterApp();
-///
+
+  ///
   final Completer<bool> completerEnsureInitialized = Completer<bool>();
   bool _isLoadingEnsureInitialized = false;
 

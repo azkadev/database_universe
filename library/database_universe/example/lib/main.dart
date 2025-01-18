@@ -40,7 +40,7 @@ class MainApp extends StatelessWidget {
 
 ///
 class MainInitializedApp extends ExampleClientFlutterAppStatefulWidget {
- ///
+  ///
   const MainInitializedApp({
     super.key,
     required super.generalFrameworkClientFlutter,
