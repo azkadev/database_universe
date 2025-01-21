@@ -5,7 +5,7 @@ on:
 jobs:
   publish:
     name: Publish 
-    runs-on: ubuntu-latest-arm
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       id-token: write
