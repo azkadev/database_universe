@@ -140,18 +140,18 @@ jobs:
           overwrite: true
 
 
-      # - name: Publish database_universe_flutter
-      #   if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-      #   working-directory: package/database_universe_flutter
-      #   run: |
-      #     dart format .
-      #     sleep 2
-      #     flutter pub publish --force --skip-validation
+      - name: Publish database_universe_flutter
+        if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
+        working-directory: package/database_universe_flutter
+        run: |
+          dart format .
+          sleep 2
+          flutter pub publish --force --skip-validation
 
-      # - name: Publish database_universe
-      #   if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-      #   working-directory: package/database_universe
-      #   run: | 
-      #     dart format .
-      #     sleep 2
-      #     dart pub publish --force --skip-validation
+      - name: Publish database_universe
+        if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
+        working-directory: package/database_universe
+        run: | 
+          dart format .
+          sleep 2
+          dart pub publish --force --skip-validation
