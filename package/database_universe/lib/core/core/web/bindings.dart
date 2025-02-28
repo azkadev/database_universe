@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, public_member_api_docs
 
 /* <!-- START LICENSE -->
 
@@ -43,7 +43,6 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 import 'package:database_universe/core/core/web/ffi.dart' as ffi;
 import 'package:database_universe/core/core/web/interop.dart';
 
-/// General Library Documentation Undocument By General Corporation & Global Corporation & General Developer
 extension DatabaseUniverseBindingsX on JSDatabaseUniverse {
   @ffi.Native<
       ffi.Pointer<CString> Function(ffi.Pointer<ffi.Uint16>, ffi.Uint32)>()

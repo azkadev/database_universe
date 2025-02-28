@@ -45,6 +45,7 @@ void main() {
 import 'package:database_universe/core/core/web/ffi.dart' as ffi;
 import 'package:database_universe/core/core/web/interop.dart';
 
+/// no documentation
 extension DatabaseUniverseBindingsX on JSDatabaseUniverse {
 ''',
   );

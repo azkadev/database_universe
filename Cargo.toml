@@ -1,9 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-    "library/database_universe_core",
-    "library/database_universe_core_ffi",
-    "library/mdbx_sys"
+    "native_lib/package/database_universe_core",
+    "native_lib/package/database_universe_core_ffi",
+    "native_lib/package/mdbx_sys"
 ]
 
 [profile.release]

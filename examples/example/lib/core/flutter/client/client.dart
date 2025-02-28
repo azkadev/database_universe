@@ -106,6 +106,7 @@ class ExampleClientFlutter extends GeneralFrameworkClientFlutter<ExampleClient> 
     });
   }
 
+  /// General Library Documentation Undocument By General Corporation & Global Corporation & General Developer
   void navigate({
     required BuildContext context,
   }) async {

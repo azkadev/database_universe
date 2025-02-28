@@ -1,9 +1,10 @@
-include: package:flutter_lints/flutter.yaml
+include: package:lints/recommended.yaml
 analyzer:
   exclude:
     - test
     - dev
     - templates
+    - lib/schema/database_scheme
 linter:
   rules:
     - public_member_api_docs
