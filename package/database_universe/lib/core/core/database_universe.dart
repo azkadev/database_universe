@@ -56,7 +56,7 @@ abstract class DatabaseUniverse {
 
   // /// The current DatabaseUniverse version.
   // static const String version = '0.0.0-placeholder';
-  
+
   /// The current DatabaseUniverse version.
   static const String version = '1.0.5';
 

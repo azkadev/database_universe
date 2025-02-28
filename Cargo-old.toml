@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+    "native_lib/package/database_universe_core",
+    "native_lib/package/database_universe_core_ffi",
+    "native_lib/package/mdbx_sys"
+]
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = "symbols"

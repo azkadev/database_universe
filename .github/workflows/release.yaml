@@ -55,7 +55,7 @@ jobs:
         uses: ./.github/actions/prepare-build
         
       - name: Build binary
-        run: bash tool/${{ matrix.script }}
+        run: bash scripts/${{ matrix.script }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -93,7 +93,7 @@ jobs:
           wait-interval: 10
   
       - name: Download Binaries
-        run: sh tool/download_binaries.sh
+        run: sh scripts/download_binaries.sh
 
       - name: Adjust Version
         run: find . -type f -exec sed -i "s/0.0.0-placeholder/$VERSION/g" {} +
@@ -104,21 +104,21 @@ jobs:
           echo '${{ secrets.PUBDEV_CREDENTIALS }}' >> $HOME/.config/dart/pub-credentials.json
            
       - name: Pub Get database_universe
-        working-directory: library/database_universe
+        working-directory: package/database_universe
         run: |
           dart pub get
           dart format .
 
-      - name: Pub Get database_universe_flutter_libs
-        working-directory: library/database_universe_flutter_libs
+      - name: Pub Get database_universe_flutter
+        working-directory: package/database_universe_flutter
         run: |
           flutter pub get
           dart format .
 
       - name: Archived  
         run: |
-          tar -czvf database_universe.tar.gz library/database_universe/
-          tar -czvf database_universe_flutter_libs.tar.gz library/database_universe_flutter_libs/
+          tar -czvf database_universe.tar.gz package/database_universe/
+          tar -czvf database_universe_flutter.tar.gz package/database_universe_flutter/
 
 
       - name: Upload Release
@@ -134,24 +134,24 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.TOKEN_GITHUB }}
-          file: database_universe_flutter_libs.tar.gz
-          asset_name: database_universe_flutter_libs.tar.gz
+          file: database_universe_flutter.tar.gz
+          asset_name: database_universe_flutter.tar.gz
           tag: "${{ github.ref }}-${{env.VERSION}}"
           overwrite: true
 
 
-      - name: Publish database_universe_flutter_libs
-        if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-        working-directory: library/database_universe_flutter_libs
-        run: |
-          dart format .
-          sleep 2
-          flutter pub publish --force --skip-validation
+      # - name: Publish database_universe_flutter
+      #   if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
+      #   working-directory: package/database_universe_flutter
+      #   run: |
+      #     dart format .
+      #     sleep 2
+      #     flutter pub publish --force --skip-validation
 
-      - name: Publish database_universe
-        if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-        working-directory: library/database_universe
-        run: | 
-          dart format .
-          sleep 2
-          dart pub publish --force --skip-validation
+      # - name: Publish database_universe
+      #   if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
+      #   working-directory: package/database_universe
+      #   run: | 
+      #     dart format .
+      #     sleep 2
+      #     dart pub publish --force --skip-validation
