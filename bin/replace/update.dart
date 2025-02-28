@@ -46,7 +46,7 @@ import "package:yaml/yaml.dart" as yaml;
 String version_package = "0.0.0";
 Future<void> pubspecUpdate({
   required File filePubspec,
-  required List<String> librarys,
+  required List<String> packages,
 }) async {
   if (filePubspec.existsSync()) {
     Map yaml_code =
@@ -55,7 +55,7 @@ Future<void> pubspecUpdate({
 
     yaml_code_clone.addAll({
       "description":
-          'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business',
+          'Database Universe package for help you save any data in anywhere with high performance speed, easy feature and ready for scala business',
       "homepage": 'https://youtube.com/@azkadev',
       "repository": 'https://github.com/General-Developer/database_universe',
       "issue_tracker": 'https://t.me/DEVELOPER_GLOBAL_PUBLIC',
@@ -83,9 +83,9 @@ void main(List<String> args) async {
   Directory directory_home = Directory(path.join(directory.path));
 
   File file_pubspec_home = File(path.join(directory_home.path, "pubspec.yaml"));
-  await pubspecUpdate(filePubspec: file_pubspec_home, librarys: []);
+  await pubspecUpdate(filePubspec: file_pubspec_home, packages: []);
   Directory directory_packages =
-      Directory(path.join(directory.path, "library"));
+      Directory(path.join(directory.path, "package"));
 
   if (!directory_packages.existsSync()) {
     print("Directory Packages Not Found: ${directory_packages.path}");
@@ -95,7 +95,7 @@ void main(List<String> args) async {
   List<FileSystemEntity> file_system_entity_packages =
       directory_packages.listSync();
 
-  List<String> librarys =
+  List<String> packages =
       file_system_entity_packages.map((e) => path.basename(e.path)).toList();
 
   for (var i = 0; i < file_system_entity_packages.length; i++) {
@@ -111,7 +111,7 @@ void main(List<String> args) async {
       File file_pubspec =
           File(path.join(fileSystemEntity.path, "pubspec.yaml"));
 
-      await pubspecUpdate(filePubspec: file_pubspec, librarys: librarys);
+      await pubspecUpdate(filePubspec: file_pubspec, packages: packages);
     }
   }
 

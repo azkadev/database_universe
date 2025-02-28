@@ -1,14 +1,7 @@
-## 1.0.5
+## 1.0.6
 
-- New Version 1.0.5
+- New Version 1.0.6
 - Update Dependencies
-## 1.0.4
+## 0.0.0
 
-- New Version 1.0.4
-- Update Dependencies
-
-## 1.0.3
-
-- New Version 1.0.3
-- Add Support Wasm
-- Update Dependencies
+- Update Topics.

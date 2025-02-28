@@ -1,6 +1,6 @@
 name: 'database_universe_flutter'
-description: 'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
-version: '1.0.5'
+description: 'Database Universe package for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
+version: '1.0.6'
 homepage: 'https://youtube.com/@azkadev'
 repository: 'https://github.com/General-Developer/database_universe'
 issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
@@ -39,3 +39,10 @@ dependency_overrides:
   mime: '^2.0.0'
 project:
   type: ''
+platforms:
+  android: null
+  ios: null
+  linux: null
+  macos: null
+  web: null
+  windows: null

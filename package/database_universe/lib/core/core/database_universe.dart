@@ -54,11 +54,11 @@ abstract class DatabaseUniverse {
   /// The default max DatabaseUniverse size.
   static const int defaultMaxSizeMiB = 128;
 
-  // /// The current DatabaseUniverse version.
-  // static const String version = '0.0.0-placeholder';
-
   /// The current DatabaseUniverse version.
-  static const String version = '1.0.5';
+  static const String version = '0.0.0-placeholder';
+
+  // The current DatabaseUniverse version.
+  // static const String version = '1.0.5';
 
   /// Use this value for the `directory` parameter to create an in-memory
   /// database.

@@ -46,7 +46,7 @@ Future<void> replaceReadme(List<String> args) async {
   String readme_home = await file_readme_home.readAsString();
   // await file_readme.writeAsString(content_readme);
   Directory directory_packages =
-      Directory(path.join(directory.path, "library"));
+      Directory(path.join(directory.path, "package"));
 
   if (!directory_packages.existsSync()) {
     print("Directory Packages Not Found: ${directory_packages.path}");
@@ -76,7 +76,7 @@ Future<void> replaceChangeLog(List<String> args) async {
   String readme_home = await file_readme_home.readAsString();
   // await file_readme.writeAsString(content_readme);
   Directory directory_packages =
-      Directory(path.join(directory.path, "library"));
+      Directory(path.join(directory.path, "package"));
 
   if (!directory_packages.existsSync()) {
     print("Directory Packages Not Found: ${directory_packages.path}");
@@ -106,7 +106,7 @@ Future<void> replaceLICENSE(List<String> args) async {
   String readme_home = await file_readme_home.readAsString();
   // await file_readme.writeAsString(content_readme);
   Directory directory_packages =
-      Directory(path.join(directory.path, "library"));
+      Directory(path.join(directory.path, "package"));
 
   if (!directory_packages.existsSync()) {
     print("Directory Packages Not Found: ${directory_packages.path}");

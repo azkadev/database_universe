@@ -1,5 +1,5 @@
 name: "Prepare Build"
-description: "Prepares the build for Isar Core"
+description: "Prepares the build for Database Universe Core"
 runs:
   using: "composite"
   steps:

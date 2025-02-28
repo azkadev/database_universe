@@ -1,14 +1,26 @@
 name: 'database_universe_dart'
-description: 'A starting point for Dart libraries or applications.'
-version: '1.0.0'
+description: 'Database Universe package for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
+version: '0.0.0'
+homepage: 'https://youtube.com/@azkadev'
+repository: 'https://github.com/General-Developer/database_universe'
+issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
+documentation: 'https://youtube.com/@azkadev'
+platforms:
+  android: null
+  ios: null
+  linux: null
+  macos: null
+  web: null
+  windows: null
 environment:
   sdk: '>=3.6.0 <4.0.0'
 dependencies:
-  database_universe_flutter: '^1.0.5'
-  database_universe: '^1.0.5'
+  database_universe_flutter: '^1.0.0'
+  database_universe: '^1.0.0'
 dev_dependencies:
   lints: '^5.0.0'
   test: 'any'
+  build_runner: 'any'
 project:
   type: ''
 dependency_overrides:
@@ -18,7 +30,3 @@ funding:
   - 'https://github.com/sponsors/azkadev'
   - 'https://github.com/sponsors/generalfoss'
   - 'https://github.com/sponsors/general-developer'
-homepage: 'https://youtube.com/{youtube_username}'
-repository: 'https://github.com/{github_username}/{repository_name}'
-issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
-documentation: 'https://youtube.com/{youtube_username}'
