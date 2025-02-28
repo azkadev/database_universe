@@ -64,7 +64,7 @@ class _DatabaseUniverseCollectionGenerator
     return '''
       // coverage:ignore-file
       // ignore_for_file: ${_ignoreLints.join(', ')}
-      // ignore_for_file: type=lint
+      
 
       extension Get${object.dartName}Collection on DatabaseUniverse {
         DatabaseUniverseCollection<$idType, ${object.dartName}> get ${object.accessor} => this.collection();
@@ -107,7 +107,7 @@ class _DatabaseUniverseEmbeddedGenerator
     return '''
       // coverage:ignore-file
       // ignore_for_file: ${_ignoreLints.join(', ')}
-      // ignore_for_file: type=lint
+      
 
       ${_generateSchema(object)}
 
