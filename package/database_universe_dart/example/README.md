@@ -1,3 +1,0 @@
-## Example
-
-Check this: 
