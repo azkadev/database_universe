@@ -109,8 +109,8 @@ jobs:
           dart pub get
           dart format .
 
-      - name: Pub Get database_universe_flutter
-        working-directory: package/database_universe_flutter
+      - name: Pub Get database_universe_flutter_libs
+        working-directory: package/database_universe_flutter_libs
         run: |
           flutter pub get
           dart format .
@@ -118,7 +118,7 @@ jobs:
       - name: Archived  
         run: |
           tar -czvf database_universe.tar.gz package/database_universe/
-          tar -czvf database_universe_flutter.tar.gz package/database_universe_flutter/
+          tar -czvf database_universe_flutter_libs.tar.gz package/database_universe_flutter_libs/
 
 
       - name: Upload Release
@@ -134,15 +134,15 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.TOKEN_GITHUB }}
-          file: database_universe_flutter.tar.gz
-          asset_name: database_universe_flutter.tar.gz
+          file: database_universe_flutter_libs.tar.gz
+          asset_name: database_universe_flutter_libs.tar.gz
           tag: "${{ github.ref }}-${{env.VERSION}}"
           overwrite: true
 
 
-      - name: Publish database_universe_flutter
+      - name: Publish database_universe_flutter_libs
         if: ${{ github.event.inputs.is_publish_to_pub_dev == 'yes' }}
-        working-directory: package/database_universe_flutter
+        working-directory: package/database_universe_flutter_libs
         run: |
           dart format .
           sleep 2

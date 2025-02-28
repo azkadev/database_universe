@@ -4,7 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   camera_windows
-  database_universe_flutter
+  database_universe_flutter_libs
   permission_handler_windows
   screen_brightness_windows
   screen_retriever_windows

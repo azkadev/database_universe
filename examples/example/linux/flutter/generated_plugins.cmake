@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  database_universe_flutter
+  database_universe_flutter_libs
   media_universe_flutter
   screen_retriever_linux
   url_launcher_linux

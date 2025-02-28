@@ -27,8 +27,8 @@ flutter:
 dependency_overrides:
   database_universe:
     path: '../../package/database_universe'
-  database_universe_flutter:
-    path: '../../package/database_universe_flutter'
+  database_universe_flutter_libs:
+    path: '../../package/database_universe_flutter_libs'
   pointycastle: '3.8.0'
   mime: '^2.0.0'
   media_universe:
