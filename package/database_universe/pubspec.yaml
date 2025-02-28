@@ -1,6 +1,6 @@
 name: 'database_universe'
 description: 'Database Universe package for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
-version: '1.0.6'
+version: '1.0.7'
 homepage: 'https://youtube.com/@azkadev'
 repository: 'https://github.com/General-Developer/database_universe'
 issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
@@ -30,7 +30,7 @@ environment:
 dependencies:
   analyzer: '>=7.1.0 <8.0.0'
   build: '^2.4.2'
-  database_universe_flutter_libs: '^1.0.6'
+  database_universe_flutter_libs: '^1.0.7'
   ffi: '>=2.1.3 <3.0.0'
   flutter:
     sdk: 'flutter'
