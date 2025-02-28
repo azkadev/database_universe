@@ -47,12 +47,15 @@ export 'bindings.dart';
 export 'ffi.dart';
 
 /// @nodoc
-FutureOr<DatabaseUniverseCoreBindings> initializePlatformBindings([String? library]) {
+FutureOr<DatabaseUniverseCoreBindings> initializePlatformBindings(
+    [String? library]) {
   late DatabaseUniverseCoreBindings bindings;
   try {
     library ??= Platform.isIOS ? null : library ?? Abi.current().localName;
 
-    final dylib = Platform.isIOS ? DynamicLibrary.process() : DynamicLibrary.open(library!);
+    final dylib = Platform.isIOS
+        ? DynamicLibrary.process()
+        : DynamicLibrary.open(library!);
     bindings = DatabaseUniverseCoreBindings(dylib);
   } catch (e) {
     throw DatabaseUniverseNotReadyError(
@@ -64,7 +67,8 @@ FutureOr<DatabaseUniverseCoreBindings> initializePlatformBindings([String? libra
     );
   }
 
-  final coreVersion = bindings.database_universe_version().cast<Utf8>().toDartString();
+  final coreVersion =
+      bindings.database_universe_version().cast<Utf8>().toDartString();
   if (coreVersion != DatabaseUniverse.version && coreVersion != 'debug') {
     throw DatabaseUniverseNotReadyError(
       'Incorrect DatabaseUniverse Core version: Required ${DatabaseUniverse.version} found '
