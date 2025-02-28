@@ -1,0 +1,40 @@
+name: 'database_universe_flutter'
+description: 'Database Universe Library for help you save any data in anywhere with high performance speed, easy feature and ready for scala business'
+version: '1.0.5'
+homepage: 'https://youtube.com/@azkadev'
+repository: 'https://github.com/General-Developer/database_universe'
+issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
+documentation: 'https://youtube.com/@azkadev'
+funding:
+  - 'https://github.com/sponsors/azkadev'
+  - 'https://github.com/sponsors/generalfoss'
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.10.0'
+dev_dependencies:
+  general_lib: '^0.0.66'
+  lints: '^5.0.0'
+  test: 'any'
+dependencies:
+  flutter:
+    sdk: 'flutter'
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: 'general_developer.library.database_universe_flutter'
+        pluginClass: 'DatabaseUniverseFlutterPlugin'
+      ios:
+        pluginClass: 'DatabaseUniverseFlutterPlugin'
+      macos:
+        pluginClass: 'DatabaseUniverseFlutterPlugin'
+      linux:
+        pluginClass: 'DatabaseUniverseFlutterPlugin'
+      windows:
+        pluginClass: 'DatabaseUniverseFlutterPlugin'
+      web: null
+dependency_overrides:
+  pointycastle: '3.8.0'
+  mime: '^2.0.0'
+project:
+  type: ''

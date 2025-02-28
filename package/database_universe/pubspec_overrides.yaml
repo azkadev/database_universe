@@ -1,0 +1,4 @@
+
+dependency_overrides:  
+  database_universe_flutter:
+    path: ../database_universe_flutter

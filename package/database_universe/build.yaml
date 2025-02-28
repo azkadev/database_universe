@@ -1,0 +1,8 @@
+builders:
+  database_universe_generator:
+    import: "package:database_universe/core/core/generator/database_universe_generator.dart"
+    builder_factories: ["getDatabaseUniverseGenerator"]
+    build_extensions: { ".dart": ["database_universe_generator.g.part"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
