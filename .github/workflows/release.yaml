@@ -51,36 +51,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      # - name: Prepare Build
-      #   uses: ./.github/actions/prepare-build
+      - name: Prepare Build
+        uses: ./.github/actions/prepare-build
         
-    
-
-      - name: General Developer Action
-        uses: General-Developer/general-developer-action@0.0.8
-        with:
-          flutter_channel: stable
-          flutter_version: 3.29.0
-          is_use_cache: true
-          flutter_cache_key: "flutter-sdk-${{ runner.os }}-3.29.0"
-          install_dependencies_developer: "false" # installing git ffmpeg mpv cmake cpp aand more
-          install_java: "false" # Instalaling java
-          install_rust: "true" # Instalaling java
-      - name: Set Windows environment variables
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          echo "LIBCLANG_PATH=$((gcm clang).source -replace "clang.exe")" >> $env:GITHUB_ENV
-          echo "OPENSSL_SRC_PERL=C:/Strawberry/perl/bin/perl" >> $env:GITHUB_ENV
-      # See https://github.com/godot-rust/godot-rust/pull/920
-      - name: "Workaround Android NDK due to Rust bug"
-        if: runner.os == 'Linux' || runner.os == 'macOS'
-        shell: bash
-        run: >
-          find -L $ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_VERSION -name libunwind.a
-          -execdir sh -c 'echo "INPUT(-lunwind)" > libgcc.a' \;
-      
-
+  
       - name: Build binary
         run: bash scripts/${{ matrix.script }}
       - name: Upload Artifact
