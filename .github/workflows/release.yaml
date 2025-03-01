@@ -20,34 +20,33 @@ jobs:
   build_binaries:
     name: Build Binaries
     timeout-minutes: 30
-    strategy:
-      fail-fast: false
+    strategy: 
       matrix:
         include:
-          - os: macos-latest
-            artifact_name: libdatabase_universe_android_arm64.so
-            script: build_android.sh
-          - os: macos-latest
-            artifact_name: libdatabase_universe_android_armv7.so
-            script: build_android.sh armv7
-          - os: macos-latest
-            artifact_name: libdatabase_universe_android_x64.so
-            script: build_android.sh x64
+          # - os: macos-latest
+          #   artifact_name: libdatabase_universe_android_arm64.so
+          #   script: build_android.sh
+          # - os: macos-latest
+          #   artifact_name: libdatabase_universe_android_armv7.so
+          #   script: build_android.sh armv7
+          # - os: macos-latest
+          #   artifact_name: libdatabase_universe_android_x64.so
+          #   script: build_android.sh x64
           - os: macos-latest
             artifact_name: database_universe_ios.xcframework.zip
             script: build_ios.sh
-          - os: ubuntu-24.04
-            artifact_name: libdatabase_universe_linux_x64.so
-            script: build_linux.sh x64
-          - os: macos-latest
-            artifact_name: libdatabase_universe_macos.dylib
-            script: build_macos.sh
-          - os: windows-latest
-            artifact_name: database_universe_windows_x64.dll
-            script: build_windows.sh x64
-          - os: ubuntu-latest
-            artifact_name: database_universe.wasm
-            script: build_wasm.sh
+          # - os: ubuntu-24.04
+          #   artifact_name: libdatabase_universe_linux_x64.so
+          #   script: build_linux.sh x64
+          # - os: macos-latest
+          #   artifact_name: libdatabase_universe_macos.dylib
+          #   script: build_macos.sh
+          # - os: windows-latest
+          #   artifact_name: database_universe_windows_x64.dll
+          #   script: build_windows.sh x64
+          # - os: ubuntu-latest
+          #   artifact_name: database_universe.wasm
+          #   script: build_wasm.sh
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

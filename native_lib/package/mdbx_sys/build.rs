@@ -65,8 +65,6 @@ fn main() {
     Command::new("git")
         .arg("clone")
         .arg(LIBMDBX_REPO)
-        // .arg("--branch")
-        // .arg(LIBMDBX_TAG)
         .output()
         .unwrap();
 
