@@ -50,7 +50,7 @@ impl ParseCallbacks for Callbacks {
 }
 
 const LIBMDBX_REPO: &str = "https://github.com/isar/libmdbx.git";
-const LIBMDBX_TAG: &str = "v0.12.10";
+// const LIBMDBX_TAG: &str = "v0.12.10";
 // --branch v0.12.10
 
 fn main() {
