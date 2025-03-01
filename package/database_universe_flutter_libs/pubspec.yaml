@@ -25,8 +25,8 @@ flutter:
       android:
         package: 'general_developer.library.database_universe_flutter'
         pluginClass: 'DatabaseUniverseFlutterPlugin'
-      ios:
-        pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
+      # ios:
+      #   pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
       macos:
         pluginClass: 'DatabaseUniverseFlutterLibsPlugin'
       linux:
