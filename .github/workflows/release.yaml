@@ -51,9 +51,22 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare Build
-        uses: ./.github/actions/prepare-build
+      # - name: Prepare Build
+      #   uses: ./.github/actions/prepare-build
         
+    
+
+      - name: General Developer Action
+        uses: General-Developer/general-developer-action@0.0.8
+        with:
+          flutter_channel: stable
+          flutter_version: 3.29.0
+          is_use_cache: true
+          flutter_cache_key: "flutter-sdk-${{ runner.os }}-3.29.0"
+          install_dependencies_developer: "false" # installing git ffmpeg mpv cmake cpp aand more
+          install_java: "false" # Instalaling java
+          install_rust: "true" # Instalaling java
+
       - name: Build binary
         run: bash scripts/${{ matrix.script }}
       - name: Upload Artifact
