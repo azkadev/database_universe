@@ -32,11 +32,12 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 
 <!-- END LICENSE --> */
-// ignore_for_file: public_member_api_docs, non_constant_identifier_names
+// ignore_for_file: public_member_api_docs, non_constant_identifier_names, deprecated_member_use
 
 import 'dart:typed_data';
 
-import 'package:js/js.dart';
+// import 'dart:js_interop';
+import "package:js/js.dart";
 
 @JS()
 @staticInterop

@@ -1,6 +1,6 @@
 # Database Universe
 <p align="center">
-  <img src="https://raw.githubusercontent.com/azkadev/database_universe/refs/heads/main/library/database_universe/assets/database_universe.png" width="350px">
+  <img src="https://raw.githubusercontent.com/azkadev/database_universe/refs/heads/main/package/database_universe/assets/database_universe.png" width="350px">
 </p>
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Database Universe</h2>
 

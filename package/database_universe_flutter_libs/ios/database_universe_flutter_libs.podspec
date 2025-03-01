@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = 'database_universe_flutter'
+  s.name             = 'database_universe_flutter_libs'
   s.version          = '1.0.0'
   s.summary          = 'Flutter binaries for the DatabaseUniverse Database. Needs to be included for Flutter apps.'
   s.homepage         = 'https://database_universe.dev'

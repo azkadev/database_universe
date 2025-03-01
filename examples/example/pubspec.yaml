@@ -8,12 +8,12 @@ dependencies:
   flutter:
     sdk: 'flutter'
   cupertino_icons: '^1.0.8'
-  database_universe: '^1.0.7'
+  database_universe: '^1.1.2'
   general_lib: '^0.0.66'
   general_lib_flutter: '^0.0.41'
   path: '^1.9.0'
-  general_framework: '^0.0.26'
-  general_system_device: '^0.0.52'
+  general_framework: '^0.0.27'
+  general_system_device: '^0.0.53'
   media_universe_flutter: '^0.0.1'
   packagex: '^0.0.85'
 dev_dependencies:
@@ -25,14 +25,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 dependency_overrides:
-  database_universe:
-    path: '../../package/database_universe'
-  database_universe_flutter_libs:
-    path: '../../package/database_universe_flutter_libs'
   pointycastle: '3.8.0'
   mime: '^2.0.0'
-  media_universe:
-    path: '/home/galaxeus/.pub-cache/hosted/pub.dev/media_universe-0.0.0'
 funding: []
 project:
   type: ''

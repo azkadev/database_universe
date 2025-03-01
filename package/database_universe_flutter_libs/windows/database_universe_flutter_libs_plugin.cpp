@@ -4,7 +4,7 @@
 This Software / Program / Source Code Created By Developer From Company GLOBAL CORPORATION
 Social Media:
 
-   - Youtube: https://youtube.com/@Global_Corporation
+   - Youtube: https://youtube.com/@Global_Corporation 
    - Github: https://github.com/globalcorporation
    - TELEGRAM: https://t.me/GLOBAL_CORP_ORG_BOT
 
@@ -27,7 +27,7 @@ Karena jika ada negosiasi harga kemungkinan
 
 Sebelum program ini sampai ke pembeli developer kami sudah melakukan testing
 
-jadi sebelum nego kami sudah melakukan berbagai konsekuensi jika nego tidak sesuai ?
+jadi sebelum nego kami sudah melakukan berbagai konsekuensi jika nego tidak sesuai ? 
 Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba tiba di potong akhirnya bantuan / software kadang tidak lengkap
 
 
@@ -50,67 +50,67 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 namespace {
 
-  class DatabaseUniverseFlutterPlugin : public flutter::Plugin {
-    public:
-    static void RegisterWithRegistrar(flutter::PluginRegistrarWindows* registrar);
+class DatabaseUniverseFlutterLibsPlugin : public flutter::Plugin {
+ public:
+  static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
-    DatabaseUniverseFlutterPlugin();
+  DatabaseUniverseFlutterLibsPlugin();
 
-    virtual ~DatabaseUniverseFlutterPlugin();
+  virtual ~DatabaseUniverseFlutterLibsPlugin();
 
-    private:
-    // Called when a method is called on this plugin's channel from Dart.
-    void HandleMethodCall(
-      const flutter::MethodCall<flutter::EncodableValue>& method_call,
+ private:
+  // Called when a method is called on this plugin's channel from Dart.
+  void HandleMethodCall(
+      const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
-  };
+};
 
-  // static
-  void DatabaseUniverseFlutterPlugin::RegisterWithRegistrar(
-    flutter::PluginRegistrarWindows* registrar) {
-    auto channel =
+// static
+void DatabaseUniverseFlutterLibsPlugin::RegisterWithRegistrar(
+    flutter::PluginRegistrarWindows *registrar) {
+  auto channel =
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-        registrar->messenger(), "database_universe_flutter_libs",
-        &flutter::StandardMethodCodec::GetInstance());
+          registrar->messenger(), "database_universe_flutter_libs",
+          &flutter::StandardMethodCodec::GetInstance());
 
-    auto plugin = std::make_unique<DatabaseUniverseFlutterPlugin>();
+  auto plugin = std::make_unique<DatabaseUniverseFlutterLibsPlugin>();
 
-    channel->SetMethodCallHandler(
-      [plugin_pointer = plugin.get()](const auto& call, auto result) {
+  channel->SetMethodCallHandler(
+      [plugin_pointer = plugin.get()](const auto &call, auto result) {
         plugin_pointer->HandleMethodCall(call, std::move(result));
       });
 
-    registrar->AddPlugin(std::move(plugin));
-  }
+  registrar->AddPlugin(std::move(plugin));
+}
 
-  DatabaseUniverseFlutterPlugin::DatabaseUniverseFlutterPlugin() {}
+DatabaseUniverseFlutterLibsPlugin::DatabaseUniverseFlutterLibsPlugin() {}
 
-  DatabaseUniverseFlutterPlugin::~DatabaseUniverseFlutterPlugin() {}
+DatabaseUniverseFlutterLibsPlugin::~DatabaseUniverseFlutterLibsPlugin() {}
 
-  void DatabaseUniverseFlutterPlugin::HandleMethodCall(
-    const flutter::MethodCall<flutter::EncodableValue>& method_call,
+void DatabaseUniverseFlutterLibsPlugin::HandleMethodCall(
+    const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-    if (method_call.method_name().compare("getPlatformVersion") == 0) {
-      std::ostringstream version_stream;
-      version_stream << "Windows ";
-      if (IsWindows10OrGreater()) {
-        version_stream << "10+";
-      } else if (IsWindows8OrGreater()) {
-        version_stream << "8";
-      } else if (IsWindows7OrGreater()) {
-        version_stream << "7";
-      }
-      result->Success(flutter::EncodableValue(version_stream.str()));
-    } else {
-      result->NotImplemented();
+  if (method_call.method_name().compare("getPlatformVersion") == 0) {
+    std::ostringstream version_stream;
+    version_stream << "Windows ";
+    if (IsWindows10OrGreater()) {
+      version_stream << "10+";
+    } else if (IsWindows8OrGreater()) {
+      version_stream << "8";
+    } else if (IsWindows7OrGreater()) {
+      version_stream << "7";
     }
+    result->Success(flutter::EncodableValue(version_stream.str()));
+  } else {
+    result->NotImplemented();
   }
+}
 
 }  // namespace
 
-void DatabaseUniverseFlutterPluginRegisterWithRegistrar(
-  FlutterDesktopPluginRegistrarRef registrar) {
-  DatabaseUniverseFlutterPlugin::RegisterWithRegistrar(
-    flutter::PluginRegistrarManager::GetInstance()
-    ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
+void DatabaseUniverseFlutterLibsPluginRegisterWithRegistrar(
+    FlutterDesktopPluginRegistrarRef registrar) {
+  DatabaseUniverseFlutterLibsPlugin::RegisterWithRegistrar(
+      flutter::PluginRegistrarManager::GetInstance()
+          ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
 }

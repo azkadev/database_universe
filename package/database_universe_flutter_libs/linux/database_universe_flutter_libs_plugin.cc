@@ -32,7 +32,7 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 
 <!-- END LICENSE --> */
-#include "include/database_universe_flutter/database_universe_flutter_plugin.h"
+#include "include/database_universe_flutter_libs/database_universe_flutter_libs_plugin.h"
 
 #include <flutter_linux/flutter_linux.h>
 #include <gtk/gtk.h>
@@ -40,19 +40,19 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 #include <cstring>
 
-#define DATABASE_UNIVERSE_FLUTTER_PLUGIN(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST((obj), database_universe_flutter_plugin_get_type(), \
-                              DatabaseUniverseFlutterPlugin))
+#define DATABASE_UNIVERSE_FLUTTER_LIBS_PLUGIN(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), database_universe_flutter_libs_plugin_get_type(), \
+                              DatabaseUniverseFlutterLibsPlugin))
 
-struct _DatabaseUniverseFlutterPlugin {
+struct _DatabaseUniverseFlutterLibsPlugin {
   GObject parent_instance;
 };
 
-G_DEFINE_TYPE(DatabaseUniverseFlutterPlugin, database_universe_flutter_plugin, g_object_get_type())
+G_DEFINE_TYPE(DatabaseUniverseFlutterLibsPlugin, database_universe_flutter_libs_plugin, g_object_get_type())
 
 // Called when a method call is received from Flutter.
-static void database_universe_flutter_plugin_handle_method_call(
-    DatabaseUniverseFlutterPlugin* self,
+static void database_universe_flutter_libs_plugin_handle_method_call(
+    DatabaseUniverseFlutterLibsPlugin* self,
     FlMethodCall* method_call) {
   g_autoptr(FlMethodResponse) response = nullptr;
 
@@ -71,30 +71,30 @@ static void database_universe_flutter_plugin_handle_method_call(
   fl_method_call_respond(method_call, response, nullptr);
 }
 
-static void database_universe_flutter_plugin_dispose(GObject* object) {
-  G_OBJECT_CLASS(database_universe_flutter_plugin_parent_class)->dispose(object);
+static void database_universe_flutter_libs_plugin_dispose(GObject* object) {
+  G_OBJECT_CLASS(database_universe_flutter_libs_plugin_parent_class)->dispose(object);
 }
 
-static void database_universe_flutter_plugin_class_init(DatabaseUniverseFlutterPluginClass* klass) {
-  G_OBJECT_CLASS(klass)->dispose = database_universe_flutter_plugin_dispose;
+static void database_universe_flutter_libs_plugin_class_init(DatabaseUniverseFlutterLibsPluginClass* klass) {
+  G_OBJECT_CLASS(klass)->dispose = database_universe_flutter_libs_plugin_dispose;
 }
 
-static void database_universe_flutter_plugin_init(DatabaseUniverseFlutterPlugin* self) {}
+static void database_universe_flutter_libs_plugin_init(DatabaseUniverseFlutterLibsPlugin* self) {}
 
 static void method_call_cb(FlMethodChannel* channel, FlMethodCall* method_call,
                            gpointer user_data) {
-  DatabaseUniverseFlutterPlugin* plugin = DATABASE_UNIVERSE_FLUTTER_PLUGIN(user_data);
-  database_universe_flutter_plugin_handle_method_call(plugin, method_call);
+  DatabaseUniverseFlutterLibsPlugin* plugin = DATABASE_UNIVERSE_FLUTTER_LIBS_PLUGIN(user_data);
+  database_universe_flutter_libs_plugin_handle_method_call(plugin, method_call);
 }
 
-void database_universe_flutter_plugin_register_with_registrar(FlPluginRegistrar* registrar) {
-  DatabaseUniverseFlutterPlugin* plugin = DATABASE_UNIVERSE_FLUTTER_PLUGIN(
-      g_object_new(database_universe_flutter_plugin_get_type(), nullptr));
+void database_universe_flutter_libs_plugin_register_with_registrar(FlPluginRegistrar* registrar) {
+  DatabaseUniverseFlutterLibsPlugin* plugin = DATABASE_UNIVERSE_FLUTTER_LIBS_PLUGIN(
+      g_object_new(database_universe_flutter_libs_plugin_get_type(), nullptr));
 
   g_autoptr(FlStandardMethodCodec) codec = fl_standard_method_codec_new();
   g_autoptr(FlMethodChannel) channel =
       fl_method_channel_new(fl_plugin_registrar_get_messenger(registrar),
-                            "database_universe_flutter",
+                            "database_universe_flutter_libs",
                             FL_METHOD_CODEC(codec));
   fl_method_channel_set_method_call_handler(channel, method_call_cb,
                                             g_object_ref(plugin),

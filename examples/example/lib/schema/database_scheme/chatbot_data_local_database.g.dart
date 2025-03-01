@@ -10,8 +10,7 @@ part of 'chatbot_data_local_database.dart';
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
 
 extension GetChatbotDataLocalDatabaseCollection on DatabaseUniverse {
-  DatabaseUniverseCollection<int, ChatbotDataLocalDatabase>
-      get chatbotDataLocalDatabases => this.collection();
+  DatabaseUniverseCollection<int, ChatbotDataLocalDatabase> get chatbotDataLocalDatabases => this.collection();
 }
 
 const ChatbotDataLocalDatabaseSchema = DatabaseUniverseGeneratedSchema(
@@ -44,8 +43,7 @@ const ChatbotDataLocalDatabaseSchema = DatabaseUniverseGeneratedSchema(
 );
 
 @databaseUniverseProtected
-int serializeChatbotDataLocalDatabase(
-    DatabaseUniverseWriter writer, ChatbotDataLocalDatabase object) {
+int serializeChatbotDataLocalDatabase(DatabaseUniverseWriter writer, ChatbotDataLocalDatabase object) {
   DatabaseUniverseCore.writeString(writer, 1, object.special_type);
   DatabaseUniverseCore.writeString(writer, 2, object.prompt);
   DatabaseUniverseCore.writeString(writer, 3, object.respond);
@@ -53,8 +51,7 @@ int serializeChatbotDataLocalDatabase(
 }
 
 @databaseUniverseProtected
-ChatbotDataLocalDatabase deserializeChatbotDataLocalDatabase(
-    DatabaseUniverseReader reader) {
+ChatbotDataLocalDatabase deserializeChatbotDataLocalDatabase(DatabaseUniverseReader reader) {
   final object = ChatbotDataLocalDatabase();
   object.special_type = DatabaseUniverseCore.readString(reader, 1) ?? '';
   object.id = DatabaseUniverseCore.readId(reader);
@@ -64,8 +61,7 @@ ChatbotDataLocalDatabase deserializeChatbotDataLocalDatabase(
 }
 
 @databaseUniverseProtected
-dynamic deserializeChatbotDataLocalDatabaseProp(
-    DatabaseUniverseReader reader, int property) {
+dynamic deserializeChatbotDataLocalDatabaseProp(DatabaseUniverseReader reader, int property) {
   switch (property) {
     case 1:
       return DatabaseUniverseCore.readString(reader, 1) ?? '';
@@ -89,8 +85,7 @@ sealed class _ChatbotDataLocalDatabaseUpdate {
   });
 }
 
-class _ChatbotDataLocalDatabaseUpdateImpl
-    implements _ChatbotDataLocalDatabaseUpdate {
+class _ChatbotDataLocalDatabaseUpdateImpl implements _ChatbotDataLocalDatabaseUpdate {
   const _ChatbotDataLocalDatabaseUpdateImpl(this.collection);
 
   final DatabaseUniverseCollection<int, ChatbotDataLocalDatabase> collection;
@@ -122,8 +117,7 @@ sealed class _ChatbotDataLocalDatabaseUpdateAll {
   });
 }
 
-class _ChatbotDataLocalDatabaseUpdateAllImpl
-    implements _ChatbotDataLocalDatabaseUpdateAll {
+class _ChatbotDataLocalDatabaseUpdateAllImpl implements _ChatbotDataLocalDatabaseUpdateAll {
   const _ChatbotDataLocalDatabaseUpdateAllImpl(this.collection);
 
   final DatabaseUniverseCollection<int, ChatbotDataLocalDatabase> collection;
@@ -143,13 +137,10 @@ class _ChatbotDataLocalDatabaseUpdateAllImpl
   }
 }
 
-extension ChatbotDataLocalDatabaseUpdate
-    on DatabaseUniverseCollection<int, ChatbotDataLocalDatabase> {
-  _ChatbotDataLocalDatabaseUpdate get update =>
-      _ChatbotDataLocalDatabaseUpdateImpl(this);
+extension ChatbotDataLocalDatabaseUpdate on DatabaseUniverseCollection<int, ChatbotDataLocalDatabase> {
+  _ChatbotDataLocalDatabaseUpdate get update => _ChatbotDataLocalDatabaseUpdateImpl(this);
 
-  _ChatbotDataLocalDatabaseUpdateAll get updateAll =>
-      _ChatbotDataLocalDatabaseUpdateAllImpl(this);
+  _ChatbotDataLocalDatabaseUpdateAll get updateAll => _ChatbotDataLocalDatabaseUpdateAllImpl(this);
 }
 
 sealed class _ChatbotDataLocalDatabaseQueryUpdate {
@@ -160,8 +151,7 @@ sealed class _ChatbotDataLocalDatabaseQueryUpdate {
   });
 }
 
-class _ChatbotDataLocalDatabaseQueryUpdateImpl
-    implements _ChatbotDataLocalDatabaseQueryUpdate {
+class _ChatbotDataLocalDatabaseQueryUpdateImpl implements _ChatbotDataLocalDatabaseQueryUpdate {
   const _ChatbotDataLocalDatabaseQueryUpdateImpl(this.query, {this.limit});
 
   final DatabaseUniverseQuery<ChatbotDataLocalDatabase> query;
@@ -181,22 +171,16 @@ class _ChatbotDataLocalDatabaseQueryUpdateImpl
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryUpdate
-    on DatabaseUniverseQuery<ChatbotDataLocalDatabase> {
-  _ChatbotDataLocalDatabaseQueryUpdate get updateFirst =>
-      _ChatbotDataLocalDatabaseQueryUpdateImpl(this, limit: 1);
+extension ChatbotDataLocalDatabaseQueryUpdate on DatabaseUniverseQuery<ChatbotDataLocalDatabase> {
+  _ChatbotDataLocalDatabaseQueryUpdate get updateFirst => _ChatbotDataLocalDatabaseQueryUpdateImpl(this, limit: 1);
 
-  _ChatbotDataLocalDatabaseQueryUpdate get updateAll =>
-      _ChatbotDataLocalDatabaseQueryUpdateImpl(this);
+  _ChatbotDataLocalDatabaseQueryUpdate get updateAll => _ChatbotDataLocalDatabaseQueryUpdateImpl(this);
 }
 
-class _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl
-    implements _ChatbotDataLocalDatabaseQueryUpdate {
-  const _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl(this.query,
-      {this.limit});
+class _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl implements _ChatbotDataLocalDatabaseQueryUpdate {
+  const _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl(this.query, {this.limit});
 
-  final QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QOperations> query;
+  final QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QOperations> query;
   final int? limit;
 
   @override
@@ -218,19 +202,14 @@ class _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryBuilderUpdate on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QOperations> {
-  _ChatbotDataLocalDatabaseQueryUpdate get updateFirst =>
-      _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl(this, limit: 1);
+extension ChatbotDataLocalDatabaseQueryBuilderUpdate on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QOperations> {
+  _ChatbotDataLocalDatabaseQueryUpdate get updateFirst => _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl(this, limit: 1);
 
-  _ChatbotDataLocalDatabaseQueryUpdate get updateAll =>
-      _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl(this);
+  _ChatbotDataLocalDatabaseQueryUpdate get updateAll => _ChatbotDataLocalDatabaseQueryBuilderUpdateImpl(this);
 }
 
-extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QFilterCondition> {
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeEqualTo(
+extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QFilterCondition> {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -245,8 +224,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeGreaterThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeGreaterThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -261,8 +239,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeGreaterThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeGreaterThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -277,8 +254,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeLessThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeLessThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -293,8 +269,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeLessThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeLessThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -309,8 +284,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeBetween(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeBetween(
     String lower,
     String upper, {
     bool caseSensitive = true,
@@ -327,8 +301,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeStartsWith(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -343,8 +316,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeEndsWith(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -359,9 +331,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-          QAfterFilterCondition>
-      special_typeContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
@@ -373,9 +343,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-          QAfterFilterCondition>
-      special_typeMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
@@ -387,8 +355,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeIsEmpty() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
@@ -399,8 +366,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> special_typeIsNotEmpty() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> special_typeIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
@@ -411,8 +377,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> idEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> idEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -425,8 +390,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> idGreaterThan(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -439,8 +403,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> idGreaterThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> idGreaterThanOrEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -453,8 +416,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> idLessThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> idLessThan(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -467,8 +429,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> idLessThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> idLessThanOrEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -481,8 +442,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> idBetween(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> idBetween(
     int lower,
     int upper,
   ) {
@@ -497,8 +457,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -513,8 +472,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptGreaterThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptGreaterThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -529,8 +487,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptGreaterThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptGreaterThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -545,8 +502,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptLessThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptLessThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -561,8 +517,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptLessThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptLessThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -577,8 +532,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptBetween(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptBetween(
     String lower,
     String upper, {
     bool caseSensitive = true,
@@ -595,8 +549,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptStartsWith(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -611,8 +564,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptEndsWith(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -627,9 +579,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-          QAfterFilterCondition>
-      promptContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
@@ -641,9 +591,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-          QAfterFilterCondition>
-      promptMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
@@ -655,8 +603,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptIsEmpty() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
@@ -667,8 +614,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> promptIsNotEmpty() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> promptIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
@@ -679,8 +625,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -695,8 +640,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondGreaterThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondGreaterThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -711,8 +655,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondGreaterThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondGreaterThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -727,8 +670,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondLessThan(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondLessThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -743,8 +685,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondLessThanOrEqualTo(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondLessThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -759,8 +700,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondBetween(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondBetween(
     String lower,
     String upper, {
     bool caseSensitive = true,
@@ -777,8 +717,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondStartsWith(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -793,8 +732,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondEndsWith(
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -809,9 +747,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-          QAfterFilterCondition>
-      respondContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
@@ -823,9 +759,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-          QAfterFilterCondition>
-      respondMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
@@ -837,8 +771,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondIsEmpty() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
@@ -849,8 +782,7 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterFilterCondition> respondIsNotEmpty() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterFilterCondition> respondIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
@@ -862,13 +794,10 @@ extension ChatbotDataLocalDatabaseQueryFilter on QueryBuilder<
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryObject on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QFilterCondition> {}
+extension ChatbotDataLocalDatabaseQueryObject on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QFilterCondition> {}
 
-extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QSortBy> {
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortBySpecial_type({bool caseSensitive = true}) {
+extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QSortBy> {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortBySpecial_type({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         1,
@@ -877,8 +806,7 @@ extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortBySpecial_typeDesc({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortBySpecial_typeDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         1,
@@ -888,22 +816,19 @@ extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortById() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortByIdDesc() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortByPrompt({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortByPrompt({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         2,
@@ -912,8 +837,7 @@ extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortByPromptDesc({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortByPromptDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         2,
@@ -923,8 +847,7 @@ extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortByRespond({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortByRespond({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         3,
@@ -933,8 +856,7 @@ extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      sortByRespondDesc({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> sortByRespondDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         3,
@@ -945,93 +867,78 @@ extension ChatbotDataLocalDatabaseQuerySortBy on QueryBuilder<
   }
 }
 
-extension ChatbotDataLocalDatabaseQuerySortThenBy on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QSortThenBy> {
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenBySpecial_type({bool caseSensitive = true}) {
+extension ChatbotDataLocalDatabaseQuerySortThenBy on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QSortThenBy> {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenBySpecial_type({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(1, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenBySpecial_typeDesc({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenBySpecial_typeDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(1, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenById() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenByIdDesc() {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenByPrompt({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenByPrompt({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(2, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenByPromptDesc({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenByPromptDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(2, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenByRespond({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenByRespond({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(3, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy>
-      thenByRespondDesc({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterSortBy> thenByRespondDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(3, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryWhereDistinct on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QDistinct> {
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterDistinct> distinctBySpecial_type({bool caseSensitive = true}) {
+extension ChatbotDataLocalDatabaseQueryWhereDistinct on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QDistinct> {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterDistinct> distinctBySpecial_type({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(1, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterDistinct> distinctByPrompt({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterDistinct> distinctByPrompt({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(2, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase,
-      QAfterDistinct> distinctByRespond({bool caseSensitive = true}) {
+  QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QAfterDistinct> distinctByRespond({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(3, caseSensitive: caseSensitive);
     });
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryProperty1 on QueryBuilder<
-    ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QProperty> {
-  QueryBuilder<ChatbotDataLocalDatabase, String, QAfterProperty>
-      special_typeProperty() {
+extension ChatbotDataLocalDatabaseQueryProperty1 on QueryBuilder<ChatbotDataLocalDatabase, ChatbotDataLocalDatabase, QProperty> {
+  QueryBuilder<ChatbotDataLocalDatabase, String, QAfterProperty> special_typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(1);
     });
@@ -1043,77 +950,65 @@ extension ChatbotDataLocalDatabaseQueryProperty1 on QueryBuilder<
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, String, QAfterProperty>
-      promptProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, String, QAfterProperty> promptProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, String, QAfterProperty>
-      respondProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, String, QAfterProperty> respondProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(3);
     });
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryProperty2<R>
-    on QueryBuilder<ChatbotDataLocalDatabase, R, QAfterProperty> {
-  QueryBuilder<ChatbotDataLocalDatabase, (R, String), QAfterProperty>
-      special_typeProperty() {
+extension ChatbotDataLocalDatabaseQueryProperty2<R> on QueryBuilder<ChatbotDataLocalDatabase, R, QAfterProperty> {
+  QueryBuilder<ChatbotDataLocalDatabase, (R, String), QAfterProperty> special_typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(1);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, (R, int), QAfterProperty>
-      idProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, (R, int), QAfterProperty> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(0);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, (R, String), QAfterProperty>
-      promptProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, (R, String), QAfterProperty> promptProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, (R, String), QAfterProperty>
-      respondProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, (R, String), QAfterProperty> respondProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(3);
     });
   }
 }
 
-extension ChatbotDataLocalDatabaseQueryProperty3<R1, R2>
-    on QueryBuilder<ChatbotDataLocalDatabase, (R1, R2), QAfterProperty> {
-  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, String), QOperations>
-      special_typeProperty() {
+extension ChatbotDataLocalDatabaseQueryProperty3<R1, R2> on QueryBuilder<ChatbotDataLocalDatabase, (R1, R2), QAfterProperty> {
+  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, String), QOperations> special_typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(1);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, int), QOperations>
-      idProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, int), QOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(0);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, String), QOperations>
-      promptProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, String), QOperations> promptProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
   }
 
-  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, String), QOperations>
-      respondProperty() {
+  QueryBuilder<ChatbotDataLocalDatabase, (R1, R2, String), QOperations> respondProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(3);
     });

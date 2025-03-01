@@ -10,8 +10,7 @@ part of 'threads_comment_data_local_database.dart';
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
 
 extension GetThreadsCommentDataLocalDatabaseCollection on DatabaseUniverse {
-  DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase>
-      get threadsCommentDataLocalDatabases => this.collection();
+  DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase> get threadsCommentDataLocalDatabases => this.collection();
 }
 
 const ThreadsCommentDataLocalDatabaseSchema = DatabaseUniverseGeneratedSchema(
@@ -35,8 +34,7 @@ const ThreadsCommentDataLocalDatabaseSchema = DatabaseUniverseGeneratedSchema(
     ],
     indexes: [],
   ),
-  converter:
-      DatabaseUniverseObjectConverter<int, ThreadsCommentDataLocalDatabase>(
+  converter: DatabaseUniverseObjectConverter<int, ThreadsCommentDataLocalDatabase>(
     serialize: serializeThreadsCommentDataLocalDatabase,
     deserialize: deserializeThreadsCommentDataLocalDatabase,
     deserializeProperty: deserializeThreadsCommentDataLocalDatabaseProp,
@@ -45,8 +43,7 @@ const ThreadsCommentDataLocalDatabaseSchema = DatabaseUniverseGeneratedSchema(
 );
 
 @databaseUniverseProtected
-int serializeThreadsCommentDataLocalDatabase(
-    DatabaseUniverseWriter writer, ThreadsCommentDataLocalDatabase object) {
+int serializeThreadsCommentDataLocalDatabase(DatabaseUniverseWriter writer, ThreadsCommentDataLocalDatabase object) {
   DatabaseUniverseCore.writeString(writer, 1, object.special_type);
   DatabaseUniverseCore.writeString(writer, 2, object.threads_unique_id);
   DatabaseUniverseCore.writeLong(writer, 3, object.comment);
@@ -54,8 +51,7 @@ int serializeThreadsCommentDataLocalDatabase(
 }
 
 @databaseUniverseProtected
-ThreadsCommentDataLocalDatabase deserializeThreadsCommentDataLocalDatabase(
-    DatabaseUniverseReader reader) {
+ThreadsCommentDataLocalDatabase deserializeThreadsCommentDataLocalDatabase(DatabaseUniverseReader reader) {
   final object = ThreadsCommentDataLocalDatabase();
   object.special_type = DatabaseUniverseCore.readString(reader, 1) ?? '';
   object.id = DatabaseUniverseCore.readId(reader);
@@ -65,8 +61,7 @@ ThreadsCommentDataLocalDatabase deserializeThreadsCommentDataLocalDatabase(
 }
 
 @databaseUniverseProtected
-dynamic deserializeThreadsCommentDataLocalDatabaseProp(
-    DatabaseUniverseReader reader, int property) {
+dynamic deserializeThreadsCommentDataLocalDatabaseProp(DatabaseUniverseReader reader, int property) {
   switch (property) {
     case 1:
       return DatabaseUniverseCore.readString(reader, 1) ?? '';
@@ -90,12 +85,10 @@ sealed class _ThreadsCommentDataLocalDatabaseUpdate {
   });
 }
 
-class _ThreadsCommentDataLocalDatabaseUpdateImpl
-    implements _ThreadsCommentDataLocalDatabaseUpdate {
+class _ThreadsCommentDataLocalDatabaseUpdateImpl implements _ThreadsCommentDataLocalDatabaseUpdate {
   const _ThreadsCommentDataLocalDatabaseUpdateImpl(this.collection);
 
-  final DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase>
-      collection;
+  final DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase> collection;
 
   @override
   bool call({
@@ -124,12 +117,10 @@ sealed class _ThreadsCommentDataLocalDatabaseUpdateAll {
   });
 }
 
-class _ThreadsCommentDataLocalDatabaseUpdateAllImpl
-    implements _ThreadsCommentDataLocalDatabaseUpdateAll {
+class _ThreadsCommentDataLocalDatabaseUpdateAllImpl implements _ThreadsCommentDataLocalDatabaseUpdateAll {
   const _ThreadsCommentDataLocalDatabaseUpdateAllImpl(this.collection);
 
-  final DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase>
-      collection;
+  final DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase> collection;
 
   @override
   int call({
@@ -146,13 +137,10 @@ class _ThreadsCommentDataLocalDatabaseUpdateAllImpl
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseUpdate
-    on DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase> {
-  _ThreadsCommentDataLocalDatabaseUpdate get update =>
-      _ThreadsCommentDataLocalDatabaseUpdateImpl(this);
+extension ThreadsCommentDataLocalDatabaseUpdate on DatabaseUniverseCollection<int, ThreadsCommentDataLocalDatabase> {
+  _ThreadsCommentDataLocalDatabaseUpdate get update => _ThreadsCommentDataLocalDatabaseUpdateImpl(this);
 
-  _ThreadsCommentDataLocalDatabaseUpdateAll get updateAll =>
-      _ThreadsCommentDataLocalDatabaseUpdateAllImpl(this);
+  _ThreadsCommentDataLocalDatabaseUpdateAll get updateAll => _ThreadsCommentDataLocalDatabaseUpdateAllImpl(this);
 }
 
 sealed class _ThreadsCommentDataLocalDatabaseQueryUpdate {
@@ -163,10 +151,8 @@ sealed class _ThreadsCommentDataLocalDatabaseQueryUpdate {
   });
 }
 
-class _ThreadsCommentDataLocalDatabaseQueryUpdateImpl
-    implements _ThreadsCommentDataLocalDatabaseQueryUpdate {
-  const _ThreadsCommentDataLocalDatabaseQueryUpdateImpl(this.query,
-      {this.limit});
+class _ThreadsCommentDataLocalDatabaseQueryUpdateImpl implements _ThreadsCommentDataLocalDatabaseQueryUpdate {
+  const _ThreadsCommentDataLocalDatabaseQueryUpdateImpl(this.query, {this.limit});
 
   final DatabaseUniverseQuery<ThreadsCommentDataLocalDatabase> query;
   final int? limit;
@@ -185,22 +171,16 @@ class _ThreadsCommentDataLocalDatabaseQueryUpdateImpl
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryUpdate
-    on DatabaseUniverseQuery<ThreadsCommentDataLocalDatabase> {
-  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateFirst =>
-      _ThreadsCommentDataLocalDatabaseQueryUpdateImpl(this, limit: 1);
+extension ThreadsCommentDataLocalDatabaseQueryUpdate on DatabaseUniverseQuery<ThreadsCommentDataLocalDatabase> {
+  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateFirst => _ThreadsCommentDataLocalDatabaseQueryUpdateImpl(this, limit: 1);
 
-  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateAll =>
-      _ThreadsCommentDataLocalDatabaseQueryUpdateImpl(this);
+  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateAll => _ThreadsCommentDataLocalDatabaseQueryUpdateImpl(this);
 }
 
-class _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl
-    implements _ThreadsCommentDataLocalDatabaseQueryUpdate {
-  const _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl(this.query,
-      {this.limit});
+class _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl implements _ThreadsCommentDataLocalDatabaseQueryUpdate {
+  const _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl(this.query, {this.limit});
 
-  final QueryBuilder<ThreadsCommentDataLocalDatabase,
-      ThreadsCommentDataLocalDatabase, QOperations> query;
+  final QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QOperations> query;
   final int? limit;
 
   @override
@@ -222,23 +202,14 @@ class _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryBuilderUpdate on QueryBuilder<
-    ThreadsCommentDataLocalDatabase,
-    ThreadsCommentDataLocalDatabase,
-    QOperations> {
-  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateFirst =>
-      _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl(this, limit: 1);
+extension ThreadsCommentDataLocalDatabaseQueryBuilderUpdate on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QOperations> {
+  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateFirst => _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl(this, limit: 1);
 
-  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateAll =>
-      _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl(this);
+  _ThreadsCommentDataLocalDatabaseQueryUpdate get updateAll => _ThreadsCommentDataLocalDatabaseQueryBuilderUpdateImpl(this);
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
-    ThreadsCommentDataLocalDatabase,
-    ThreadsCommentDataLocalDatabase,
-    QFilterCondition> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeEqualTo(
+extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QFilterCondition> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -253,8 +224,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeGreaterThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeGreaterThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -269,8 +239,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeGreaterThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeGreaterThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -285,8 +254,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeLessThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeLessThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -301,8 +269,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeLessThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeLessThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -317,8 +284,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeBetween(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeBetween(
     String lower,
     String upper, {
     bool caseSensitive = true,
@@ -335,8 +301,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeStartsWith(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -351,8 +316,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeEndsWith(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -367,9 +331,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-          QAfterFilterCondition>
-      special_typeContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
@@ -381,9 +343,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-          QAfterFilterCondition>
-      special_typeMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
@@ -395,8 +355,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeIsEmpty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
@@ -407,8 +366,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> special_typeIsNotEmpty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> special_typeIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
@@ -419,8 +377,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> idEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> idEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -433,8 +390,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> idGreaterThan(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -447,8 +403,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> idGreaterThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> idGreaterThanOrEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -461,8 +416,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> idLessThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> idLessThan(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -475,8 +429,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> idLessThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> idLessThanOrEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -489,8 +442,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> idBetween(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> idBetween(
     int lower,
     int upper,
   ) {
@@ -505,8 +457,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -521,8 +472,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idGreaterThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idGreaterThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -537,8 +487,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idGreaterThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idGreaterThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -553,8 +502,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idLessThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idLessThan(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -569,8 +517,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idLessThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idLessThanOrEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -585,8 +532,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idBetween(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idBetween(
     String lower,
     String upper, {
     bool caseSensitive = true,
@@ -603,8 +549,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idStartsWith(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -619,8 +564,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idEndsWith(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -635,9 +579,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-          QAfterFilterCondition>
-      threads_unique_idContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
@@ -649,9 +591,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-          QAfterFilterCondition>
-      threads_unique_idMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
@@ -663,8 +603,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idIsEmpty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
@@ -675,8 +614,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> threads_unique_idIsNotEmpty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> threads_unique_idIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
@@ -687,8 +625,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> commentEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> commentEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -701,8 +638,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> commentGreaterThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> commentGreaterThan(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -715,8 +651,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> commentGreaterThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> commentGreaterThanOrEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -729,8 +664,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> commentLessThan(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> commentLessThan(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -743,8 +677,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> commentLessThanOrEqualTo(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> commentLessThanOrEqualTo(
     int value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -757,8 +690,7 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterFilterCondition> commentBetween(
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterFilterCondition> commentBetween(
     int lower,
     int upper,
   ) {
@@ -774,15 +706,10 @@ extension ThreadsCommentDataLocalDatabaseQueryFilter on QueryBuilder<
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryObject on QueryBuilder<
-    ThreadsCommentDataLocalDatabase,
-    ThreadsCommentDataLocalDatabase,
-    QFilterCondition> {}
+extension ThreadsCommentDataLocalDatabaseQueryObject on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QFilterCondition> {}
 
-extension ThreadsCommentDataLocalDatabaseQuerySortBy on QueryBuilder<
-    ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QSortBy> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortBySpecial_type({bool caseSensitive = true}) {
+extension ThreadsCommentDataLocalDatabaseQuerySortBy on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QSortBy> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortBySpecial_type({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         1,
@@ -791,8 +718,7 @@ extension ThreadsCommentDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortBySpecial_typeDesc({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortBySpecial_typeDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         1,
@@ -802,22 +728,19 @@ extension ThreadsCommentDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortById() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortByIdDesc() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortByThreads_unique_id({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortByThreads_unique_id({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         2,
@@ -826,8 +749,7 @@ extension ThreadsCommentDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortByThreads_unique_idDesc({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortByThreads_unique_idDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(
         2,
@@ -837,197 +759,161 @@ extension ThreadsCommentDataLocalDatabaseQuerySortBy on QueryBuilder<
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortByComment() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortByComment() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(3);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> sortByCommentDesc() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> sortByCommentDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(3, sort: Sort.desc);
     });
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQuerySortThenBy on QueryBuilder<
-    ThreadsCommentDataLocalDatabase,
-    ThreadsCommentDataLocalDatabase,
-    QSortThenBy> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenBySpecial_type({bool caseSensitive = true}) {
+extension ThreadsCommentDataLocalDatabaseQuerySortThenBy on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QSortThenBy> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenBySpecial_type({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(1, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenBySpecial_typeDesc({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenBySpecial_typeDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(1, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenById() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(0, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenByThreads_unique_id({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenByThreads_unique_id({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(2, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenByThreads_unique_idDesc({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenByThreads_unique_idDesc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(2, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenByComment() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenByComment() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(3);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterSortBy> thenByCommentDesc() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterSortBy> thenByCommentDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(3, sort: Sort.desc);
     });
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryWhereDistinct on QueryBuilder<
-    ThreadsCommentDataLocalDatabase,
-    ThreadsCommentDataLocalDatabase,
-    QDistinct> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterDistinct> distinctBySpecial_type({bool caseSensitive = true}) {
+extension ThreadsCommentDataLocalDatabaseQueryWhereDistinct on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QDistinct> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterDistinct> distinctBySpecial_type({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(1, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterDistinct> distinctByThreads_unique_id({bool caseSensitive = true}) {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterDistinct> distinctByThreads_unique_id({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(2, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase,
-      QAfterDistinct> distinctByComment() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QAfterDistinct> distinctByComment() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(3);
     });
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryProperty1 on QueryBuilder<
-    ThreadsCommentDataLocalDatabase,
-    ThreadsCommentDataLocalDatabase,
-    QProperty> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, String, QAfterProperty>
-      special_typeProperty() {
+extension ThreadsCommentDataLocalDatabaseQueryProperty1 on QueryBuilder<ThreadsCommentDataLocalDatabase, ThreadsCommentDataLocalDatabase, QProperty> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, String, QAfterProperty> special_typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(1);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, int, QAfterProperty>
-      idProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, int, QAfterProperty> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(0);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, String, QAfterProperty>
-      threads_unique_idProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, String, QAfterProperty> threads_unique_idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, int, QAfterProperty>
-      commentProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, int, QAfterProperty> commentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(3);
     });
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryProperty2<R>
-    on QueryBuilder<ThreadsCommentDataLocalDatabase, R, QAfterProperty> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, String), QAfterProperty>
-      special_typeProperty() {
+extension ThreadsCommentDataLocalDatabaseQueryProperty2<R> on QueryBuilder<ThreadsCommentDataLocalDatabase, R, QAfterProperty> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, String), QAfterProperty> special_typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(1);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, int), QAfterProperty>
-      idProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, int), QAfterProperty> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(0);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, String), QAfterProperty>
-      threads_unique_idProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, String), QAfterProperty> threads_unique_idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, int), QAfterProperty>
-      commentProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R, int), QAfterProperty> commentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(3);
     });
   }
 }
 
-extension ThreadsCommentDataLocalDatabaseQueryProperty3<R1, R2>
-    on QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2), QAfterProperty> {
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, String), QOperations>
-      special_typeProperty() {
+extension ThreadsCommentDataLocalDatabaseQueryProperty3<R1, R2> on QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2), QAfterProperty> {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, String), QOperations> special_typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(1);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, int), QOperations>
-      idProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, int), QOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(0);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, String), QOperations>
-      threads_unique_idProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, String), QOperations> threads_unique_idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
   }
 
-  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, int), QOperations>
-      commentProperty() {
+  QueryBuilder<ThreadsCommentDataLocalDatabase, (R1, R2, int), QOperations> commentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(3);
     });
