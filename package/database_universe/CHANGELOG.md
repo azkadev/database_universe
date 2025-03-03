@@ -1,3 +1,7 @@
+## 1.1.3
+
+- New Version 1.1.3
+- Update Dependencies
 ## 1.1.2
 
 - New Version 1.1.2

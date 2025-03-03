@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-ln --force -s /opt/example/example /usr/bin/example-app
-chmod +x /usr/bin/example-app
-exit 0

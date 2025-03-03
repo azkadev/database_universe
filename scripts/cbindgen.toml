@@ -1,8 +1,0 @@
-language = "C"
-
-[parse]
-parse_deps = true
-include = ["database-universe-core", "database-universe"]
-
-[parse.expand]
-crates = ["database-universe"]
